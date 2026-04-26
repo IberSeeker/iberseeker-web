@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Packs y precios — IberSeeker Visual</title>
+<meta name="description" content="Packs de fotografía, vídeo, drone y tour virtual desde 109€. Personaliza con extras al estilo carrito y recibe presupuesto al instante." />
+<meta name="theme-color" content="#0f0f0f" />
+<link rel="icon" type="image/png" href="assets/logo/logo-white-tight.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="has-cart">
+
+<header class="site-header is-light" id="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="Navegación principal">
+      <a href="index.html" class="nav-logo" aria-label="IberSeeker Visual — Inicio">
+        <img src="assets/logo/logo-black-tight.png" alt="IberSeeker Visual" />
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Inicio</a></li>
+        <li><a href="servicios.html" class="nav-link">Servicios</a></li>
+        <li><a href="trabajos.html" class="nav-link">Nuestros trabajos</a></li>
+        <li><a href="packs.html" class="nav-link">Packs y precios</a></li>
+        <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="nav-cta">Pedir presupuesto</a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow">Packs y precios</p>
+    <h1>Precios transparentes. Sin sorpresas.</h1>
+    <p>Cuatro packs cerrados pensados para cubrir desde la venta exprés hasta la propiedad de lujo. Personaliza con los extras que necesites.</p>
+  </div>
+</section>
+
+<section class="section section--light">
+  <div class="container">
+
+    <p class="packs-helper">Selecciona un pack y combina con los extras de abajo. Solo puedes elegir un pack por pedido.</p>
+
+    <div class="packs-grid" id="packs-grid">
+
+      <article class="pack reveal" data-pack-id="pack-esencial" data-pack-name="Pack Esencial" data-pack-price="109">
+        <h3 class="pack-name">Esencial</h3>
+        <p class="pack-tagline">Para venta rápida y eficaz</p>
+        <div class="pack-price">109€</div>
+        <p class="pack-price-sub">IVA no incluido</p>
+        <ul class="pack-features">
+          <li>20 fotografías HDR profesionales</li>
+          <li>Edición premium y retoque de cielo</li>
+          <li>Entrega en 24 h</li>
+          <li>Resolución alta para portales y RR.SS.</li>
+          <li>Galería online compartible</li>
+        </ul>
+        <button class="btn btn-pack pack-add-btn" type="button">
+          <span class="add-label">Añadir al pedido</span>
+          <span class="added-label">Pack añadido <span class="check">✓</span></span>
+        </button>
+      </article>
+
+      <article class="pack reveal" data-pack-id="pack-visual" data-pack-name="Pack Visual" data-pack-price="199">
+        <h3 class="pack-name">Visual</h3>
+        <p class="pack-tagline">Fotografía + vídeo cinematic</p>
+        <div class="pack-price">199€</div>
+        <p class="pack-price-sub">IVA no incluido</p>
+        <ul class="pack-features">
+          <li>25 fotografías HDR profesionales</li>
+          <li>Vídeo 4K cinematic de 60 segundos</li>
+          <li>Edición con música y narrativa</li>
+          <li>Versión vertical para Reels / TikTok</li>
+          <li>Entrega en 48 h</li>
+        </ul>
+        <button class="btn btn-pack pack-add-btn" type="button">
+          <span class="add-label">Añadir al pedido</span>
+          <span class="added-label">Pack añadido <span class="check">✓</span></span>
+        </button>
+      </article>
+
+      <article class="pack pack--featured reveal" data-pack-id="pack-aereo" data-pack-name="Pack Aéreo" data-pack-price="299">
+        <span class="pack-badge">Más popular</span>
+        <h3 class="pack-name">Aéreo</h3>
+        <p class="pack-tagline">Fotografía + vídeo + drone exterior</p>
+        <div class="pack-price">299€</div>
+        <p class="pack-price-sub">IVA no incluido</p>
+        <ul class="pack-features">
+          <li>Todo lo del Pack Visual</li>
+          <li>Vuelo de drone DJI Air 3S</li>
+          <li>10 fotografías aéreas en 4K</li>
+          <li>Plano cinematic aéreo en vídeo</li>
+          <li>Vista de parcela y entorno</li>
+        </ul>
+        <button class="btn btn-pack pack-add-btn" type="button">
+          <span class="add-label">Añadir al pedido</span>
+          <span class="added-label">Pack añadido <span class="check">✓</span></span>
+        </button>
+      </article>
+
+      <article class="pack reveal" data-pack-id="pack-elite" data-pack-name="Pack Élite" data-pack-price="559">
+        <h3 class="pack-name">Élite</h3>
+        <p class="pack-tagline">Experiencia completa para inmuebles de lujo</p>
+        <div class="pack-price">559€</div>
+        <p class="pack-price-sub">IVA no incluido</p>
+        <ul class="pack-features">
+          <li>Todo lo del Pack Aéreo</li>
+          <li>Drone interior FPV 8K (DJI Avata)</li>
+          <li>Tour virtual Matterport 3D navegable</li>
+          <li>Plano 2D acotado profesional</li>
+          <li>Certificado energético oficial</li>
+          <li>Sesión prioritaria con dos operadores</li>
+        </ul>
+        <button class="btn btn-pack pack-add-btn" type="button">
+          <span class="add-label">Añadir al pedido</span>
+          <span class="added-label">Pack añadido <span class="check">✓</span></span>
+        </button>
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="extras-section" id="extras">
+  <div class="container">
+    <div class="extras-header">
+      <p class="eyebrow">Personaliza tu sesión</p>
+      <h2>Añade los extras que necesites</h2>
+      <p>Toca <strong>+ Añadir</strong> sobre cada extra para sumarlo a tu pedido. Verás el total combinado (pack + extras) al instante y podrás enviarnos la solicitud por email o WhatsApp.</p>
+    </div>
+
+    <div class="extras-layout">
+
+      <div class="extras-cards" id="extras-list">
+
+        <article class="extra-card" data-id="fotos10" data-name="+10 fotos" data-price="30">
+          <div class="extra-card-head"><span class="extra-card-name">+10 fotos</span><span class="extra-card-price">+30€</span></div>
+          <p class="extra-card-desc">Diez fotografías adicionales editadas en HDR, en alta resolución.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="extra-card" data-id="video-rrss" data-name="Vídeo RRSS" data-price="49">
+          <div class="extra-card-head"><span class="extra-card-name">Vídeo RRSS</span><span class="extra-card-price">+49€</span></div>
+          <p class="extra-card-desc">Versión vertical 9:16 para Reels, TikTok y Stories.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="extra-card" data-id="drone-ext" data-name="Drone exterior" data-price="109">
+          <div class="extra-card-head"><span class="extra-card-name">Drone exterior</span><span class="extra-card-price">+109€</span></div>
+          <p class="extra-card-desc">Vuelo aéreo con DJI Air 3S — fotos y vídeo 4K del exterior.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="extra-card" data-id="drone-int" data-name="Drone interior FPV" data-price="189">
+          <div class="extra-card-head"><span class="extra-card-name">Drone interior FPV</span><span class="extra-card-price">+189€</span></div>
+          <p class="extra-card-desc">Plano secuencia FPV 360° 8K con DJI Avata. Único en el sector.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="extra-card" data-id="combo-drones" data-name="Combo drones" data-price="249">
+          <div class="extra-card-head"><span class="extra-card-name">Combo drones</span><span class="extra-card-price">+249€</span></div>
+          <p class="extra-card-desc">Drone exterior + drone interior FPV en la misma sesión. Mejor precio.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="extra-card" data-id="matterport" data-name="Matterport" data-price="99">
+          <div class="extra-card-head"><span class="extra-card-name">Matterport</span><span class="extra-card-price">+99€</span></div>
+          <p class="extra-card-desc">Tour virtual 3D navegable 24/7 desde cualquier dispositivo.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="extra-card" data-id="plano-2d" data-name="Plano 2D" data-price="49">
+          <div class="extra-card-head"><span class="extra-card-name">Plano 2D</span><span class="extra-card-price">+49€</span></div>
+          <p class="extra-card-desc">Plano técnico acotado generado a partir del escaneo Matterport.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="extra-card" data-id="cert-energ" data-name="Certificado energético" data-price="99">
+          <div class="extra-card-head"><span class="extra-card-name">Certificado energético</span><span class="extra-card-price">+99€</span></div>
+          <p class="extra-card-desc">Trámite oficial con técnico colegiado y registro en la Comunidad.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="extra-card" data-id="entrega-24h" data-name="Entrega urgente 24h" data-price="19">
+          <div class="extra-card-head"><span class="extra-card-name">Entrega urgente 24h</span><span class="extra-card-price">+19€</span></div>
+          <p class="extra-card-desc">Material entregado en menos de 24h tras la sesión.</p>
+          <div class="extra-card-action">
+            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+            <div class="qty-stepper" role="group" aria-label="Cantidad">
+              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
+              <span class="qty-value">1</span>
+              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <aside class="cart" id="cart" aria-label="Tu pedido">
+        <div class="cart-head">
+          <span class="cart-title">Tu pedido</span>
+          <span class="cart-count" id="cart-count">0</span>
+        </div>
+        <div class="cart-empty" id="cart-empty">
+          Aún no has añadido nada.<br>Selecciona un pack arriba o añade extras.
+        </div>
+        <ul class="cart-items" id="cart-items" hidden></ul>
+        <div class="cart-total">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-value" id="cart-total">0€</span>
+        </div>
+        <p class="cart-vat">IVA no incluido</p>
+        <div class="cart-actions">
+          <button class="cart-checkout" id="cart-checkout" type="button" disabled>
+            Pedir por email <span class="arrow"></span>
+          </button>
+          <button class="cart-whatsapp" id="cart-whatsapp" type="button" disabled>
+            Pedir por WhatsApp
+          </button>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</section>
+
+<section class="process section--light" aria-label="Nuestro proceso de trabajo">
+  <div class="container">
+    <div class="process-header reveal">
+      <p class="eyebrow">Cómo trabajamos</p>
+      <h2 class="h-section">Tres pasos. Cero fricciones.</h2>
+      <p class="lead">Sin formularios eternos ni esperas. De la primera llamada a tener el material publicado en menos de 4 días.</p>
+    </div>
+    <ol class="process-steps">
+      <li class="process-step reveal">
+        <span class="process-num">01</span>
+        <h3>Cuéntanos el inmueble</h3>
+        <p>Por email o WhatsApp en 2 minutos. Te respondemos con propuesta personalizada en menos de 24h.</p>
+      </li>
+      <li class="process-step reveal">
+        <span class="process-num">02</span>
+        <h3>Sesión en 48h</h3>
+        <p>Programamos la sesión en la franja que prefieras. Llegamos con todo el equipo y nos encargamos de cada detalle.</p>
+      </li>
+      <li class="process-step reveal">
+        <span class="process-num">03</span>
+        <h3>Material en 24h</h3>
+        <p>Recibes fotos HDR, vídeo 4K y tour Matterport listos para subir a portales y redes. Revisión incluida.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="cta-block">
+  <div class="container">
+    <h2>¿Tienes dudas sobre qué pack elegir?</h2>
+    <p>Cuéntanos las características del inmueble y te recomendamos la combinación que más rentabiliza la sesión.</p>
+    <div class="cta-actions">
+      <a href="contacto.html" class="btn btn-primary">Pedir asesoramiento <span class="arrow"></span></a>
+      <a href="https://wa.me/34634323162?text=Hola%20IberSeeker%20Visual%2C%20me%20gustar%C3%ADa%20saber%20qu%C3%A9%20pack%20me%20conviene%20para..." class="btn btn-whatsapp" target="_blank" rel="noopener">WhatsApp directo</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo/logo-white-tight.png" alt="IberSeeker Visual" />
+        <p>Productora audiovisual inmobiliaria. Fotografía, vídeo 4K, drones y tour virtual en Madrid y zonas de lujo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Web</h4>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="trabajos.html">Trabajos</a></li>
+          <li><a href="packs.html">Packs y precios</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="servicios.html#fotografia">Fotografía HDR</a></li>
+          <li><a href="servicios.html#video">Vídeo 4K</a></li>
+          <li><a href="servicios.html#drone-exterior">Drone exterior</a></li>
+          <li><a href="servicios.html#drone-fpv">Drone FPV interior</a></li>
+          <li><a href="servicios.html#matterport">Tour Matterport</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="mailto:grupo@iberseeker.net">grupo@iberseeker.net</a></li>
+          <li><a href="https://wa.me/34634323162" target="_blank" rel="noopener">+34 634 32 31 62</a></li>
+          <li>Madrid &middot; Zonas de lujo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 IberSeeker Visual &middot; Todos los derechos reservados</span>
+      <span>Madrid, España</span>
+    </div>
+  </div>
+</footer>
+
+<a href="contacto.html" class="sticky-cta" id="sticky-cta" aria-label="Pedir presupuesto">
+  <span>Pedir presupuesto</span>
+  <span class="sticky-cta-arrow">→</span>
+</a>
+
+<a href="https://wa.me/34634323162?text=Hola%20IberSeeker%20Visual%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto%20para..." class="fab-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="app.js" defer></script>
+</body>
+</html>
