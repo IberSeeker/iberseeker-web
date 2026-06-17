@@ -2765,5 +2765,140 @@ section + section { margin-top: 0 !important; }
 }
 
 /* Asegurar que ninguna sección revela el fondo negro del body por error */
-body { background: var(--pearl) !important; }
+html, body { background: var(--pearl) !important; }
+
+/* ====================================================== */
+/* === v7 — MÓVIL: layout desktop adaptado (no stripped) = */
+/* ====================================================== */
+
+@media (max-width: 700px) {
+  /* Stats: scroll horizontal estilo App Store. Los 5 datos siguen ahí,
+     visibles deslizando. Conserva la sensación de "banda gancho rica"
+     en lugar de empobrecerla a una lista vertical aburrida. */
+  .stats.stats-hook.stats-hook--top {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 32px !important;
+  }
+  .stats-hook > .container { padding-left: 0 !important; padding-right: 0 !important; }
+  .stats-hook .stats-eyebrow,
+  .stats-hook .stats-subline {
+    padding-left: 20px; padding-right: 20px;
+  }
+  .stats-hook .stats-grid {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 0 !important;
+    padding: 18px 20px 0 !important;
+    border-top: 1px solid rgba(20,20,15,0.10) !important;
+    max-width: none !important;
+    margin: 0 !important;
+    /* indicador visual de que se puede scrollear */
+    scroll-padding-left: 20px;
+  }
+  .stats-hook .stats-grid::-webkit-scrollbar { display: none; }
+  .stats-hook .stat {
+    flex: 0 0 auto;
+    min-width: 38vw;
+    max-width: 60vw;
+    scroll-snap-align: start;
+    padding: 14px 16px !important;
+    border-right: 1px solid rgba(20,20,15,0.10) !important;
+    border-bottom: 0 !important;
+    text-align: center;
+  }
+  .stats-hook .stat:last-child { border-right: 0 !important; }
+  .stats-hook .stat-number {
+    font-size: 38px !important;
+    margin-bottom: 8px !important;
+  }
+  .stats-hook .stat-label {
+    font-size: 12px;
+    max-width: 18ch;
+  }
+
+  /* Process: scroll horizontal con cards más estrechas, snap por card.
+     Mantiene la sensación 1-2-3 visible. */
+  .process.process--light .container { padding-left: 0 !important; padding-right: 0 !important; }
+  .process--light .process-header {
+    padding-left: 20px; padding-right: 20px;
+    margin-bottom: 28px;
+  }
+  .process--light .process-steps {
+    display: flex !important;
+    grid-template-columns: none !important;
+    flex-direction: row !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 14px !important;
+    padding: 24px 20px !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+  .process--light .process-steps::-webkit-scrollbar { display: none; }
+  .process--light .process-step {
+    flex: 0 0 78vw;
+    scroll-snap-align: center;
+    padding: 36px 22px 28px !important;
+  }
+
+  /* Brands: 4 columnas + 2 filas en lugar de 3 cols. Más densidad como desktop */
+  .brands-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 18px 14px !important; }
+  .brand-logo { height: 56px !important; padding: 4px !important; }
+  @media (max-width: 380px) {
+    .brands-grid { grid-template-columns: repeat(3, 1fr) !important; }
+  }
+
+  /* Equipo: imagen + texto en dos zonas pero más juntas */
+  .equipo-grid { gap: 24px !important; }
+  .equipo-visual { aspect-ratio: 4 / 3; }
+
+  /* Hero buttons: intentar mantenerlos lado a lado en pantallas >360px,
+     stack solo en muy pequeño */
+  .hero-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-width: none;
+    width: 100%;
+  }
+  .hero-actions .btn {
+    flex: 1 1 auto;
+    min-width: 140px;
+  }
+  @media (max-width: 360px) {
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { flex: 1; }
+  }
+
+  /* CTA buttons: mismo principio */
+  .cta-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: none; }
+  .cta-actions .btn { flex: 1 1 auto; min-width: 160px; }
+  @media (max-width: 360px) {
+    .cta-actions { flex-direction: column; }
+  }
+
+  /* Indicador sutil de scroll horizontal (gradiente fade en bordes) */
+  .stats-hook .stats-grid,
+  .process--light .process-steps {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+  }
+}
+
+/* Safe-area-inset también para html (algunos browsers lo necesitan) */
+html { background: var(--pearl) !important; }
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+  }
+}
 
