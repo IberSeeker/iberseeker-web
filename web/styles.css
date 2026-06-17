@@ -2895,10 +2895,75 @@ html, body { background: var(--pearl) !important; }
 
 /* Safe-area-inset también para html (algunos browsers lo necesitan) */
 html { background: var(--pearl) !important; }
-@supports (padding: max(0px)) {
-  body {
-    padding-left: env(safe-area-inset-left, 0);
-    padding-right: env(safe-area-inset-right, 0);
+
+/* ====================================================== */
+/* === v8 — FIX AGRESIVO franja negra mobile =========== */
+/* ====================================================== */
+
+@media (max-width: 700px) {
+  /* Header SÓLIDO (no translúcido) en móvil. La translucencia con
+     backdrop-filter falla o se ve oscura en algunos browsers móviles. */
+  .site-header {
+    background: #faf8f3 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    /* Extender la zona perlada hacia arriba para cubrir notch/status bar
+       con margen extra por si el cálculo del safe-area falla */
+    padding-top: calc(14px + env(safe-area-inset-top, 24px)) !important;
+  }
+  .site-header.is-scrolled {
+    background: #faf8f3 !important;
+  }
+  /* Forzar html y body a perlado SÓLIDO sin posibilidad de heredar negro */
+  html, body {
+    background-color: #faf8f3 !important;
+    background-image: none !important;
+  }
+  /* Por seguridad: un pseudo-elemento fijo en la parte superior que
+     cubra el área del notch con perlado, por si alguna superposición
+     del browser dejara ver negro */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: env(safe-area-inset-top, 0);
+    background: #faf8f3;
+    z-index: 99;
+    pointer-events: none;
+  }
+
+  /* === CRITICAL FIX: el menú móvil (.nav-links) tiene fondo casi negro
+     y usa transform: translateY(-110%) para esconderse. En algunos
+     Android (Samsung Internet, ciertas versiones de Chrome) ese transform
+     falla y el menú se queda visible cubriendo el contenido como una
+     "franja negra". Solución: display: none cuando NO está abierto. === */
+  .nav-links {
+    display: none !important;
+    background: var(--pearl) !important; /* perlado por si acaso */
+  }
+  .nav-links.is-open {
+    display: flex !important;
+    background: rgba(250, 248, 243, 0.98) !important; /* perlado sólido */
+  }
+  /* Y los enlaces del menú móvil oscuros (sobre fondo perlado) */
+  .nav-links.is-open .nav-link {
+    color: var(--ink) !important;
+    border-bottom: 1px solid rgba(20,20,15,0.10) !important;
+  }
+}
+
+/* Tablet (entre móvil y desktop) — misma protección por si acaso */
+@media (max-width: 1000px) and (min-width: 701px) {
+  .nav-links {
+    display: none !important;
+    background: var(--pearl) !important;
+  }
+  .nav-links.is-open {
+    display: flex !important;
+    background: rgba(250, 248, 243, 0.98) !important;
+  }
+  .nav-links.is-open .nav-link {
+    color: var(--ink) !important;
   }
 }
 
