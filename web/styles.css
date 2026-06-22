@@ -2874,17 +2874,10 @@ html, body { background: var(--pearl) !important; }
     flex: 1 1 auto;
     min-width: 140px;
   }
-  @media (max-width: 360px) {
-    .hero-actions { flex-direction: column; }
-    .hero-actions .btn { flex: 1; }
-  }
 
   /* CTA buttons: mismo principio */
   .cta-actions { flex-direction: row; flex-wrap: wrap; justify-content: center; max-width: none; }
   .cta-actions .btn { flex: 1 1 auto; min-width: 160px; }
-  @media (max-width: 360px) {
-    .cta-actions { flex-direction: column; }
-  }
 
   /* Indicador sutil de scroll horizontal (gradiente fade en bordes) */
   .stats-hook .stats-grid,
@@ -2896,6 +2889,14 @@ html, body { background: var(--pearl) !important; }
 
 /* Safe-area-inset también para html (algunos browsers lo necesitan) */
 html { background: var(--pearl) !important; }
+
+/* Móvil muy pequeño: stack vertical de botones (extraído de @media anidado
+   que rompía el parser CSS) */
+@media (max-width: 360px) {
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { flex: 1; }
+  .cta-actions { flex-direction: column; }
+}
 
 /* ====================================================== */
 /* === v9 — HERO centrado y simétrico, lockup más sobrio  */
@@ -3048,31 +3049,12 @@ html { background: var(--pearl) !important; }
     pointer-events: none;
   }
 
-  /* === CRITICAL FIX: el menú móvil (.nav-links) tiene fondo casi negro
-     y usa transform: translateY(-110%) para esconderse. En algunos
-     Android (Samsung Internet, ciertas versiones de Chrome) ese transform
-     falla y el menú se queda visible cubriendo el contenido como una
-     "franja negra". Solución: display: none cuando NO está abierto. === */
-  .nav-links {
-    display: none !important;
-    background: var(--pearl) !important; /* perlado por si acaso */
-  }
-  .nav-links.is-open {
-    display: flex !important;
-    background: rgba(250, 248, 243, 0.98) !important; /* perlado sólido */
-  }
-  /* Y los enlaces del menú móvil oscuros (sobre fondo perlado) */
-  .nav-links.is-open .nav-link {
-    color: var(--ink) !important;
-    border-bottom: 1px solid rgba(20,20,15,0.10) !important;
-  }
-}
-
-/* Tablet (entre móvil y desktop) — misma protección por si acaso */
-@media (max-width: 1000px) and (min-width: 701px) {
+  /* === Menú móvil: oculto por defecto, perlado al abrir, sin underline
+     en cada link (queda más limpio). Funciona en todas las páginas. === */
   .nav-links {
     display: none !important;
     background: var(--pearl) !important;
+    z-index: 95;
   }
   .nav-links.is-open {
     display: flex !important;
@@ -3080,6 +3062,35 @@ html { background: var(--pearl) !important; }
   }
   .nav-links.is-open .nav-link {
     color: var(--ink) !important;
+    border-bottom: 0 !important;
+    border-top: 0 !important;
+  }
+  /* Hamburguesa siempre clickeable: sin elementos sobre ella */
+  .nav-toggle {
+    z-index: 101;
+    position: relative;
+  }
+}
+
+/* Tablet (entre móvil y desktop) — misma protección */
+@media (max-width: 1000px) and (min-width: 701px) {
+  .nav-links {
+    display: none !important;
+    background: var(--pearl) !important;
+    z-index: 95;
+  }
+  .nav-links.is-open {
+    display: flex !important;
+    background: rgba(250, 248, 243, 0.98) !important;
+  }
+  .nav-links.is-open .nav-link {
+    color: var(--ink) !important;
+    border-bottom: 0 !important;
+    border-top: 0 !important;
+  }
+  .nav-toggle {
+    z-index: 101;
+    position: relative;
   }
 }
 
