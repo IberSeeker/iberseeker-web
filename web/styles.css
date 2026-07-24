@@ -3094,3 +3094,134 @@ html { background: var(--pearl) !important; }
   }
 }
 
+
+/* ====================================================== */
+/* === v10 — Verde bosque + H1 SEO + footer refinado === */
+/* ====================================================== */
+
+/* Nuevo color de acento sutil. Uso muy medido, solo para
+   destacar acciones y palabras clave. */
+:root {
+  --forest: #2d5a3d;         /* verde bosque profundo, para fondos claros */
+  --forest-soft: #3d7050;    /* variante media */
+  --forest-light: #7fb193;   /* claro, para fondos oscuros */
+}
+
+/* --- H1 SEO (eyebrow style limpio, sin pill/fondo — solo tipografía) --- */
+.hero-content--centered .hero-title-seo {
+  font-family: var(--font-body);
+  font-size: clamp(10.5px, 1vw, 12.5px);
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin: 0 auto 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.55);
+  opacity: 0.92;
+}
+/* Rayitas decorativas laterales (opcional) para anclar visualmente */
+.hero-content--centered .hero-title-seo::before,
+.hero-content--centered .hero-title-seo::after {
+  content: '';
+  width: 24px; height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* Cuando .hero-title es <p> en vez de <h1>, mantén el look cinematográfico */
+.hero-content--centered p.hero-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* --- Footer: separación visual sutil, sin línea verde --- */
+.site-footer {
+  border-top: 1px solid rgba(255,255,255,0.06) !important;
+  padding-top: 60px !important;
+  position: relative;
+}
+
+/* Logo del footer clickable: mismo look, cursor puntero */
+.footer-brand a {
+  display: inline-block;
+  transition: opacity .3s var(--ease);
+}
+.footer-brand a:hover { opacity: .75; }
+
+/* Iconos sociales */
+.footer-social {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0;
+  display: flex;
+  gap: 12px;
+}
+.footer-social a {
+  display: grid;
+  place-items: center;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 50%;
+  color: var(--text-soft);
+  transition: color .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), transform .3s var(--ease);
+}
+.footer-social a svg { width: 18px; height: 18px; }
+.footer-social a:hover {
+  color: var(--white);
+  border-color: var(--forest-light);
+  background: rgba(45, 90, 61, 0.22);
+  transform: translateY(-2px);
+}
+
+/* === Verde bosque como marcador de acción principal ===
+   Solo el CTA "Pedir presupuesto" (nav + sticky) va verde.
+   Otros botones (Ver servicios, Ver portfolio, Packs, etc.) mantienen
+   blanco/negro. Así el verde señala UNA sola acción: la de conversión. */
+
+/* CTA "Pedir presupuesto" del header (verde permanente) */
+.nav-cta,
+.site-header.is-light .nav-cta {
+  background: var(--forest) !important;
+  color: var(--white) !important;
+  border-color: var(--forest) !important;
+}
+.nav-cta:hover,
+.site-header.is-light .nav-cta:hover {
+  background: #1f4530 !important; /* verde más oscuro al hover */
+  color: var(--white) !important;
+  border-color: #1f4530 !important;
+}
+
+/* Sticky CTA flotante inferior (misma acción "Pedir presupuesto") */
+.sticky-cta {
+  background: var(--forest) !important;
+  color: var(--white) !important;
+}
+.sticky-cta:hover {
+  background: #1f4530 !important;
+  color: var(--white) !important;
+}
+
+/* Botones btn-primary del hero/CTA-block SIN verde: mantienen blanco */
+/* (así "Pedir presupuesto" es único en su color) */
+
+/* Enfatizar palabras clave del hero-subtitle: em ahora en verde bosque light */
+.hero-content--centered .hero-subtitle em {
+  color: #d7ebe0 !important; /* verde muy claro sobre fondo oscuro del hero */
+}
+
+/* Móvil: H1 SEO más pequeño para no cargar */
+@media (max-width: 700px) {
+  .hero-content--centered .hero-title-seo {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    padding: 5px 12px;
+    margin-bottom: 16px;
+  }
+  .footer-social { justify-content: flex-start; }
+  .site-footer { padding-top: 48px !important; }
+}
