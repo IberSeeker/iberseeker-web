@@ -4,15 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Packs y precios — IberSeeker Visual</title>
-<meta name="description" content="Packs de fotografía, vídeo, drone y tour virtual desde 109€. Personaliza con extras al estilo carrito y recibe presupuesto al instante." />
+<meta name="description" content="Packs de fotografía y vídeo inmobiliario en Madrid, desde 139€. Cinco packs cerrados con producción visual completa: fotos HDR, vídeo 4K, drone y tour Matterport." />
 <meta name="theme-color" content="#faf8f3" />
 <link rel="icon" type="image/png" href="assets/logo/logo-white-tight.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=13" />
 </head>
-<body class="has-cart">
+<body>
 
 <header class="site-header is-light" id="site-header">
   <div class="container">
@@ -38,280 +38,132 @@
 <section class="page-hero">
   <div class="container">
     <p class="eyebrow">Packs y precios</p>
-    <h1>Precios transparentes. Sin sorpresas.</h1>
-    <p>Cuatro packs cerrados pensados para cubrir desde la venta exprés hasta la propiedad de lujo. Personaliza con los extras que necesites.</p>
+    <h1>Precios cerrados. Sin sorpresas.</h1>
+    <p>Cinco packs pensados para cada tipo de inmueble en Madrid. Producción visual completa, precios transparentes.</p>
   </div>
 </section>
 
-<section class="section section--light">
+<!-- PACKS V2: 4 packs en grid 2x2 + Firma full-width -->
+<section class="section packs-v2-section" id="packs">
   <div class="container">
 
-    <p class="packs-helper">Selecciona un pack y combina con los extras de abajo. Solo puedes elegir un pack por pedido.</p>
+    <div class="packs-v2-grid">
 
-    <div class="packs-grid" id="packs-grid">
-
-      <article class="pack reveal" data-pack-id="pack-esencial" data-pack-name="Pack Esencial" data-pack-price="109">
-        <h3 class="pack-name">Esencial</h3>
-        <p class="pack-tagline">Para venta rápida y eficaz</p>
-        <div class="pack-price">109€</div>
-        <p class="pack-price-sub">IVA no incluido</p>
-        <ul class="pack-features">
-          <li>20 fotografías HDR profesionales</li>
-          <li>Edición premium y retoque de cielo</li>
-          <li>Entrega en 24 h</li>
-          <li>Resolución alta para portales y RR.SS.</li>
-          <li>Galería online compartible</li>
-        </ul>
-        <button class="btn btn-pack pack-add-btn" type="button">
-          <span class="add-label">Añadir al pedido</span>
-          <span class="added-label">Pack añadido <span class="check">✓</span></span>
-        </button>
-      </article>
-
-      <article class="pack reveal" data-pack-id="pack-visual" data-pack-name="Pack Visual" data-pack-price="199">
-        <h3 class="pack-name">Visual</h3>
-        <p class="pack-tagline">Fotografía + vídeo cinematic</p>
-        <div class="pack-price">199€</div>
-        <p class="pack-price-sub">IVA no incluido</p>
-        <ul class="pack-features">
+      <article class="pack-v2">
+        <p class="pack-v2-cat">Pisos y apartamentos</p>
+        <h3 class="pack-v2-name">Esencial</h3>
+        <div class="pack-v2-price">139 €</div>
+        <p class="pack-v2-priceub">+ IVA</p>
+        <ul class="pack-v2-features">
           <li>25 fotografías HDR profesionales</li>
-          <li>Vídeo 4K cinematic de 60 segundos</li>
-          <li>Edición con música y narrativa</li>
-          <li>Versión vertical para Reels / TikTok</li>
-          <li>Entrega en 48 h</li>
+          <li>Edición avanzada con control humano</li>
+          <li>Optimizado para Idealista y Fotocasa</li>
         </ul>
-        <button class="btn btn-pack pack-add-btn" type="button">
-          <span class="add-label">Añadir al pedido</span>
-          <span class="added-label">Pack añadido <span class="check">✓</span></span>
-        </button>
+        <p class="pack-v2-entrega">Entrega en 24 h</p>
       </article>
 
-      <article class="pack pack--featured reveal" data-pack-id="pack-aereo" data-pack-name="Pack Aéreo" data-pack-price="299">
-        <span class="pack-badge">Más popular</span>
-        <h3 class="pack-name">Aéreo</h3>
-        <p class="pack-tagline">Fotografía + vídeo + drone exterior</p>
-        <div class="pack-price">299€</div>
-        <p class="pack-price-sub">IVA no incluido</p>
-        <ul class="pack-features">
-          <li>Todo lo del Pack Visual</li>
-          <li>Vuelo de drone DJI Mini 5 Pro</li>
-          <li>10 fotografías aéreas en 4K</li>
-          <li>Plano cinematic aéreo en vídeo</li>
-          <li>Vista de parcela y entorno</li>
+      <article class="pack-v2">
+        <p class="pack-v2-cat">El anuncio completo</p>
+        <h3 class="pack-v2-name">Visual</h3>
+        <div class="pack-v2-price">299 €</div>
+        <p class="pack-v2-priceub">+ IVA</p>
+        <ul class="pack-v2-features">
+          <li>30 fotografías HDR profesionales</li>
+          <li>Vídeo 4K de 60 s con estabilización</li>
+          <li>Versión vertical para Reels e Instagram</li>
+          <li>1 imagen con amueblado virtual</li>
         </ul>
-        <button class="btn btn-pack pack-add-btn" type="button">
-          <span class="add-label">Añadir al pedido</span>
-          <span class="added-label">Pack añadido <span class="check">✓</span></span>
-        </button>
+        <p class="pack-v2-entrega">Entrega en 48 h</p>
       </article>
 
-      <article class="pack reveal" data-pack-id="pack-elite" data-pack-name="Pack Élite" data-pack-price="559">
-        <h3 class="pack-name">Élite</h3>
-        <p class="pack-tagline">Experiencia completa para inmuebles de lujo</p>
-        <div class="pack-price">559€</div>
-        <p class="pack-price-sub">IVA no incluido</p>
-        <ul class="pack-features">
-          <li>Todo lo del Pack Aéreo</li>
-          <li>Drone interior FPV 8K (DJI Avata)</li>
-          <li>Tour virtual Matterport 3D navegable</li>
-          <li>Plano 2D acotado profesional</li>
-          <li>Certificado energético oficial</li>
-          <li>Sesión prioritaria con dos operadores</li>
+      <article class="pack-v2 pack-v2--featured">
+        <span class="pack-v2-badge">Más vendido</span>
+        <p class="pack-v2-cat">Chalets y exteriores</p>
+        <h3 class="pack-v2-name">Aéreo</h3>
+        <div class="pack-v2-price">429 €</div>
+        <p class="pack-v2-priceub">+ IVA</p>
+        <ul class="pack-v2-features">
+          <li class="pack-v2-todo">Todo lo del pack Visual</li>
+          <li>Fotografía aérea de inmueble y parcela</li>
+          <li>Tomas de vídeo con drone integradas</li>
+          <li>Piloto habilitado y seguro incluido</li>
         </ul>
-        <button class="btn btn-pack pack-add-btn" type="button">
-          <span class="add-label">Añadir al pedido</span>
-          <span class="added-label">Pack añadido <span class="check">✓</span></span>
-        </button>
+        <p class="pack-v2-entrega">Entrega en 48-72 h</p>
+      </article>
+
+      <article class="pack-v2">
+        <p class="pack-v2-cat">Comercialización total</p>
+        <h3 class="pack-v2-name">Élite</h3>
+        <div class="pack-v2-price">849 €</div>
+        <p class="pack-v2-priceub">+ IVA · hasta 150 m²</p>
+        <ul class="pack-v2-features">
+          <li class="pack-v2-todo">Todo lo del pack Aéreo</li>
+          <li>Recorrido aéreo interior con dron ligero</li>
+          <li>Tour virtual Matterport + plano 2D</li>
+          <li>Certificado energético gestionado</li>
+        </ul>
+        <p class="pack-v2-entrega">Entrega en 72 h</p>
       </article>
 
     </div>
 
-  </div>
-</section>
-
-<section class="extras-section" id="extras">
-  <div class="container">
-    <div class="extras-header">
-      <p class="eyebrow">Personaliza tu sesión</p>
-      <h2>Añade los extras que necesites</h2>
-      <p>Toca <strong>+ Añadir</strong> sobre cada extra para sumarlo a tu pedido. Verás el total combinado (pack + extras) al instante y podrás enviarnos la solicitud por email o WhatsApp.</p>
-    </div>
-
-    <div class="extras-layout">
-
-      <div class="extras-cards" id="extras-list">
-
-        <article class="extra-card" data-id="fotos10" data-name="+10 fotos" data-price="30">
-          <div class="extra-card-head"><span class="extra-card-name">+10 fotos</span><span class="extra-card-price">+30€</span></div>
-          <p class="extra-card-desc">Diez fotografías adicionales editadas en HDR, en alta resolución.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="extra-card" data-id="video-rrss" data-name="Vídeo RRSS" data-price="49">
-          <div class="extra-card-head"><span class="extra-card-name">Vídeo RRSS</span><span class="extra-card-price">+49€</span></div>
-          <p class="extra-card-desc">Versión vertical 9:16 para Reels, TikTok y Stories.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="extra-card" data-id="drone-ext" data-name="Drone exterior" data-price="109">
-          <div class="extra-card-head"><span class="extra-card-name">Drone exterior</span><span class="extra-card-price">+109€</span></div>
-          <p class="extra-card-desc">Vuelo aéreo con DJI Mini 5 Pro — fotos y vídeo 4K del exterior.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="extra-card" data-id="drone-int" data-name="Drone interior FPV" data-price="189">
-          <div class="extra-card-head"><span class="extra-card-name">Drone interior FPV</span><span class="extra-card-price">+189€</span></div>
-          <p class="extra-card-desc">Plano secuencia FPV 360° 8K con DJI Avata. Único en el sector.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="extra-card" data-id="combo-drones" data-name="Combo drones" data-price="249">
-          <div class="extra-card-head"><span class="extra-card-name">Combo drones</span><span class="extra-card-price">+249€</span></div>
-          <p class="extra-card-desc">Drone exterior + drone interior FPV en la misma sesión. Mejor precio.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="extra-card" data-id="matterport" data-name="Matterport" data-price="99">
-          <div class="extra-card-head"><span class="extra-card-name">Matterport</span><span class="extra-card-price">+99€</span></div>
-          <p class="extra-card-desc">Tour virtual 3D navegable 24/7 desde cualquier dispositivo.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="extra-card" data-id="plano-2d" data-name="Plano 2D" data-price="49">
-          <div class="extra-card-head"><span class="extra-card-name">Plano 2D</span><span class="extra-card-price">+49€</span></div>
-          <p class="extra-card-desc">Plano técnico acotado generado a partir del escaneo Matterport.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="extra-card" data-id="cert-energ" data-name="Certificado energético" data-price="99">
-          <div class="extra-card-head"><span class="extra-card-name">Certificado energético</span><span class="extra-card-price">+99€</span></div>
-          <p class="extra-card-desc">Trámite oficial con técnico colegiado y registro en la Comunidad.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="extra-card" data-id="entrega-24h" data-name="Entrega urgente 24h" data-price="19">
-          <div class="extra-card-head"><span class="extra-card-name">Entrega urgente 24h</span><span class="extra-card-price">+19€</span></div>
-          <p class="extra-card-desc">Material entregado en menos de 24h tras la sesión.</p>
-          <div class="extra-card-action">
-            <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
-            <div class="qty-stepper" role="group" aria-label="Cantidad">
-              <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-              <span class="qty-value">1</span>
-              <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-            </div>
-          </div>
-        </article>
-
+    <!-- FIRMA: pack especial, dark green -->
+    <article class="pack-v2 pack-v2--firma">
+      <p class="pack-v2-cat">Villas y alto standing</p>
+      <h3 class="pack-v2-name">Firma</h3>
+      <div class="pack-v2-price">desde 1.290 €</div>
+      <p class="pack-v2-desc">Producción de autor para inmuebles de más de 300 m² o valor superior a 1,5 M€. Siempre bajo presupuesto personalizado.</p>
+      <div class="pack-v2-firma-features">
+        <ul>
+          <li>Vídeo cinematográfico de 2-3 min</li>
+          <li>Recorrido aéreo interior y drone exterior</li>
+          <li>Amueblado virtual de 3 imágenes</li>
+        </ul>
+        <ul>
+          <li>40+ fotos HDR y atardecer virtual</li>
+          <li>Matterport, plano y certificado</li>
+          <li>Entrega prioritaria</li>
+        </ul>
       </div>
+    </article>
 
-      <aside class="cart" id="cart" aria-label="Tu pedido">
-        <div class="cart-head">
-          <span class="cart-title">Tu pedido</span>
-          <span class="cart-count" id="cart-count">0</span>
-        </div>
-        <div class="cart-empty" id="cart-empty">
-          Aún no has añadido nada.<br>Selecciona un pack arriba o añade extras.
-        </div>
-        <ul class="cart-items" id="cart-items" hidden></ul>
-        <div class="cart-total">
-          <span class="cart-total-label">Total</span>
-          <span class="cart-total-value" id="cart-total">0€</span>
-        </div>
-        <p class="cart-vat">IVA no incluido</p>
-        <div class="cart-actions">
-          <button class="cart-checkout" id="cart-checkout" type="button" disabled>
-            Pedir por email <span class="arrow"></span>
-          </button>
-          <button class="cart-whatsapp" id="cart-whatsapp" type="button" disabled>
-            Pedir por WhatsApp
-          </button>
-        </div>
-      </aside>
-
-    </div>
   </div>
 </section>
 
-<section class="process section--light" aria-label="Nuestro proceso de trabajo">
+<!-- EXTRAS + CONDICIONES -->
+<section class="section packs-v2-section packs-v2-section--tight" id="extras">
   <div class="container">
-    <div class="process-header reveal">
-      <p class="eyebrow">Cómo trabajamos</p>
-      <h2 class="h-section">Tres pasos. Cero fricciones.</h2>
-      <p class="lead">Sin formularios eternos ni esperas. De la primera llamada a tener el material publicado en menos de 4 días.</p>
+
+    <div class="extras-v2-box">
+      <p class="eyebrow">Extras</p>
+      <ul class="extras-v2-list">
+        <li><span>Amueblado virtual</span><span>39 € / imagen</span></li>
+        <li><span>Atardecer virtual</span><span>19 € / foto</span></li>
+        <li><span>Plano 2D</span><span>49 €</span></li>
+        <li><span>Tour Matterport</span><span>99 €</span></li>
+        <li><span>Reel vertical extra</span><span>59 €</span></li>
+        <li><span>10 fotos adicionales</span><span>39 €</span></li>
+        <li><span>Drone exterior suelto</span><span>149 €</span></li>
+        <li><span>FPV interior suelto</span><span>219 €</span></li>
+        <li><span>Certificado energético</span><span>99 €</span></li>
+        <li><span>Entrega mismo día</span><span>49 €</span></li>
+      </ul>
     </div>
-    <ol class="process-steps">
-      <li class="process-step reveal">
-        <span class="process-num">01</span>
-        <h3>Cuéntanos el inmueble</h3>
-        <p>Por email o WhatsApp en 2 minutos. Te respondemos con propuesta personalizada en menos de 24h.</p>
-      </li>
-      <li class="process-step reveal">
-        <span class="process-num">02</span>
-        <h3>Sesión en 48h</h3>
-        <p>Programamos la sesión en la franja que prefieras. Llegamos con todo el equipo y nos encargamos de cada detalle.</p>
-      </li>
-      <li class="process-step reveal">
-        <span class="process-num">03</span>
-        <h3>Material en 24h</h3>
-        <p>Recibes fotos HDR, vídeo 4K y tour Matterport listos para subir a portales y redes. Revisión incluida.</p>
-      </li>
-    </ol>
+
+    <div class="conditions-v2-box">
+      <p class="eyebrow">Condiciones</p>
+      <ul class="conditions-v2-list">
+        <li>Precios válidos <strong>hasta 150 m²</strong></li>
+        <li>De 150 a 300 m²: <strong>+25%</strong></li>
+        <li>Más de 300 m²: <strong>pack Firma</strong></li>
+        <li>Todos los precios <strong>sin IVA</strong></li>
+      </ul>
+    </div>
+
+    <p class="conditions-v2-note">
+      El amueblado y el atardecer virtuales se generan sobre la fotografía real y se entregan señalados como imagen virtual, siempre junto a la toma original. Cada imagen amueblada corresponde a una fotografía. Los tours Matterport incluyen 6 meses de alojamiento online; renovación anual opcional.
+    </p>
+
   </div>
 </section>
 
