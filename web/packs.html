@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=13" />
+<link rel="stylesheet" href="styles.css?v=14" />
 </head>
 <body class="has-cart">
 
@@ -160,31 +160,17 @@
 
         <div class="extras-v2-box">
           <p class="eyebrow">Extras</p>
-          <p class="extras-v2-help">Pulsa <strong>+</strong> para añadir. Puedes elegir varios.</p>
-          <div class="extras-v2-grid">
+          <p class="extras-v2-help">Añade los que necesites. Se suman al pack en el carrito.</p>
+          <div class="extras-mcd-grid">
 
-            <article class="pack-v2-extra extra-card" data-id="amueblado" data-name="Amueblado virtual" data-price="39">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">Amueblado virtual</span>
-                <span class="pack-v2-extra-price">39 € / imagen</span>
+            <article class="extra-card" data-id="amueblado" data-name="Amueblado virtual" data-price="39">
+              <div class="extra-card-head">
+                <span class="extra-card-name">Amueblado virtual</span>
+                <span class="extra-card-price">+39€ / img</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir amueblado virtual">+</button>
-                <div class="qty-stepper" role="group" aria-label="Cantidad">
-                  <button class="qty-btn qty-minus" type="button" aria-label="Restar">−</button>
-                  <span class="qty-value">1</span>
-                  <button class="qty-btn qty-plus" type="button" aria-label="Sumar">+</button>
-                </div>
-              </div>
-            </article>
-
-            <article class="pack-v2-extra extra-card" data-id="atardecer" data-name="Atardecer virtual" data-price="19">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">Atardecer virtual</span>
-                <span class="pack-v2-extra-price">19 € / foto</span>
-              </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir atardecer virtual">+</button>
+              <p class="extra-card-desc">Se genera sobre la foto real y se entrega señalado como imagen virtual.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
@@ -193,13 +179,14 @@
               </div>
             </article>
 
-            <article class="pack-v2-extra extra-card" data-id="plano2d" data-name="Plano 2D" data-price="49">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">Plano 2D</span>
-                <span class="pack-v2-extra-price">49 €</span>
+            <article class="extra-card" data-id="atardecer" data-name="Atardecer virtual" data-price="19">
+              <div class="extra-card-head">
+                <span class="extra-card-name">Atardecer virtual</span>
+                <span class="extra-card-price">+19€ / foto</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir plano 2D">+</button>
+              <p class="extra-card-desc">Cielo dramático de atardecer aplicado en post-producción.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
@@ -208,13 +195,14 @@
               </div>
             </article>
 
-            <article class="pack-v2-extra extra-card" data-id="matterport" data-name="Tour Matterport" data-price="99">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">Tour Matterport</span>
-                <span class="pack-v2-extra-price">99 €</span>
+            <article class="extra-card" data-id="plano2d" data-name="Plano 2D" data-price="49">
+              <div class="extra-card-head">
+                <span class="extra-card-name">Plano 2D</span>
+                <span class="extra-card-price">+49€</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir tour Matterport">+</button>
+              <p class="extra-card-desc">Plano técnico acotado generado desde el escaneo Matterport.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
@@ -223,13 +211,14 @@
               </div>
             </article>
 
-            <article class="pack-v2-extra extra-card" data-id="reel" data-name="Reel vertical extra" data-price="59">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">Reel vertical extra</span>
-                <span class="pack-v2-extra-price">59 €</span>
+            <article class="extra-card" data-id="matterport" data-name="Tour Matterport" data-price="99">
+              <div class="extra-card-head">
+                <span class="extra-card-name">Tour Matterport</span>
+                <span class="extra-card-price">+99€</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir reel vertical">+</button>
+              <p class="extra-card-desc">Modelo 3D navegable 24/7 desde cualquier dispositivo. 6 meses de alojamiento incluidos.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
@@ -238,13 +227,14 @@
               </div>
             </article>
 
-            <article class="pack-v2-extra extra-card" data-id="fotos10" data-name="10 fotos adicionales" data-price="39">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">10 fotos adicionales</span>
-                <span class="pack-v2-extra-price">39 €</span>
+            <article class="extra-card" data-id="reel" data-name="Reel vertical extra" data-price="59">
+              <div class="extra-card-head">
+                <span class="extra-card-name">Reel vertical extra</span>
+                <span class="extra-card-price">+59€</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir 10 fotos">+</button>
+              <p class="extra-card-desc">Versión 9:16 para Reels, TikTok y Stories, editada por separado.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
@@ -253,13 +243,14 @@
               </div>
             </article>
 
-            <article class="pack-v2-extra extra-card" data-id="drone-ext" data-name="Drone exterior suelto" data-price="149">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">Drone exterior suelto</span>
-                <span class="pack-v2-extra-price">149 €</span>
+            <article class="extra-card" data-id="fotos10" data-name="10 fotos adicionales" data-price="39">
+              <div class="extra-card-head">
+                <span class="extra-card-name">+10 fotos</span>
+                <span class="extra-card-price">+39€</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir drone exterior">+</button>
+              <p class="extra-card-desc">Diez fotografías extra editadas en HDR en alta resolución.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
@@ -268,13 +259,14 @@
               </div>
             </article>
 
-            <article class="pack-v2-extra extra-card" data-id="fpv" data-name="FPV interior suelto" data-price="219">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">FPV interior suelto</span>
-                <span class="pack-v2-extra-price">219 €</span>
+            <article class="extra-card" data-id="drone-ext" data-name="Drone exterior suelto" data-price="149">
+              <div class="extra-card-head">
+                <span class="extra-card-name">Drone exterior</span>
+                <span class="extra-card-price">+149€</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir FPV">+</button>
+              <p class="extra-card-desc">Vuelo aéreo con DJI Mini 5 Pro sin necesidad de pack Aéreo.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
@@ -283,13 +275,14 @@
               </div>
             </article>
 
-            <article class="pack-v2-extra extra-card" data-id="certificado" data-name="Certificado energético" data-price="99">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">Certificado energético</span>
-                <span class="pack-v2-extra-price">99 €</span>
+            <article class="extra-card" data-id="fpv" data-name="FPV interior suelto" data-price="219">
+              <div class="extra-card-head">
+                <span class="extra-card-name">FPV interior</span>
+                <span class="extra-card-price">+219€</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir certificado energético">+</button>
+              <p class="extra-card-desc">Plano secuencia 360° con DJI Avata. El recurso que detiene el scroll.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
@@ -298,13 +291,30 @@
               </div>
             </article>
 
-            <article class="pack-v2-extra extra-card" data-id="entrega24" data-name="Entrega mismo día" data-price="49">
-              <div class="pack-v2-extra-info">
-                <span class="pack-v2-extra-name">Entrega mismo día</span>
-                <span class="pack-v2-extra-price">49 €</span>
+            <article class="extra-card" data-id="certificado" data-name="Certificado energético" data-price="99">
+              <div class="extra-card-head">
+                <span class="extra-card-name">Certificado energético</span>
+                <span class="extra-card-price">+99€</span>
               </div>
-              <div class="pack-v2-extra-action">
-                <button class="add-btn" type="button" aria-label="Añadir entrega mismo día">+</button>
+              <p class="extra-card-desc">Trámite oficial con técnico colegiado. Registrado en la Comunidad.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
+                <div class="qty-stepper" role="group" aria-label="Cantidad">
+                  <button class="qty-btn qty-minus" type="button">−</button>
+                  <span class="qty-value">1</span>
+                  <button class="qty-btn qty-plus" type="button">+</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="extra-card" data-id="entrega24" data-name="Entrega mismo día" data-price="49">
+              <div class="extra-card-head">
+                <span class="extra-card-name">Entrega mismo día</span>
+                <span class="extra-card-price">+49€</span>
+              </div>
+              <p class="extra-card-desc">Material listo en menos de 24h tras la sesión.</p>
+              <div class="extra-card-action">
+                <button class="add-btn" type="button"><span class="plus">+</span> Añadir</button>
                 <div class="qty-stepper" role="group" aria-label="Cantidad">
                   <button class="qty-btn qty-minus" type="button">−</button>
                   <span class="qty-value">1</span>
