@@ -3621,3 +3621,431 @@ html { background: var(--pearl) !important; }
   .nav-links { gap: 24px !important; }
   .nav-link { font-size: 11.5px; letter-spacing: 0.20em; }
 }
+
+/* ====================================================== */
+/* === v13 — PACKS interactivos + CARRITO ============== */
+/* ====================================================== */
+
+/* Layout 2 columnas: main (extras+condiciones) + cart sticky */
+.extras-v2-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+  align-items: start;
+  max-width: 1080px;
+  margin-inline: auto;
+}
+.extras-v2-main {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.extras-v2-main .extras-v2-box,
+.extras-v2-main .conditions-v2-box,
+.extras-v2-main .conditions-v2-note {
+  max-width: none;
+  margin: 0;
+}
+
+/* Botón "Añadir al pedido" en cada pack base */
+.pack-v2-add-btn {
+  margin-top: 22px;
+  width: 100%;
+  padding: 14px;
+  background: var(--ink);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .3s var(--ease), transform .1s var(--ease);
+}
+.pack-v2-add-btn:hover { background: var(--forest); }
+.pack-v2-add-btn:active { transform: scale(0.98); }
+.pack-v2 .added-label { display: none; }
+.pack-v2 .add-label { display: inline; }
+.pack-v2.is-added .pack-v2-add-btn { background: var(--forest); }
+.pack-v2.is-added .add-label { display: none; }
+.pack-v2.is-added .added-label { display: inline; }
+.pack-v2.is-added {
+  border-color: var(--forest) !important;
+  border-width: 2px !important;
+  box-shadow: 0 24px 44px -22px rgba(45, 90, 61, 0.35);
+}
+
+/* Firma: botón dorado directo a WhatsApp */
+.pack-v2-firma-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  padding: 14px 26px;
+  background: #c9a54a;
+  color: #1a3d2a;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background .3s var(--ease), transform .1s var(--ease);
+}
+.pack-v2-firma-cta:hover { background: #dab762; transform: translateY(-1px); }
+.pack-v2-firma-cta .arrow-right { font-size: 16px; }
+
+/* Ayuda de extras */
+.extras-v2-help {
+  font-size: 13px;
+  color: var(--ink-muted);
+  margin: -8px 0 18px;
+}
+.extras-v2-help strong {
+  background: var(--ink);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+/* Grid de extras: 1 columna dentro del main (2 col en desktop wide) */
+.extras-v2-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+/* Cada extra: fila con nombre+precio + acción a la derecha */
+.pack-v2-extra {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(20,20,15,0.06);
+}
+.pack-v2-extra:last-child { border-bottom: 0; }
+.pack-v2-extra-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.pack-v2-extra-name {
+  font-size: 14.5px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.pack-v2-extra-price {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+}
+
+/* Botón + para añadir extra */
+.pack-v2-extra-action {
+  display: flex;
+  align-items: center;
+}
+.pack-v2-extra .add-btn {
+  min-width: 36px;
+  height: 36px;
+  border: 1px solid rgba(20,20,15,0.18);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 50%;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: all .25s var(--ease);
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.pack-v2-extra .add-btn:hover {
+  background: var(--forest);
+  color: #fff;
+  border-color: var(--forest);
+  transform: scale(1.05);
+}
+
+/* Qty stepper: aparece cuando is-added */
+.pack-v2-extra .qty-stepper {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  background: var(--forest);
+  color: #fff;
+  border-radius: 999px;
+  padding: 4px 6px;
+}
+.pack-v2-extra.is-added .add-btn { display: none; }
+.pack-v2-extra.is-added .qty-stepper { display: flex; }
+.pack-v2-extra .qty-btn {
+  width: 26px; height: 26px;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  transition: background .2s;
+  padding: 0;
+}
+.pack-v2-extra .qty-btn:hover { background: rgba(255,255,255,0.3); }
+.pack-v2-extra .qty-value {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 22px;
+  text-align: center;
+}
+.pack-v2-extra.is-added {
+  background: rgba(45, 90, 61, 0.03);
+}
+
+/* Pulse animation */
+@keyframes packV2Pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+.pack-v2.just-added, .pack-v2-extra.just-added {
+  animation: packV2Pulse .45s var(--ease-out);
+}
+
+/* ============= CARRITO STICKY (aside) ============= */
+.cart-v2 {
+  position: sticky;
+  top: calc(var(--header-h) + 20px);
+  background: var(--ink);
+  color: var(--light);
+  padding: 26px 24px 22px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: calc(100vh - var(--header-h) - 40px);
+  overflow: hidden;
+  box-shadow: 0 24px 48px -22px rgba(15,15,15,0.35);
+  transition: box-shadow .3s var(--ease);
+}
+.cart-v2.has-items {
+  box-shadow: 0 24px 60px -20px rgba(45, 90, 61, 0.45);
+}
+
+.cart-v2-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+}
+.cart-v2-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.cart-v2-count {
+  background: var(--forest);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: 999px;
+  min-width: 28px;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.cart-v2-empty {
+  font-size: 13px;
+  color: var(--text-soft);
+  text-align: center;
+  padding: 32px 12px;
+  line-height: 1.55;
+}
+
+.cart-v2-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+/* Items reuse .cart-item base — pull styles from existing */
+.cart-v2-items .cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 13.5px;
+}
+.cart-v2-items .cart-item:last-child { border-bottom: 0; }
+.cart-v2-items .cart-item-name {
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.cart-v2-items .cart-item-meta {
+  color: var(--text-soft);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+.cart-v2-items .cart-item--pack {
+  background: rgba(45, 90, 61, 0.2);
+  padding: 12px 10px;
+  margin: 0 -6px;
+  border-radius: 6px;
+  border-bottom: 0;
+}
+.cart-v2-items .cart-item--pack .cart-item-name {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 500;
+}
+.cart-v2-items .cart-item--pack .cart-item-meta {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #c9a54a;
+  font-size: 10px;
+  font-weight: 700;
+}
+.cart-v2-items .cart-item-price {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 16px;
+  color: #fff;
+  text-align: right;
+  align-self: center;
+  white-space: nowrap;
+}
+.cart-v2-items .cart-item-remove {
+  font-size: 11px;
+  color: var(--text-soft);
+  background: transparent;
+  border: 0;
+  padding: 2px 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  align-self: start;
+}
+.cart-v2-items .cart-item-remove:hover { color: #fff; }
+
+.cart-v2-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.14);
+}
+.cart-v2-total-label {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+.cart-v2-total-value {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 32px;
+  color: #fff;
+  line-height: 1;
+}
+.cart-v2-vat {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin: -6px 0 0;
+  text-align: right;
+  font-weight: 600;
+}
+
+.cart-v2-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+.cart-v2-whatsapp {
+  width: 100%;
+  padding: 14px;
+  background: #25d366;
+  color: #052b1a;
+  border: 0;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .25s var(--ease);
+}
+.cart-v2-whatsapp:hover:not(:disabled) { background: #2ee673; }
+.cart-v2-whatsapp:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.cart-v2-checkout {
+  width: 100%;
+  padding: 13px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.24);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .25s var(--ease);
+}
+.cart-v2-checkout:hover:not(:disabled) {
+  border-color: #fff;
+  background: rgba(255,255,255,0.06);
+}
+.cart-v2-checkout:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* Móvil: carrito flotante en la parte inferior */
+@media (max-width: 900px) {
+  .extras-v2-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .cart-v2 {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    top: auto;
+    z-index: 90;
+    max-height: 72vh;
+    transform: translateY(calc(100% + 40px));
+    transition: transform .45s var(--ease);
+  }
+  .cart-v2.has-items {
+    transform: translateY(0);
+  }
+  /* Padding extra bottom para que el carrito flotante no tape contenido */
+  body.has-cart { padding-bottom: 100px; }
+}
+
+/* Ocultar el FAB WhatsApp en la página de packs (el carrito ya tiene su botón WhatsApp) */
+body.has-cart .fab-whatsapp { display: none !important; }
