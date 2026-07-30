@@ -4230,12 +4230,7 @@ body.has-cart .fab-whatsapp { display: none !important; }
 /* === v15 — Ajustes post-balance ====================== */
 /* ====================================================== */
 
-/* Ocultar el nav-cta "Pedir presupuesto" del header solo en packs pero
-   preservando el espacio (con visibility) para no romper el balance del nav. */
-body.has-cart .nav-cta {
-  visibility: hidden !important;
-  pointer-events: none !important;
-}
+/* nav-cta "Pedir presupuesto" eliminado del HTML — regla legacy quitada */
 
 /* Firma: solo aumentar texto descriptivo y items — números (nombre y precio) SIN tocar */
 .pack-v2--firma .pack-v2-desc { font-size: 16px !important; line-height: 1.6 !important; }
