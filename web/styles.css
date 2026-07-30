@@ -4225,3 +4225,37 @@ body.has-cart .fab-whatsapp { display: none !important; }
 .extras-mcd-grid .extra-card.just-added {
   animation: packV2Pulse .45s var(--ease-out);
 }
+
+/* ====================================================== */
+/* === v15 — Ajustes post-balance ====================== */
+/* ====================================================== */
+
+/* Ocultar el nav-cta "Pedir presupuesto" del header solo en packs.
+   Motivo: en packs ya hay carrito + botón Firma personalizado, es redundante y confunde. */
+body.has-cart .nav-cta { display: none !important; }
+
+/* Firma: tipografía general un poco más grande y más aire visual */
+.pack-v2--firma { padding: 48px 48px 42px !important; }
+.pack-v2--firma .pack-v2-cat { font-size: 12px; letter-spacing: 0.28em; }
+.pack-v2--firma .pack-v2-name { font-size: 50px; margin-bottom: 16px; }
+.pack-v2--firma .pack-v2-price { font-size: 44px; margin-bottom: 22px; }
+.pack-v2--firma .pack-v2-desc { font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+.pack-v2--firma .pack-v2-firma-features li { font-size: 16px; }
+.pack-v2--firma .pack-v2-firma-features { gap: 14px 48px; }
+
+/* Más espacio entre Firma y sección de extras */
+.packs-v2-section#packs { padding-bottom: 20px !important; }
+.packs-v2-section--tight#extras { padding-top: 40px !important; }
+.pack-v2--firma { margin-bottom: 32px; }
+
+/* Extras cards: 1-2 puntos más de tipografía para que no queden diminutas */
+.extras-mcd-grid .extra-card-name { font-size: 16px !important; }
+.extras-mcd-grid .extra-card-desc { font-size: 13.5px !important; line-height: 1.55 !important; }
+
+@media (max-width: 700px) {
+  .pack-v2--firma { padding: 34px 22px 30px !important; }
+  .pack-v2--firma .pack-v2-name { font-size: 40px; }
+  .pack-v2--firma .pack-v2-price { font-size: 34px; }
+  .pack-v2--firma .pack-v2-desc { font-size: 15px; }
+  .pack-v2--firma .pack-v2-firma-features li { font-size: 15px; }
+}
