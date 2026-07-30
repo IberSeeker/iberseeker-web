@@ -4244,3 +4244,33 @@ body.has-cart .fab-whatsapp { display: none !important; }
 .packs-v2-section#packs { padding-bottom: 12px !important; }
 .packs-v2-section--tight#extras { padding-top: 12px !important; }
 .pack-v2--firma { margin-bottom: 0 !important; }
+
+/* ====================================================== */
+/* === v18 — Header centrado + números en Open Sans ===== */
+/* ====================================================== */
+
+/* HEADER: nav centrado (logo + links agrupados al centro) */
+.nav {
+  justify-content: center !important;
+  gap: clamp(30px, 5vw, 80px) !important;
+}
+@media (max-width: 1000px) {
+  .nav {
+    justify-content: space-between !important;
+    gap: 0 !important;
+  }
+}
+
+/* PRECIOS: Open Sans regular en lugar de Cormorant italic — números alineados */
+.pack-v2-price,
+.pack-v2--firma .pack-v2-price,
+.extras-mcd-grid .extra-card-price {
+  font-family: var(--font-body) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-variant-numeric: tabular-nums lining-nums !important;
+  font-feature-settings: "tnum" 1, "lnum" 1 !important;
+  letter-spacing: -0.01em !important;
+}
+
+/* Tamaños se mantienen. Solo cambia la tipografía. */
