@@ -4454,3 +4454,136 @@ a.cta-link:hover::after {
     transform: none !important;
   }
 }
+
+/* ====================================================== */
+/* === v21 — Reveals + parallax + cursor + divisores ==== */
+/* ====================================================== */
+
+/* --- 1. REVEALS MÁS MARCADOS ------------------------- */
+/* Anulamos las "garantías" antiguas que forzaban visibilidad,
+   pero SOLO cuando JS haya cargado (html.js-ready) — así si JS falla,
+   todo sigue visible como fallback. */
+html.js-ready .reveal {
+  opacity: 0 !important;
+  transform: translateY(28px) !important;
+  transition:
+    opacity .85s cubic-bezier(.2,.7,.2,1),
+    transform .85s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+  animation: none !important; /* desactivamos la animación legacy */
+}
+html.js-ready .reveal.is-visible,
+html.js-ready .reveal.is-in {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  animation: none !important;
+}
+/* Stagger: JS aplica --stagger-i a hijos de un contenedor .reveal-group */
+html.js-ready .reveal-group > .reveal {
+  transition-delay: calc(var(--stagger-i, 0) * 90ms);
+}
+
+/* --- 2. PARALLAX EN EL HERO (index.html) ------------- */
+.hero { overflow: hidden; }
+.hero-image {
+  transform: translate3d(0, var(--hero-parallax, 0px), 0) scale(1.06);
+  transition: transform .05s linear;
+  will-change: transform;
+}
+@media (max-width: 700px) {
+  /* En móvil el parallax se nota poco y consume batería: lo desactivamos */
+  .hero-image { transform: none !important; }
+}
+
+/* --- 3. CURSOR PERSONALIZADO ------------------------- */
+/* Círculo que sigue al cursor. Se activa sólo en dispositivos con
+   puntero fino (escritorio). En móvil ni se pinta ni consume nada. */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate3d(-50%, -50%, 0);
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #123f35;
+  border-radius: 50%;
+}
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(18, 63, 53, 0.55);
+  border-radius: 50%;
+  transition:
+    opacity .3s ease,
+    width .25s cubic-bezier(.2,.9,.3,1.2),
+    height .25s cubic-bezier(.2,.9,.3,1.2),
+    border-color .25s ease,
+    background-color .25s ease;
+}
+html.cursor-ready .cursor-dot,
+html.cursor-ready .cursor-ring {
+  opacity: 1;
+}
+/* Al hover sobre elementos interactivos, el anillo crece y se colorea */
+html.cursor-hover .cursor-ring {
+  width: 54px;
+  height: 54px;
+  border-color: #a8895f;
+  background-color: rgba(168, 137, 95, 0.10);
+}
+html.cursor-hover .cursor-dot {
+  opacity: 0;
+}
+/* Ocultamos el cursor personalizado en dispositivos táctiles */
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot, .cursor-ring { display: none !important; }
+}
+/* Mantenemos el cursor nativo del sistema — el círculo es adicional,
+   no lo reemplaza, para no romper accesibilidad ni UX en formularios */
+
+/* --- 4. DIVISORES DECORATIVOS ENTRE SECCIONES -------- */
+/* Línea horizontal fina con degradado dorado que aparece
+   entre secciones marcadas con .has-divider. Sutil, no invasivo. */
+.section-divider {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(168, 137, 95, 0.25) 20%,
+    rgba(168, 137, 95, 0.55) 50%,
+    rgba(168, 137, 95, 0.25) 80%,
+    transparent 100%);
+  position: relative;
+}
+/* Pequeño rombo dorado central sobre la línea */
+.section-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  background: #a8895f;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-radius: 1px;
+}
+
+/* Accesibilidad: si el usuario prefiere menos movimiento, todo estático */
+@media (prefers-reduced-motion: reduce) {
+  html.js-ready .reveal,
+  html.js-ready .reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-image { transform: none !important; }
+  .cursor-dot, .cursor-ring { display: none !important; }
+}

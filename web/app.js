@@ -3,6 +3,10 @@
    ============================================ */
 
 (function () {
+  // v21: marcamos que JS cargó — el CSS usa html.js-ready para
+  // permitir reveals ocultos por defecto (sin JS, todo queda visible)
+  document.documentElement.classList.add('js-ready');
+
   // Header scroll state
   const header = document.querySelector('.site-header');
   const onScroll = () => {
@@ -38,9 +42,20 @@
     }
   });
 
-  // Reveal on scroll
+  // Reveal on scroll (v21: con stagger para hijos de .reveal-group)
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
+    // v21: aplicamos --stagger-i a hijos directos de contenedores .reveal-group
+    document.querySelectorAll('.reveal-group').forEach(function (group) {
+      let i = 0;
+      Array.prototype.forEach.call(group.children, function (child) {
+        if (child.classList.contains('reveal')) {
+          child.style.setProperty('--stagger-i', i);
+          i++;
+        }
+      });
+    });
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -491,4 +506,99 @@
   };
   wireAddedFeedback('.pack-v2-add-btn');
   wireAddedFeedback('.extra-card .add-btn, .extras-mcd-grid .add-btn');
+
+  /* ============================================
+     v21 — PARALLAX SUAVE EN HERO (index.html)
+     La imagen se desplaza a la mitad de velocidad del scroll,
+     dando profundidad. Sólo en escritorio (móvil desactivado por CSS).
+     ============================================ */
+  const heroImage = document.querySelector('.hero .hero-image');
+  const heroSection = document.querySelector('.hero');
+  if (heroImage && heroSection) {
+    const prefersReducedP = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedP) {
+      let heroTicking = false;
+      const updateHeroParallax = function () {
+        const rect = heroSection.getBoundingClientRect();
+        // Sólo calculamos mientras el hero está en/cerca de viewport
+        if (rect.bottom < 0 || rect.top > window.innerHeight) {
+          heroTicking = false;
+          return;
+        }
+        // Cuanto más scroll, más translate. 0.35 = velocidad relativa
+        const offset = Math.round(window.scrollY * 0.35);
+        heroImage.style.setProperty('--hero-parallax', offset + 'px');
+        heroTicking = false;
+      };
+      window.addEventListener('scroll', function () {
+        if (!heroTicking) {
+          window.requestAnimationFrame(updateHeroParallax);
+          heroTicking = true;
+        }
+      }, { passive: true });
+      updateHeroParallax();
+    }
+  }
+
+  /* ============================================
+     v21 — CURSOR PERSONALIZADO
+     Punto + anillo que siguen al ratón. El anillo crece al hover
+     sobre elementos interactivos. Desactivado en táctil (CSS).
+     ============================================ */
+  const supportsFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (supportsFinePointer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const dot = document.createElement('div');
+    const ring = document.createElement('div');
+    dot.className = 'cursor-dot';
+    ring.className = 'cursor-ring';
+    dot.setAttribute('aria-hidden', 'true');
+    ring.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(dot);
+    document.body.appendChild(ring);
+
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    let cursorReady = false;
+
+    document.addEventListener('mousemove', function (e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.transform = 'translate3d(' + mouseX + 'px, ' + mouseY + 'px, 0) translate(-50%, -50%)';
+      if (!cursorReady) {
+        cursorReady = true;
+        document.documentElement.classList.add('cursor-ready');
+        ringX = mouseX; ringY = mouseY;
+      }
+    }, { passive: true });
+
+    // Anillo con seguimiento suave (lerp)
+    const animateRing = function () {
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      ring.style.transform = 'translate3d(' + ringX + 'px, ' + ringY + 'px, 0) translate(-50%, -50%)';
+      requestAnimationFrame(animateRing);
+    };
+    animateRing();
+
+    // Detección de hover sobre elementos interactivos
+    const interactiveSel = 'a, button, [role="button"], .pack-v2, .service-card, .extra-card, input, textarea, select, label';
+    document.addEventListener('mouseover', function (e) {
+      if (e.target.closest && e.target.closest(interactiveSel)) {
+        document.documentElement.classList.add('cursor-hover');
+      }
+    });
+    document.addEventListener('mouseout', function (e) {
+      if (e.target.closest && e.target.closest(interactiveSel)) {
+        document.documentElement.classList.remove('cursor-hover');
+      }
+    });
+
+    // Al salir de la ventana ocultamos el cursor
+    document.addEventListener('mouseleave', function () {
+      document.documentElement.classList.remove('cursor-ready');
+    });
+    document.addEventListener('mouseenter', function () {
+      document.documentElement.classList.add('cursor-ready');
+    });
+  }
 })();
