@@ -386,4 +386,109 @@
     window.addEventListener('scroll', onCtaScroll, { passive: true });
     onCtaScroll();
   }
+
+  /* ============================================
+     v20 — NÚMEROS ANIMADOS (stats-hook)
+     Cuenta de 0 al valor final cuando entra en viewport.
+     Detecta "97%", "+400%", "+11.200€", "3 seg", "68%", etc.
+     ============================================ */
+  const statNumbers = document.querySelectorAll('.stat-number');
+  if (statNumbers.length && 'IntersectionObserver' in window) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const parseStat = function (raw) {
+      // Extrae el número, el prefijo (+), el sufijo (%, €, " seg"), y el separador de miles
+      const text = raw.trim();
+      const match = text.match(/^(\+?)([\d\.\,]+)(.*)$/);
+      if (!match) return null;
+      const prefix = match[1] || '';
+      const numStr = match[2];
+      const suffix = match[3] || '';
+      // "11.200" → 11200 (punto español como separador de miles)
+      const hasThousandsDot = /^\d{1,3}(\.\d{3})+$/.test(numStr);
+      const value = hasThousandsDot ? parseInt(numStr.replace(/\./g, ''), 10) : parseFloat(numStr.replace(',', '.'));
+      if (isNaN(value)) return null;
+      return { prefix, value, suffix, hasThousandsDot, original: text };
+    };
+
+    const formatValue = function (current, meta) {
+      let out;
+      if (meta.hasThousandsDot) {
+        out = Math.round(current).toLocaleString('es-ES');
+      } else if (Number.isInteger(meta.value)) {
+        out = Math.round(current).toString();
+      } else {
+        out = current.toFixed(1).replace('.', ',');
+      }
+      return meta.prefix + out + meta.suffix;
+    };
+
+    const animateNumber = function (el, meta) {
+      const duration = 1400;
+      const start = performance.now();
+      const easeOut = function (t) { return 1 - Math.pow(1 - t, 3); };
+      el.classList.add('is-counting');
+      const tick = function (now) {
+        const elapsed = now - start;
+        const t = Math.min(elapsed / duration, 1);
+        const current = meta.value * easeOut(t);
+        el.textContent = formatValue(current, meta);
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = meta.original;
+          el.classList.add('is-done');
+        }
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        if (el.dataset.counted === '1') return;
+        el.dataset.counted = '1';
+        const meta = parseStat(el.textContent);
+        if (!meta) { io.unobserve(el); return; }
+        if (prefersReduced) {
+          el.classList.add('is-counting', 'is-done');
+          io.unobserve(el);
+          return;
+        }
+        // Guardo el texto original y arranco desde 0
+        el.textContent = formatValue(0, meta);
+        animateNumber(el, meta);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+
+    statNumbers.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ============================================
+     v20 — FEEDBACK "AÑADIDO" EN BOTONES
+     Al pulsar "Añadir al pedido" o "+ Añadir", el botón
+     cambia a estado is-added por 1.4s (visual). La lógica
+     de carrito ya está gestionada arriba por sus propios listeners.
+     ============================================ */
+  const wireAddedFeedback = function (selector) {
+    document.querySelectorAll(selector).forEach(function (btn) {
+      // Inyecto el check si el botón es .pack-v2-add-btn y no lo tiene ya
+      if (btn.classList.contains('pack-v2-add-btn') && !btn.querySelector('.add-check')) {
+        const check = document.createElement('span');
+        check.className = 'add-check';
+        check.setAttribute('aria-hidden', 'true');
+        check.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Añadido';
+        btn.appendChild(check);
+      }
+      btn.addEventListener('click', function () {
+        if (btn.classList.contains('is-added')) return;
+        btn.classList.add('is-added');
+        setTimeout(function () { btn.classList.remove('is-added'); }, 1400);
+      });
+    });
+  };
+  wireAddedFeedback('.pack-v2-add-btn');
+  wireAddedFeedback('.extra-card .add-btn, .extras-mcd-grid .add-btn');
 })();

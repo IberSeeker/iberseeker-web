@@ -4274,3 +4274,183 @@ body.has-cart .fab-whatsapp { display: none !important; }
 }
 
 /* Tamaños se mantienen. Solo cambia la tipografía. */
+
+/* ====================================================== */
+/* === v20 — Vida a la web: hover, micro-interacciones == */
+/* ====================================================== */
+
+/* --- 1. Números animados (stats-hook) --------------- */
+/* Los .stat-number arrancan invisibles hasta que entran en viewport.
+   JS les añade .is-counting y luego .is-done. */
+.stat-number {
+  display: inline-block;
+  transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .6s ease;
+  will-change: transform, opacity;
+}
+.stat-number.is-counting {
+  opacity: 1;
+}
+.stat-number.is-done {
+  animation: statPop .5s cubic-bezier(.2,.9,.3,1.2);
+}
+@keyframes statPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* --- 2. Hover rico en cards de packs ---------------- */
+.pack-v2 {
+  transition:
+    transform .35s cubic-bezier(.2,.7,.2,1),
+    box-shadow .35s ease,
+    border-color .35s ease !important;
+  will-change: transform;
+}
+.pack-v2:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 22px 50px -18px rgba(18, 63, 53, 0.28), 0 6px 18px -8px rgba(0,0,0,.08) !important;
+}
+.pack-v2:hover .pack-v2-price {
+  color: #a8895f !important;
+  transition: color .3s ease;
+}
+.pack-v2:hover .pack-v2-name {
+  letter-spacing: .3px;
+  transition: letter-spacing .3s ease;
+}
+/* El pack destacado (Aéreo) ya tiene sombra, refuerzo suave */
+.pack-v2--featured:hover {
+  transform: translateY(-8px) !important;
+}
+/* Firma no debe elevarse (es la sección grande, se vería raro) */
+.pack-v2--firma:hover {
+  transform: none !important;
+}
+
+/* --- 3. Micro-interacciones -------------------------- */
+
+/* 3a. Botón "Añadir al pedido": feedback al pulsar */
+.pack-v2-add-btn {
+  position: relative;
+  overflow: hidden;
+  transition: background-color .25s ease, color .25s ease, transform .15s ease !important;
+}
+.pack-v2-add-btn:active {
+  transform: scale(.97);
+}
+.pack-v2-add-btn .add-label {
+  transition: opacity .2s ease, transform .3s ease;
+  display: inline-block;
+}
+.pack-v2-add-btn .add-check {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s ease, transform .3s ease;
+  pointer-events: none;
+  font-weight: 600;
+}
+.pack-v2-add-btn.is-added {
+  background-color: #123f35 !important;
+  color: #fff !important;
+}
+.pack-v2-add-btn.is-added .add-label {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+.pack-v2-add-btn.is-added .add-check {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3b. Botón "+ Añadir" de los extras: mismo tratamiento */
+.extra-card .add-btn,
+.extras-mcd-grid .add-btn {
+  transition: background-color .25s ease, color .25s ease, transform .15s ease !important;
+  position: relative;
+}
+.extra-card .add-btn:active,
+.extras-mcd-grid .add-btn:active {
+  transform: scale(.94);
+}
+.extra-card .add-btn.is-added,
+.extras-mcd-grid .add-btn.is-added {
+  background-color: #123f35 !important;
+  color: #fff !important;
+  border-color: #123f35 !important;
+}
+.extra-card .add-btn.is-added .plus,
+.extras-mcd-grid .add-btn.is-added .plus {
+  transform: rotate(45deg);
+  transition: transform .35s cubic-bezier(.2,.9,.3,1.2);
+  display: inline-block;
+}
+.extra-card .add-btn .plus,
+.extras-mcd-grid .add-btn .plus {
+  display: inline-block;
+  transition: transform .35s cubic-bezier(.2,.9,.3,1.2);
+}
+
+/* 3c. CTAs y links con flecha: la flecha se desplaza al hover */
+.btn-primary,
+.btn-secondary,
+.cta-link,
+a.btn,
+a.button {
+  transition: transform .2s ease, background-color .25s ease, color .25s ease, box-shadow .25s ease !important;
+}
+.btn-primary:hover,
+.btn-secondary:hover,
+a.btn:hover,
+a.button:hover {
+  transform: translateY(-2px);
+}
+/* Cualquier link/botón con → o » al final desplaza el símbolo */
+.btn-primary::after,
+.btn-secondary::after,
+a.cta-link::after {
+  display: inline-block;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.btn-primary:hover::after,
+.btn-secondary:hover::after,
+a.cta-link:hover::after {
+  transform: translateX(4px);
+}
+
+/* 3d. Cards de servicios: hover sutil (levantado + sombra) */
+.service-row,
+.service-card {
+  transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -18px rgba(18, 63, 53, 0.22);
+}
+
+/* Respetar preferencias de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .stat-number,
+  .pack-v2,
+  .pack-v2-add-btn,
+  .extra-card .add-btn,
+  .btn-primary,
+  .btn-secondary,
+  .service-card {
+    transition: none !important;
+    animation: none !important;
+  }
+  .pack-v2:hover,
+  .pack-v2--featured:hover,
+  .service-card:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none !important;
+  }
+}
