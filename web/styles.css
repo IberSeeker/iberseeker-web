@@ -4495,58 +4495,17 @@ html.js-ready .reveal-group > .reveal {
   .hero-image { transform: none !important; }
 }
 
-/* --- 3. CURSOR PERSONALIZADO ------------------------- */
-/* Círculo que sigue al cursor. Se activa sólo en dispositivos con
-   puntero fino (escritorio). En móvil ni se pinta ni consume nada. */
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate3d(-50%, -50%, 0);
-  opacity: 0;
-  transition: opacity .3s ease;
+/* Vídeo hero: mismas dimensiones que la imagen, sin controles, cubre la caja */
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  pointer-events: none; /* no capturar clics; el usuario interactúa con el copy */
 }
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  background: #123f35;
-  border-radius: 50%;
-}
-.cursor-ring {
-  width: 34px;
-  height: 34px;
-  border: 1.5px solid rgba(18, 63, 53, 0.55);
-  border-radius: 50%;
-  transition:
-    opacity .3s ease,
-    width .25s cubic-bezier(.2,.9,.3,1.2),
-    height .25s cubic-bezier(.2,.9,.3,1.2),
-    border-color .25s ease,
-    background-color .25s ease;
-}
-html.cursor-ready .cursor-dot,
-html.cursor-ready .cursor-ring {
-  opacity: 1;
-}
-/* Al hover sobre elementos interactivos, el anillo crece y se colorea */
-html.cursor-hover .cursor-ring {
-  width: 54px;
-  height: 54px;
-  border-color: #a8895f;
-  background-color: rgba(168, 137, 95, 0.10);
-}
-html.cursor-hover .cursor-dot {
-  opacity: 0;
-}
-/* Ocultamos el cursor personalizado en dispositivos táctiles */
-@media (hover: none), (pointer: coarse) {
-  .cursor-dot, .cursor-ring { display: none !important; }
-}
-/* Mantenemos el cursor nativo del sistema — el círculo es adicional,
-   no lo reemplaza, para no romper accesibilidad ni UX en formularios */
+
+/* --- 3. CURSOR PERSONALIZADO — eliminado a petición del usuario --- */
 
 /* --- 4. DIVISORES DECORATIVOS ENTRE SECCIONES -------- */
 /* Línea horizontal fina con degradado dorado que aparece
@@ -4585,5 +4544,4 @@ html.cursor-hover .cursor-dot {
     transition: none !important;
   }
   .hero-image { transform: none !important; }
-  .cursor-dot, .cursor-ring { display: none !important; }
 }
