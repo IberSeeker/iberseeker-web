@@ -4483,16 +4483,14 @@ html.js-ready .reveal-group > .reveal {
   transition-delay: calc(var(--stagger-i, 0) * 90ms);
 }
 
-/* --- 2. PARALLAX EN EL HERO (index.html) ------------- */
+/* --- 2. PARALLAX EN EL HERO — desactivado (v25) ------ */
+/* El vídeo ya tiene movimiento propio: parallax generaba sensación
+   de inestabilidad. Mantenemos overflow oculto por si en el futuro
+   se reactiva, pero sin transform ni escala. */
 .hero { overflow: hidden; }
 .hero-image {
-  transform: translate3d(0, var(--hero-parallax, 0px), 0) scale(1.06);
-  transition: transform .05s linear;
-  will-change: transform;
-}
-@media (max-width: 700px) {
-  /* En móvil el parallax se nota poco y consume batería: lo desactivamos */
-  .hero-image { transform: none !important; }
+  transform: none;
+  will-change: auto;
 }
 
 /* Vídeo hero: mismas dimensiones que la imagen, sin controles, cubre la caja */

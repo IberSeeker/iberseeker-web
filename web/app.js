@@ -507,38 +507,8 @@
   wireAddedFeedback('.pack-v2-add-btn');
   wireAddedFeedback('.extra-card .add-btn, .extras-mcd-grid .add-btn');
 
-  /* ============================================
-     v21 — PARALLAX SUAVE EN HERO (index.html)
-     La imagen se desplaza a la mitad de velocidad del scroll,
-     dando profundidad. Sólo en escritorio (móvil desactivado por CSS).
-     ============================================ */
-  const heroImage = document.querySelector('.hero .hero-image');
-  const heroSection = document.querySelector('.hero');
-  if (heroImage && heroSection) {
-    const prefersReducedP = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReducedP) {
-      let heroTicking = false;
-      const updateHeroParallax = function () {
-        const rect = heroSection.getBoundingClientRect();
-        // Sólo calculamos mientras el hero está en/cerca de viewport
-        if (rect.bottom < 0 || rect.top > window.innerHeight) {
-          heroTicking = false;
-          return;
-        }
-        // Cuanto más scroll, más translate. 0.35 = velocidad relativa
-        const offset = Math.round(window.scrollY * 0.35);
-        heroImage.style.setProperty('--hero-parallax', offset + 'px');
-        heroTicking = false;
-      };
-      window.addEventListener('scroll', function () {
-        if (!heroTicking) {
-          window.requestAnimationFrame(updateHeroParallax);
-          heroTicking = true;
-        }
-      }, { passive: true });
-      updateHeroParallax();
-    }
-  }
+  /* v21 — PARALLAX HERO desactivado (v25): generaba inestabilidad
+     visual combinado con el movimiento propio del vídeo. */
 
   /* v21 — Cursor personalizado eliminado a petición del usuario */
 })();
