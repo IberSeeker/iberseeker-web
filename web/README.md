@@ -22,17 +22,16 @@ web/
 
 ## Vídeo de portada
 
-`js/site.js` elige la calidad según la pantalla:
+`js/site.js` elige la versión:
 
 | Archivo | Uso |
 |---|---|
-| `v/hero_m1080.mp4` | Móvil en vertical |
-| `v/hero_d1080.mp4` | Pantallas de hasta 1920 px reales |
-| `v/hero_d1440.mp4` | Hasta 2600 px reales |
-| `v/hero_d2160.mp4` | Más de 2600 px (4K, pantallas retina) |
-| `v/hero_m.mp4`, `v/hero_d.mp4` | Conexiones lentas o modo de ahorro de datos |
+| `v/hero_d2160.mp4` | Ordenador y tableta (4K, decisión del 20/11/2026) |
+| `v/hero_d1440.mp4` | Red de seguridad: si un equipo pierde más del 15 % de los fotogramas con el 4K, cambia a esta |
+| `v/hero_m1080.mp4` | Móvil en vertical (1080×1920) |
+| `v/hero_d.mp4`, `v/hero_m.mp4` | Conexiones lentas o modo de ahorro de datos |
 
-Para comparar calidades a mano: `/?hero=d1080`, `/?hero=d1440`, `/?hero=d2160`, `/?hero=d` (versión ligera), `/?hero=m1080`.
+Para probar una versión a mano: `/?hero=d2160`, `/?hero=d1440`, `/?hero=d` (ligera), `/?hero=m1080`.
 
 ## Transiciones
 

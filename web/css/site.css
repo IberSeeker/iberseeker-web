@@ -539,12 +539,13 @@ main { padding-top: 0; }
 @media (min-width: 960px) and (max-width: 1199px) { .hstats { display: grid; gap: 10px; } .hstats .eyebrow { max-width: none; } .hero .stats .t { min-width: 0; } }
 
 /* Notas de las cifras y fuentes */
-.stats .t .fn { font-size: 9px; line-height: 0; vertical-align: super; margin-left: 2px; }
-.stats .t .fn a { color: inherit; text-decoration: none; opacity: .65; padding: 2px; }
-.stats .t .fn a:hover { opacity: 1; }
+.stats .t .fn { font-size: 10px; font-weight: 400; line-height: 0; vertical-align: super; margin-left: 1px; }
+.stats .t .fn a { color: inherit; text-decoration: none; opacity: .4; padding: 2px; }
+.stats .t .fn a:hover { opacity: .9; }
 .foot .fuentes { margin-top: 18px; font-size: 11px; line-height: 1.55; color: rgba(250,248,243,.4); scroll-margin-top: calc(var(--hh) + 16px); }
 .foot .fuentes p { margin: 0 0 6px; }
-.foot .fuentes ol { margin: 0; padding-left: 1.5em; display: grid; gap: 4px; }
+.foot .fuentes ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.foot .fuentes b { font-weight: 600; color: rgba(250,248,243,.55); }
 .foot .fuentes a { color: inherit; text-decoration: underline; text-decoration-color: rgba(250,248,243,.22); text-underline-offset: 2px; }
 .foot .fuentes a:hover { color: rgba(250,248,243,.75); }
 

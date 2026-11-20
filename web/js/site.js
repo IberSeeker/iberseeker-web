@@ -29,19 +29,27 @@
   if (document.getElementById('heroVideo')) {
     var hv = $('#heroVideo');
     var tall = window.matchMedia('(max-width: 700px) and (max-aspect-ratio: 1/1)').matches;
-    /* Calidad según la pantalla: ancho real de vídeo que hace falta para cubrirla */
-    var dpr = Math.min(window.devicePixelRatio || 1, 3);
-    var need = Math.max(window.innerWidth, window.innerHeight * 16 / 9) * dpr;
     var cn = navigator.connection || {};
     var slow = !!cn.saveData || /(^|-)2g|3g/.test(cn.effectiveType || '');
-    var q = tall ? (slow ? 'm' : 'm1080') : slow ? 'd' : need > 2600 ? 'd2160' : need > 1950 ? 'd1440' : 'd1080';
-    if (q === 'd2160' && window.matchMedia('(pointer: coarse)').matches) q = 'd1440'; /* tabletas: 4K pesa demasiado con datos móviles */
-    var force = (location.search.match(/[?&]hero=(m|d|m1080|d1080|d1440|d2160)\b/) || [])[1];
+    /* Decisión de Martín (20/11): 4K en ordenador y tableta; el móvil en vertical ya va a su resolución máxima útil (1080x1920) */
+    var q = tall ? (slow ? 'm' : 'm1080') : slow ? 'd' : 'd2160';
+    var force = (location.search.match(/[?&]hero=(m|d|m1080|d1440|d2160)\b/) || [])[1];
     if (force) q = force;
     hv.poster = q.charAt(0) === 'm' ? 'v/hero_mhq.jpg' : 'v/hero_hq.jpg';
     hv.addEventListener('error', function () { hv.style.display = 'none'; });
     hv.src = 'v/hero_' + q + '.mp4';
     hv.dataset.q = q;
+    /* Red de seguridad: si un ordenador antiguo no mueve el 4K con fluidez, pasa a 1440p sin cortar */
+    if (q === 'd2160' && hv.getVideoPlaybackQuality) {
+      setTimeout(function () {
+        var pq = hv.getVideoPlaybackQuality();
+        if (pq.totalVideoFrames > 40 && pq.droppedVideoFrames / pq.totalVideoFrames > 0.15) {
+          var t = hv.currentTime; hv.src = 'v/hero_d1440.mp4'; hv.dataset.q = 'd1440';
+          hv.addEventListener('loadedmetadata', function () { try { hv.currentTime = t; } catch (e) {} }, { once: true });
+          var p1 = hv.play(); if (p1 && p1.catch) p1.catch(function () {});
+        }
+      }, 5000);
+    }
     var p0 = hv.play(); if (p0 && p0.catch) p0.catch(function () {});
   }
 
