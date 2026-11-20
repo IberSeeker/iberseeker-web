@@ -29,9 +29,19 @@
   if (document.getElementById('heroVideo')) {
     var hv = $('#heroVideo');
     var tall = window.matchMedia('(max-width: 700px) and (max-aspect-ratio: 1/1)').matches;
-    hv.poster = tall ? 'v/hero_m.jpg' : 'v/hero_d.jpg';
+    /* Calidad según la pantalla: ancho real de vídeo que hace falta para cubrirla */
+    var dpr = Math.min(window.devicePixelRatio || 1, 3);
+    var need = Math.max(window.innerWidth, window.innerHeight * 16 / 9) * dpr;
+    var cn = navigator.connection || {};
+    var slow = !!cn.saveData || /(^|-)2g|3g/.test(cn.effectiveType || '');
+    var q = tall ? (slow ? 'm' : 'm1080') : slow ? 'd' : need > 2600 ? 'd2160' : need > 1950 ? 'd1440' : 'd1080';
+    if (q === 'd2160' && window.matchMedia('(pointer: coarse)').matches) q = 'd1440'; /* tabletas: 4K pesa demasiado con datos móviles */
+    var force = (location.search.match(/[?&]hero=(m|d|m1080|d1080|d1440|d2160)\b/) || [])[1];
+    if (force) q = force;
+    hv.poster = q.charAt(0) === 'm' ? 'v/hero_mhq.jpg' : 'v/hero_hq.jpg';
     hv.addEventListener('error', function () { hv.style.display = 'none'; });
-    hv.src = tall ? 'v/hero_m.mp4' : 'v/hero_d.mp4';
+    hv.src = 'v/hero_' + q + '.mp4';
+    hv.dataset.q = q;
     var p0 = hv.play(); if (p0 && p0.catch) p0.catch(function () {});
   }
 
@@ -52,9 +62,9 @@
   /* ---------- Cifras que cuentan ---------- */
   if (document.getElementById('stats')) {
     var stl = $('#stats');
-    $$('li', stl).forEach(function (li) { var c = li.cloneNode(true); c.classList.add('dup'); c.setAttribute('aria-hidden', 'true'); stl.appendChild(c); });
+    $$('li', stl).forEach(function (li) { var c = li.cloneNode(true); c.classList.add('dup'); c.setAttribute('aria-hidden', 'true'); $$('a', c).forEach(function (x) { x.tabIndex = -1; }); stl.appendChild(c); });
     var why = $('.hstats'), nums = $$('#stats .n'), running = false, firstRun = true;
-    function fmtN(n) { return n.toLocaleString('es-ES'); }
+    function fmtN(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
     document.documentElement.classList.add('cnt');
     nums.forEach(function (el, i) {
       var fin = el.textContent; el.textContent = '';
@@ -63,7 +73,7 @@
       el.appendChild(g); el.appendChild(v); el._v = v;
     });
     function runStats() {
-      var base = firstRun ? Math.max(0, 1800 - performance.now()) : 0; firstRun = false;
+      var base = firstRun ? Math.max(0, (document.documentElement.classList.contains('nointro') ? 450 : 1800) - performance.now()) : 0; firstRun = false;
       running = true;
       nums.forEach(function (el, i) { el.parentNode.style.transitionDelay = ((base + (i % 5) * 140) / 1000) + 's'; });
       why.classList.add('go');

@@ -22,9 +22,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=1">
-<script src="/js/site.js?v=1" defer></script>
+<script>try{if(sessionStorage.getItem("ibIntro"))document.documentElement.classList.add("nointro");else sessionStorage.setItem("ibIntro","1")}catch(e){}</script>
+<link rel="stylesheet" href="/css/site.css?v=2">
+<script src="/js/site.js?v=2" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "IberSeeker Visual", "url": "https://www.iberseeker.com/", "image": "https://www.iberseeker.com/img/og.jpg", "logo": "https://www.iberseeker.com/img/logo_header.png", "telephone": "+34634323162", "email": "grupo@iberseeker.net", "areaServed": "Comunidad de Madrid", "address": {"@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES"}, "sameAs": ["https://www.instagram.com/iberseeker/"], "description": "Fotografía HDR, vídeo 4K, dron, tour virtual 3D y certificado energético para vender o alquilar tu inmueble en Madrid. Revelamos el potencial de cada inmueble."}</script>
+<script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"href_matches":"/"},"eagerness":"moderate"}]}</script>
 </head>
 <body data-page="inicio">
 <div class="intro" aria-hidden="true"><img src="img/logo_header.png" alt=""></div>
@@ -74,17 +76,17 @@
 <main>
 <div class="view on" data-view="inicio">
   <section class="hero" aria-label="Portada">
-    <video id="heroVideo" muted playsinline loop autoplay preload="auto" poster="v/hero_d.jpg" aria-hidden="true"></video>
+    <video id="heroVideo" muted playsinline loop autoplay preload="auto" poster="v/hero_hq.jpg" aria-hidden="true"></video>
     <div class="wrap">
       <div class="hstats" role="group" aria-label="¿Por qué la imagen importa?">
         <span class="eyebrow">¿Por qué la imagen importa?</span>
         <div class="ticker">
           <ul class="stats" id="stats">
-          <li><span class="n" data-to="97" data-suf="%">97%</span><span class="t">de compradores busca online antes de visitar</span></li>
-          <li><span class="n" data-to="3" data-suf=" seg">3 seg</span><span class="t">para causar una primera impresión</span></li>
-          <li><span class="n" data-to="400" data-pre="+" data-suf="%">+400%</span><span class="t">más consultas con vídeo que sin vídeo</span></li>
-          <li><span class="n" data-to="68" data-suf="%">68%</span><span class="t">más rápido con fotografía aérea</span></li>
-          <li><span class="n" data-to="11200" data-pre="+" data-suf=" €">+11.200 €</span><span class="t">más de precio de venta con foto profesional</span></li>
+          <li><span class="n" data-to="97" data-suf="%">97%</span><span class="t">de compradores busca online antes de visitar<sup class="fn"><a href="#fuentes" aria-label="Fuente 1">1</a></sup></span></li>
+          <li><span class="n" data-to="21" data-suf=" días">21 días</span><span class="t">antes en venderse con foto profesional<sup class="fn"><a href="#fuentes" aria-label="Fuente 2">2</a></sup></span></li>
+          <li><span class="n" data-to="400" data-pre="+" data-suf="%">+400%</span><span class="t">más consultas con vídeo que sin vídeo<sup class="fn"><a href="#fuentes" aria-label="Fuente 3">3</a></sup></span></li>
+          <li><span class="n" data-to="68" data-suf="%">68%</span><span class="t">más rápido con fotografía aérea<sup class="fn"><a href="#fuentes" aria-label="Fuente 4">4</a></sup></span></li>
+          <li><span class="n" data-to="8400" data-pre="+" data-suf=" €">+8.400 €</span><span class="t">más de precio de venta con foto profesional<sup class="fn"><a href="#fuentes" aria-label="Fuente 2">2</a></sup></span></li>
         </ul>
         </div>
       </div>
@@ -180,6 +182,15 @@
       <div><h4>Contacto</h4><ul><li>grupo@iberseeker.net</li><li>+34 634 32 31 62</li><li>Madrid</li></ul></div>
     </div>
     <div class="legal"><span>© 2026 IberSeeker Visual</span><span>Fotografía, vídeo y dron inmobiliario en Madrid</span></div>
+    <div class="fuentes" id="fuentes">
+      <p>Fuentes de las cifras de la portada. Son estudios y datos de EE. UU. que mostramos como referencia del sector.</p>
+      <ol>
+        <li>NAR (National Association of Realtors, EE. UU.), <a href="https://www.nar.realtor/sites/default/files/documents/2021-real-estate-in-a-digital-age-10-05-2021.pdf" target="_blank" rel="noopener">«Real Estate in a Digital Age», 2021</a>: el 97&nbsp;% de los compradores usó internet para buscar vivienda en 2020.</li>
+        <li>Redfin (EE. UU.), <a href="https://prnewswire.com/news-releases/hiring-a-professional-photographer-for-listing-photos-pays-off-according-to-latest-redfin-study-234221461.html" target="_blank" rel="noopener">estudio de diciembre de 2013</a> en 22 mercados: las viviendas de 400.000 a 499.999&nbsp;$ con fotos de cámara réflex se vendieron 21 días antes y, de media, 11.200&nbsp;$ más caras que las de fotos amateur. Conversión a euros al cambio medio de 2013, 1,3281&nbsp;$/€ (<a href="https://www.federalreserve.gov/releases/g5a/20140102/" target="_blank" rel="noopener">Reserva Federal</a>).</li>
+        <li>Dato atribuido a la NAR y citado por <a href="https://www.keepingcurrentmatters.com/2024/08/27/12-real-estate-video-statistics-every-agent-cant-ignore" target="_blank" rel="noopener">Keeping Current Matters, agosto de 2024</a>.</li>
+        <li>Dato del sector inmobiliario de EE. UU. difundido por Ruby Home y citado por <a href="https://www.digitalcameraworld.com/news/aerial-real-estate-is-quick-drone-photos-will-help-sell-a-home-68-faster-says-study" target="_blank" rel="noopener">Digital Camera World, 2024</a>.</li>
+      </ol>
+    </div>
   </div>
 </footer>
 
