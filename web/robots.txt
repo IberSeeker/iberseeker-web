@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iberseeker.com/sitemap.xml
+Sitemap: https://www.iberseeker.com/sitemap.xml
