@@ -23,8 +23,8 @@
 <link rel="preload" href="/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script>try{if(sessionStorage.getItem("ibIntro"))document.documentElement.classList.add("nointro");else sessionStorage.setItem("ibIntro","1")}catch(e){}</script>
-<link rel="stylesheet" href="/css/site.css?v=5">
-<script src="/js/site.js?v=5" defer></script>
+<link rel="stylesheet" href="/css/site.css?v=6">
+<script src="/js/site.js?v=6" defer></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "IberSeeker Visual", "url": "https://www.iberseeker.com/", "image": "https://www.iberseeker.com/img/og.jpg", "logo": "https://www.iberseeker.com/img/logo_header.png", "telephone": "+34634323162", "email": "grupo@iberseeker.net", "areaServed": "Comunidad de Madrid", "address": {"@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES"}, "sameAs": ["https://www.instagram.com/iberseeker/"], "description": "Fotografía HDR, vídeo 4K, dron, tour virtual 3D y certificado energético para vender o alquilar tu inmueble en Madrid. Revelamos el potencial de cada inmueble."}</script>
 <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"href_matches":"/"},"eagerness":"moderate"}]}</script>
 </head>
@@ -42,7 +42,7 @@
             <a href="/servicios#foto" role="menuitem"><span class="thumb"><img src="img/villa_salon2.jpg" alt="" loading="lazy"></span><b>Fotografía HDR</b><small>Luz natural y ventanas a la vista</small></a>
             <a href="/servicios#video" role="menuitem"><span class="thumb"><img src="v/cam_terraza.jpg" alt="" loading="lazy"></span><b>Vídeo 4K cinematic</b><small>Cámara y gimbal, recorrido con narrativa</small></a>
             <a href="/servicios#dron" role="menuitem"><span class="thumb"><img src="img/dron_cata2.jpg" alt="" loading="lazy"></span><b>Dron exterior</b><small>Fachada, azotea y entorno</small></a>
-            <a href="/servicios#dron-fpv" role="menuitem"><span class="thumb"><img src="v/fpv_remate.jpg" alt="" loading="lazy"></span><b>Dron FPV</b><small>Planos imposibles, sin cortes</small></a>
+            <a href="/servicios#dron-fpv" role="menuitem"><span class="thumb"><img src="v/fpv_remate.jpg" alt="" loading="lazy"></span><b>Dron 360</b><small>Planos imposibles, sin cortes</small></a>
             <a href="/servicios#tour" role="menuitem"><span class="thumb tg"><img src="img/tour_maqueta.jpg" alt="" loading="lazy"></span><b>Tour virtual 3D</b><small>Matterport, abierto 24/7</small></a>
             <a href="/servicios#plano" role="menuitem"><span class="thumb"><img src="img/thumb_plano.svg" alt="" loading="lazy"></span><b>Plano 2D</b><small>La distribución de un vistazo</small></a>
             <a href="/servicios#certificado" role="menuitem"><span class="thumb"><img src="img/thumb_cee.svg" alt="" loading="lazy"></span><b>Certificado energético</b><small>Obligatorio para anunciar</small></a>
@@ -63,7 +63,7 @@
     <a href="/">Inicio</a>
     <a href="/servicios">Servicios</a>
     <div class="sub">
-      <a href="/servicios#foto">Fotografía HDR</a><a href="/servicios#video">Vídeo 4K</a><a href="/servicios#dron">Dron exterior</a><a href="/servicios#dron-fpv">Dron FPV</a><a href="/servicios#tour">Tour virtual 3D</a><a href="/servicios#plano">Plano 2D</a><a href="/servicios#certificado">Certificado</a><a href="/servicios#extras">Extras</a>
+      <a href="/servicios#foto">Fotografía HDR</a><a href="/servicios#video">Vídeo 4K</a><a href="/servicios#dron">Dron exterior</a><a href="/servicios#dron-fpv">Dron 360</a><a href="/servicios#tour">Tour virtual 3D</a><a href="/servicios#plano">Plano 2D</a><a href="/servicios#certificado">Certificado</a><a href="/servicios#extras">Extras</a>
     </div>
     <a href="/trabajos">Nuestros trabajos</a>
     <a href="/packs">Packs y precios</a>
@@ -137,7 +137,7 @@
       <div class="feat">
         <a class="fcard" href="/trabajos#trabajos-foto" data-r><div class="m"><img src="img/villa_bano.jpg" alt="Baño con papel pintado de pavos reales" loading="lazy"></div><span>Interiores y terrazas</span><h3>Fotografía HDR</h3></a>
         <a class="fcard" href="/trabajos#trabajos-dron" data-r><div class="m"><video data-src="v/smart.mp4" poster="v/smart.jpg" muted playsinline loop preload="none" aria-hidden="true"></video></div><span>Fachadas, azoteas y vistas</span><h3>Dron exterior</h3></a>
-        <a class="fcard" href="/trabajos#trabajos-fpv" data-r><div class="m"><video data-src="v/fpv_remate.mp4" poster="v/fpv_remate.jpg" muted playsinline loop preload="none" aria-hidden="true"></video></div><span>Planos imposibles</span><h3>Dron FPV</h3></a>
+        <a class="fcard" href="/trabajos#trabajos-fpv" data-r><div class="m"><video data-src="v/fpv_remate.mp4" poster="v/fpv_remate.jpg" muted playsinline loop preload="none" aria-hidden="true"></video></div><span>Planos imposibles</span><h3>Dron 360</h3></a>
       </div>
       <div class="row-end"><a class="link" href="/trabajos">Ver todos los trabajos <i></i></a></div>
     </div>
@@ -179,7 +179,7 @@
     <div class="cols">
       <div class="brandf"><img src="img/logo_cream.png" alt="IberSeeker Visual" width="640" height="468"><p>Productora audiovisual inmobiliaria en Madrid.</p></div>
       <div><h4>Web</h4><ul><li><a href="/">Inicio</a></li><li><a href="/servicios">Servicios</a></li><li><a href="/trabajos">Nuestros trabajos</a></li><li><a href="/packs">Packs y precios</a></li><li><a href="/contacto">Contacto</a></li></ul></div>
-      <div><h4>Servicios</h4><ul><li><a href="/servicios#foto">Fotografía HDR</a></li><li><a href="/servicios#video">Vídeo 4K</a></li><li><a href="/servicios#dron">Dron exterior</a></li><li><a href="/servicios#dron-fpv">Dron FPV</a></li><li><a href="/servicios#tour">Tour virtual 3D</a></li><li><a href="/servicios#plano">Plano 2D</a></li><li><a href="/servicios#certificado">Certificado energético</a></li></ul></div>
+      <div><h4>Servicios</h4><ul><li><a href="/servicios#foto">Fotografía HDR</a></li><li><a href="/servicios#video">Vídeo 4K</a></li><li><a href="/servicios#dron">Dron exterior</a></li><li><a href="/servicios#dron-fpv">Dron 360</a></li><li><a href="/servicios#tour">Tour virtual 3D</a></li><li><a href="/servicios#plano">Plano 2D</a></li><li><a href="/servicios#certificado">Certificado energético</a></li></ul></div>
       <div><h4>Contacto</h4><ul><li>grupo@iberseeker.net</li><li>+34 634 32 31 62</li><li>Madrid</li></ul></div>
     </div>
     <div class="legal"><span>© 2026 IberSeeker Visual</span><span>Fotografía, vídeo y dron inmobiliario en Madrid</span></div>

@@ -174,7 +174,8 @@
       { id: 'fotos', n: '+10 fotos', p: 39, u: '', d: 'Diez fotos HDR más en alta resolución.' },
       { id: 'reel', n: 'Reel vertical', p: 59, u: '', d: 'Versión 9:16 para Reels, TikTok y Stories.' },
       { id: 'dron', n: 'Dron exterior', p: 149, u: '', d: 'Fotos y vídeo aéreos del exterior y el entorno.', one: true },
-      { id: 'd360', n: 'Dron FPV', p: 219, u: '', d: 'Un plano secuencia por escalera, patio o azotea.', one: true },
+      { id: 'd360', n: 'Dron 360', p: 219, u: '', d: 'Un plano secuencia por escalera, patio o azotea.', one: true },
+      { id: 'fpvint', n: 'Vuelo FPV interior', soon: true, d: 'Un recorrido completo por dentro de la vivienda, sin cortes.' },
       { id: 'tour', n: 'Tour virtual 3D', p: [99, 129, 159], u: '', d: 'Recorrido 3D con 6 meses de alojamiento.', one: true },
       { id: 'plano', n: 'Plano 2D', p: 49, u: '', d: 'Se saca del tour; solo junto al tour.', one: true, needs: 'tour' },
       { id: 'cert', n: 'Certificado energético', p: [79, 99, 129], u: '', d: 'Técnico colegiado y registro oficial.', one: true }
@@ -182,7 +183,7 @@
     var st = { pack: null, size: 0, q: {} };
     var custom = function () { return st.size === 3; };
     var tier = function () { return Math.min(st.size, 2); };
-    var xPrice = function (x) { return typeof x.p === 'number' ? x.p : x.p[tier()]; };
+    var xPrice = function (x) { return x.soon ? 0 : typeof x.p === 'number' ? x.p : x.p[tier()]; };
     function eur(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €'; }
     EXTRAS.forEach(function (x) { st.q[x.id] = 0; });
     var list = $('#extras-list');
@@ -209,7 +210,8 @@
       if (pk) { total += pk.p[t]; lines.push(['Pack ' + pk.n + ' · ' + SIZES[st.size], med ? 'a medida' : eur(pk.p[t])]); }
       EXTRAS.forEach(function (x) {
         var li = list.querySelector('[data-x="' + x.id + '"]'), off = !pk, why = '', xp = xPrice(x);
-        li.querySelector('.xp').textContent = '+' + (med && typeof x.p !== 'number' ? 'desde ' : '') + xp + ' € ' + x.u;
+        li.querySelector('.xp').textContent = x.soon ? 'Próximamente' : '+' + (med && typeof x.p !== 'number' ? 'desde ' : '') + xp + ' € ' + x.u;
+        if (x.soon) { li.classList.add('off', 'soon-x'); st.q[x.id] = 0; li.querySelectorAll('button').forEach(function (bt) { bt.disabled = true; }); li.querySelector('.why-off').hidden = true; return; }
         if (pk && pk.inc.indexOf(x.id) >= 0) { off = true; why = 'Ya incluido en el pack ' + pk.n + '.'; }
         if (pk && x.needs && st.q[x.needs] === 0 && pk.inc.indexOf(x.needs) < 0) { off = true; why = 'Añade antes el tour.'; }
         if (!pk) why = 'Elige primero un pack.';

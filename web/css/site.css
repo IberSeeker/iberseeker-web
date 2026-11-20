@@ -587,3 +587,8 @@ main { padding-top: 0; }
 @media (min-width: 1200px) { .hstats { align-items: flex-start; } .hstats .eyebrow { padding-top: 6px; } }
 /* Pantallas bajas de ordenador (portátiles): el titular se ajusta a la altura para no pisar las cifras */
 @media (min-width: 960px) { .hero h1 { font-size: max(44px, min(clamp(52px, 12.5vw, 148px), calc((100svh - 400px) / 2.95))); } }
+.soon { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+.soon > span, .soon-x .xp { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); border-radius: 999px; padding: 3px 9px; }
+.extras li.soon-x { opacity: 1; }
+.extras li.soon-x .stepper { display: none; }
+.extras li.soon-x b, .extras li.soon-x p { opacity: .55; }
