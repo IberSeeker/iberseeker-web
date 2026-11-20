@@ -428,6 +428,12 @@ main { padding-top: 0; }
 .order small { font-size: 12px; color: var(--muted); }
 .order .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
 .cond { margin-top: 36px; display: grid; gap: 8px; font-size: 13.5px; color: var(--muted); max-width: 70ch; }
+.cond a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.bases { margin-top: 56px; max-width: 80ch; font-size: 12.5px; line-height: 1.55; color: var(--muted); }
+.bases > summary { display: inline-block; cursor: pointer; list-style: none; text-decoration: underline; text-underline-offset: 3px; }
+.bases > summary::-webkit-details-marker { display: none; }
+.bases ol { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 8px; }
+.bases b { font-weight: 600; color: var(--ink); }
 .hotels-box { margin-top: 48px; border-radius: 4px; background: var(--green-deep); color: var(--ivory); padding: 30px 26px; display: grid; gap: 16px; }
 .hotels-box p { color: rgba(250,248,243,.78); max-width: 56ch; }
 

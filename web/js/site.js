@@ -224,10 +224,6 @@
       $('#o-lines').innerHTML = lines.map(function (l) { return '<li><span>' + l[0] + '</span><span>' + l[1] + '</span></li>'; }).join('');
       $('#o-empty').hidden = !!pk;
       $('#o-total').textContent = pk && med ? 'A medida' : eur(total);
-      var nd = $('#o-dron'), dPack = pk && pk.inc.indexOf('dron') >= 0, dExtra = st.q.dron > 0;
-      nd.hidden = !(dPack || dExtra);
-      if (dPack) nd.textContent = st.pack === 'aereo' ? 'Si el espacio aéreo no permite volar, se cobra como Visual (−130 €).' : 'Si el espacio aéreo no permite volar, se descuentan 130 €.';
-      else if (dExtra) nd.textContent = 'Si el espacio aéreo no permite volar, el dron no se cobra.';
       var send = $('#o-send');
       send.textContent = med ? 'Pedir presupuesto por WhatsApp' : 'Pedir por WhatsApp';
       if (pk) {
@@ -236,6 +232,11 @@
       } else { send.href = 'https://wa.me/34634323162'; send.setAttribute('aria-disabled', 'true'); }
     }
     render();
+    var bases = $('#bases');
+    if (bases) {
+      $$('a[href="#bases"]').forEach(function (a) { a.addEventListener('click', function () { bases.open = true; }); });
+      if (location.hash === '#bases') bases.open = true;
+    }
   }
 
   /* ---------- Formulario de contacto ---------- */
