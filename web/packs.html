@@ -22,8 +22,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/site.css?v=2">
-<script src="/js/site.js?v=2" defer></script>
+<link rel="stylesheet" href="/css/site.css?v=3">
+<script src="/js/site.js?v=3" defer></script>
 <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"href_matches":"/"},"eagerness":"moderate"}]}</script>
 </head>
 <body data-page="packs">
@@ -79,11 +79,12 @@
     <p class="lead">Elige un pack, añade los extras que necesites y envíanos el pedido por WhatsApp.</p>
   </div>
   <div class="wrap" style="padding-bottom: 96px">
-    <div class="size" role="group" aria-label="Superficie del inmueble">
-      <span>Superficie</span>
-      <button class="chip" type="button" data-size="1" aria-pressed="true">Hasta 150 m²</button>
-      <button class="chip" type="button" data-size="1.25" aria-pressed="false">150–300 m² (+25 %)</button>
-      <button class="chip" type="button" data-size="firma" aria-pressed="false">Más de 300 m²</button>
+    <div class="size" role="group" aria-label="Superficie construida del inmueble">
+      <span>Superficie construida</span>
+      <button class="chip" type="button" data-size="0" aria-pressed="true">Hasta 150 m²</button>
+      <button class="chip" type="button" data-size="1" aria-pressed="false">150–300 m²</button>
+      <button class="chip" type="button" data-size="2" aria-pressed="false">300–500 m²</button>
+      <button class="chip" type="button" data-size="3" aria-pressed="false">Más de 500 m²</button>
     </div>
     <div class="pk-layout">
       <div>
@@ -91,14 +92,14 @@
           <div class="pk" role="button" tabindex="0" data-pack="esencial" aria-pressed="false"><span class="sel"></span>
             <div><span class="for">Pisos y apartamentos</span><h3>Esencial</h3></div>
             <div class="pr">139 €</div>
-            <ul><li>25 fotos HDR</li></ul>
+            <ul><li><span data-f>25</span> fotos HDR</li></ul>
             <span class="when">Entrega en 24 h</span>
           </div>
           <div class="pk" role="button" tabindex="0" data-pack="visual" aria-pressed="false"><span class="sel"></span>
             <div><span class="for">El anuncio completo</span><h3>Visual</h3></div>
             <div class="pr">299 €</div>
-            <ul><li>30 fotos HDR</li><li>Vídeo 4K de 60 s</li></ul>
-            <span class="when">Entrega en 24 h</span>
+            <ul><li><span data-f>30</span> fotos HDR</li><li>Vídeo 4K de 60 s</li></ul>
+            <span class="when">Fotos en 24 h · vídeo en 48 h</span>
           </div>
           <div class="pk" role="button" tabindex="0" data-pack="aereo" aria-pressed="false"><span class="sel"></span>
             <div><span class="for">Chalets y exteriores</span><h3>Aéreo</h3></div>
@@ -107,15 +108,15 @@
             <span class="when">Entrega en 48–72 h</span>
           </div>
           <div class="pk" role="button" tabindex="0" data-pack="elite" aria-pressed="false"><span class="sel"></span>
-            <div><span class="for">Hasta 150 m²</span><h3>Élite</h3></div>
-            <div class="pr">849 €</div>
-            <ul><li>Todo lo del Aéreo</li><li>Tour virtual Matterport</li><li>Plano 2D</li><li>Certificado energético</li></ul>
-            <span class="when">Entrega en 72 h</span>
+            <div><span class="for">Todo para vender en regla</span><h3>Élite</h3></div>
+            <div class="pr">629 €</div>
+            <ul><li>Todo lo del Aéreo</li><li>Tour virtual 3D</li><li>Plano 2D</li><li>Certificado energético</li></ul>
+            <span class="when">Entrega en 72 h · certificado en 4–5 días hábiles</span>
           </div>
           <div class="pk firma" role="button" tabindex="0" data-pack="firma" aria-pressed="false"><span class="sel"></span>
-            <div><span class="for">Más de 300 m² o más de 1,5 M€</span><h3>Firma</h3></div>
-            <div class="pr"><small>desde</small>1.290 €</div>
-            <ul><li>Vídeo de cine de 2:30</li><li>40+ fotos con atardecer virtual</li><li>Dron exterior</li><li>Tour, plano y certificado</li><li>3 amueblados virtuales</li><li>Entrega prioritaria</li></ul>
+            <div><span class="for">Propiedades singulares y de alto standing</span><h3>Firma</h3></div>
+            <div class="pr">949 €</div>
+            <ul><li>Vídeo de cine de 2:30</li><li><span data-f>40</span> fotos HDR con 3 atardeceres virtuales</li><li>Dron exterior y Dron FPV</li><li>Tour, plano y certificado</li><li>3 amueblados virtuales</li><li>Entrega prioritaria</li></ul>
             <span class="when">Plazo a medida</span>
           </div>
         </div>
@@ -124,8 +125,9 @@
         <ul class="extras" id="extras-list"></ul>
 
         <div class="cond">
-          <p><b>Condiciones.</b> Precios sin IVA, válidos hasta 150 m². De 150 a 300 m², el pack sube un 25 %. Más de 300 m², pack Firma.</p>
-          <p>El amueblado y el atardecer virtuales se generan sobre la foto real y se entregan señalados como imagen virtual, siempre junto a la original. Los tours Matterport incluyen 6 meses de alojamiento online.</p>
+          <p><b>Condiciones.</b> Precios sin IVA, según la superficie construida. Más de 500 m², presupuesto a medida.</p>
+          <p>Dron: resérvalo con al menos 7 días, porque la normativa obliga a comunicar el vuelo con antelación. Si el espacio aéreo o el tiempo no permiten volar, no se cobra la parte del dron.</p>
+          <p>El amueblado y el atardecer virtuales se generan sobre la foto real y se entregan señalados como imagen virtual, siempre junto a la original. Los tours virtuales incluyen 6 meses de alojamiento online.</p>
         </div>
       </div>
       <aside class="order" id="order" aria-live="polite">

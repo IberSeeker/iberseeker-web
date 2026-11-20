@@ -383,6 +383,7 @@ main { padding-top: 0; }
 /* Packs */
 .size { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 26px; }
 .size > span { font-size: 13px; color: var(--muted); margin-right: 6px; }
+@media (max-width: 699px) { .size > span { flex-basis: 100%; margin: 0 0 2px; } }
 .pk-layout { display: grid; gap: 28px; }
 .packs { display: grid; gap: 10px; }
 .pk { position: relative; display: grid; gap: 12px; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 22px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }

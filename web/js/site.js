@@ -159,50 +159,57 @@
 
   /* ---------- Packs y carrito ---------- */
   if (document.getElementById('extras-list')) {
+    /* Precios sin IVA por tramo de superficie construida: hasta 150 · 150–300 · 300–500 m². Más de 500 m², a medida. */
+    var SIZES = ['Hasta 150 m²', '150–300 m²', '300–500 m²', 'Más de 500 m²'];
     var PACKS = {
-      esencial: { n: 'Esencial', p: 139, inc: [] },
-      visual: { n: 'Visual', p: 299, inc: [] },
-      aereo: { n: 'Aéreo', p: 429, inc: ['dron'] },
-      elite: { n: 'Élite', p: 849, inc: ['dron', 'tour', 'plano', 'cert'] },
-      firma: { n: 'Firma', p: 1290, inc: ['dron', 'tour', 'plano', 'cert'], from: true }
+      esencial: { n: 'Esencial', p: [139, 179, 219], f: [25, 35, 45], inc: [] },
+      visual: { n: 'Visual', p: [299, 369, 439], f: [30, 40, 50], inc: [] },
+      aereo: { n: 'Aéreo', p: [429, 499, 569], f: [30, 40, 50], inc: ['dron'] },
+      elite: { n: 'Élite', p: [629, 749, 879], f: [30, 40, 50], inc: ['dron', 'tour', 'plano', 'cert'] },
+      firma: { n: 'Firma', p: [949, 1069, 1199], f: [40, 50, 60], inc: ['dron', 'd360', 'tour', 'plano', 'cert'] }
     };
     var EXTRAS = [
-      { id: 'amueblado', n: 'Amueblado virtual', p: 39, u: '/ img', d: 'Sobre la foto real, entregado como imagen virtual.' },
+      { id: 'amueblado', n: 'Amueblado virtual', p: 19, u: '/ img', d: 'Sobre la foto real de una estancia vacía, entregado como imagen virtual.' },
       { id: 'atardecer', n: 'Atardecer virtual', p: 19, u: '/ foto', d: 'Cielo de atardecer aplicado en edición.' },
       { id: 'fotos', n: '+10 fotos', p: 39, u: '', d: 'Diez fotos HDR más en alta resolución.' },
       { id: 'reel', n: 'Reel vertical', p: 59, u: '', d: 'Versión 9:16 para Reels, TikTok y Stories.' },
       { id: 'dron', n: 'Dron exterior', p: 149, u: '', d: 'Fotos y vídeo aéreos del exterior y el entorno.', one: true },
       { id: 'd360', n: 'Dron FPV', p: 219, u: '', d: 'Un plano secuencia por escalera, patio o azotea.', one: true },
-      { id: 'tour', n: 'Tour virtual 3D', p: 99, u: '', d: 'Recorrido 3D con 6 meses de alojamiento.', one: true },
+      { id: 'tour', n: 'Tour virtual 3D', p: [99, 129, 159], u: '', d: 'Recorrido 3D con 6 meses de alojamiento.', one: true },
       { id: 'plano', n: 'Plano 2D', p: 49, u: '', d: 'Se saca del tour; solo junto al tour.', one: true, needs: 'tour' },
-      { id: 'cert', n: 'Certificado energético', p: 99, u: '', d: 'Técnico colegiado y registro oficial.', one: true }
+      { id: 'cert', n: 'Certificado energético', p: [79, 99, 129], u: '', d: 'Técnico colegiado y registro oficial.', one: true }
     ];
-    var st = { pack: null, size: 1, q: {} };
+    var st = { pack: null, size: 0, q: {} };
+    var custom = function () { return st.size === 3; };
+    var tier = function () { return Math.min(st.size, 2); };
+    var xPrice = function (x) { return typeof x.p === 'number' ? x.p : x.p[tier()]; };
+    function eur(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €'; }
     EXTRAS.forEach(function (x) { st.q[x.id] = 0; });
     var list = $('#extras-list');
     EXTRAS.forEach(function (x) {
       var li = document.createElement('li'); li.dataset.x = x.id;
-      li.innerHTML = '<div><b>' + x.n + '</b><span class="xp">+' + x.p + ' € ' + x.u + '</span></div><div class="stepper"><button type="button" aria-label="Quitar ' + x.n + '">−</button><output>0</output><button type="button" aria-label="Añadir ' + x.n + '">+</button></div><p>' + x.d + '</p><span class="why-off" hidden></span>';
+      li.innerHTML = '<div><b>' + x.n + '</b><span class="xp"></span></div><div class="stepper"><button type="button" aria-label="Quitar ' + x.n + '">−</button><output>0</output><button type="button" aria-label="Añadir ' + x.n + '">+</button></div><p>' + x.d + '</p><span class="why-off" hidden></span>';
       var bs = li.querySelectorAll('button');
       bs[0].addEventListener('click', function () { st.q[x.id] = Math.max(0, st.q[x.id] - 1); if (x.id === 'tour' && st.q.tour === 0) st.q.plano = 0; render(); });
       bs[1].addEventListener('click', function () { st.q[x.id] = x.one ? 1 : st.q[x.id] + 1; render(); });
       list.appendChild(li);
     });
-    $$('.pk').forEach(function (b) { b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.click(); } }); b.addEventListener('click', function () { st.pack = st.pack === b.dataset.pack ? null : b.dataset.pack; if (st.pack === 'firma') setSize('firma'); else if (st.size === 'firma') setSize(1); render(); }); });
-    function setSize(s) { st.size = s; $$('[data-size]').forEach(function (c) { c.setAttribute('aria-pressed', String(String(c.dataset.size) === String(s))); }); }
-    $$('[data-size]').forEach(function (c) { c.addEventListener('click', function () { var s = c.dataset.size === 'firma' ? 'firma' : +c.dataset.size; setSize(s); if (s === 'firma') st.pack = 'firma'; else if (st.pack === 'firma') st.pack = null; render(); }); });
-    function eur(n) { return Math.round(n).toLocaleString('es-ES') + ' €'; }
+    $$('.pk').forEach(function (b) { b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.click(); } }); b.addEventListener('click', function () { st.pack = st.pack === b.dataset.pack ? null : b.dataset.pack; render(); }); });
+    $$('[data-size]').forEach(function (c) { c.addEventListener('click', function () { st.size = +c.dataset.size; render(); }); });
     function render() {
-      var pk = st.pack ? PACKS[st.pack] : null;
-      $$('.pk').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.pack === st.pack)); });
+      var pk = st.pack ? PACKS[st.pack] : null, t = tier(), med = custom();
+      $$('[data-size]').forEach(function (c) { c.setAttribute('aria-pressed', String(+c.dataset.size === st.size)); });
+      $$('.pk').forEach(function (b) {
+        var P = PACKS[b.dataset.pack];
+        b.setAttribute('aria-pressed', String(b.dataset.pack === st.pack));
+        $('.pr', b).innerHTML = med ? '<small>desde</small>' + eur(P.p[2]) : eur(P.p[t]);
+        $$('[data-f]', b).forEach(function (f) { f.textContent = P.f[t]; });
+      });
       var lines = [], total = 0;
-      if (pk) {
-        var mult = typeof st.size === 'number' ? st.size : 1;
-        var pp = pk.p * mult; total += pp;
-        lines.push(['Pack ' + pk.n + (mult > 1 ? ' (150–300 m²)' : ''), (pk.from ? 'desde ' : '') + eur(pp)]);
-      }
+      if (pk) { total += pk.p[t]; lines.push(['Pack ' + pk.n + ' · ' + SIZES[st.size], med ? 'a medida' : eur(pk.p[t])]); }
       EXTRAS.forEach(function (x) {
-        var li = list.querySelector('[data-x="' + x.id + '"]'), off = !pk, why = '';
+        var li = list.querySelector('[data-x="' + x.id + '"]'), off = !pk, why = '', xp = xPrice(x);
+        li.querySelector('.xp').textContent = '+' + (med && typeof x.p !== 'number' ? 'desde ' : '') + xp + ' € ' + x.u;
         if (pk && pk.inc.indexOf(x.id) >= 0) { off = true; why = 'Ya incluido en el pack ' + pk.n + '.'; }
         if (pk && x.needs && st.q[x.needs] === 0 && pk.inc.indexOf(x.needs) < 0) { off = true; why = 'Añade antes el tour.'; }
         if (!pk) why = 'Elige primero un pack.';
@@ -211,15 +218,16 @@
         var w = li.querySelector('.why-off'); w.hidden = !why || !off; w.textContent = why;
         var bs = li.querySelectorAll('button'); bs[0].disabled = off || st.q[x.id] === 0; bs[1].disabled = off || (x.one && st.q[x.id] >= 1);
         li.querySelector('output').textContent = st.q[x.id];
-        if (st.q[x.id] > 0) { var s = x.p * st.q[x.id]; total += s; lines.push([x.n + (st.q[x.id] > 1 ? ' × ' + st.q[x.id] : ''), eur(s)]); }
+        if (st.q[x.id] > 0) { var s = xp * st.q[x.id]; total += s; lines.push([x.n + (st.q[x.id] > 1 ? ' × ' + st.q[x.id] : ''), med && typeof x.p !== 'number' ? 'a medida' : eur(s)]); }
       });
       $('#o-title').textContent = pk ? 'Pack ' + pk.n : 'Elige un pack';
       $('#o-lines').innerHTML = lines.map(function (l) { return '<li><span>' + l[0] + '</span><span>' + l[1] + '</span></li>'; }).join('');
       $('#o-empty').hidden = !!pk;
-      $('#o-total').textContent = (pk && pk.from ? 'desde ' : '') + eur(total);
+      $('#o-total').textContent = pk && med ? 'A medida' : eur(total);
       var send = $('#o-send');
+      send.textContent = med ? 'Pedir presupuesto por WhatsApp' : 'Pedir por WhatsApp';
       if (pk) {
-        var txt = 'Hola, quiero pedir:\n' + lines.map(function (l) { return '· ' + l[0] + ': ' + l[1]; }).join('\n') + '\nTotal: ' + $('#o-total').textContent + ' (sin IVA)';
+        var txt = (med ? 'Hola, quiero un presupuesto a medida para una propiedad de más de 500 m²:\n' : 'Hola, quiero pedir:\n') + lines.map(function (l) { return '· ' + l[0] + ': ' + l[1]; }).join('\n') + (med ? '' : '\nTotal: ' + $('#o-total').textContent + ' (sin IVA)');
         send.href = 'https://wa.me/34634323162?text=' + encodeURIComponent(txt); send.removeAttribute('aria-disabled');
       } else { send.href = 'https://wa.me/34634323162'; send.setAttribute('aria-disabled', 'true'); }
     }
