@@ -1,227 +1,264 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Servicios — IberSeeker Visual | Fotografía y vídeo inmobiliario</title>
-<meta name="description" content="Fotografía HDR, vídeo 4K, drones DJI, tour virtual Matterport, plano 2D y certificado energético para inmuebles en Madrid." />
-<meta name="theme-color" content="#faf8f3" />
-<link rel="icon" type="image/png" href="assets/logo/logo-white-tight.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=25" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Servicios — Fotografía HDR, vídeo, dron y tour virtual | IberSeeker Visual</title>
+<meta name="description" content="Siete servicios en una sola visita: fotografía HDR, vídeo 4K, dron exterior y FPV, tour virtual 3D, plano 2D y certificado energético en Madrid.">
+<link rel="canonical" href="https://iberseeker.com/servicios">
+<meta name="theme-color" content="#faf8f3">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="IberSeeker Visual">
+<meta property="og:title" content="Servicios — Fotografía HDR, vídeo, dron y tour virtual | IberSeeker Visual">
+<meta property="og:description" content="Siete servicios en una sola visita: fotografía HDR, vídeo 4K, dron exterior y FPV, tour virtual 3D, plano 2D y certificado energético en Madrid.">
+<meta property="og:url" content="https://iberseeker.com/servicios">
+<meta property="og:image" content="https://iberseeker.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css?v=1">
+<script src="/js/site.js?v=1" defer></script>
 </head>
-<body>
+<body data-page="servicios">
 
-<header class="site-header is-light" id="site-header">
-  <div class="container">
-    <nav class="nav" aria-label="Navegación principal">
-      <a href="index.html" class="nav-logo" aria-label="IberSeeker Visual — Inicio">
-        <img src="assets/logo/logo-black-tight.png" alt="IberSeeker Visual" title="IberSeeker Visual — Fotografía y vídeo inmobiliario en Madrid" />
-      </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html" class="nav-link">Inicio</a></li>
-        <li><a href="servicios.html" class="nav-link">Servicios</a></li>
-        <li><a href="trabajos.html" class="nav-link">Nuestros trabajos</a></li>
-        <li><a href="packs.html" class="nav-link">Packs y precios</a></li>
-        <li><a href="contacto.html" class="nav-link">Contacto</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Abrir menú" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="IberSeeker Visual, inicio"><img class="lg-dark" src="img/logo_header.png" alt="IberSeeker Visual" width="440" height="322"><img class="lg-light" src="img/logo_cream.png" alt="" width="640" height="468"></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/" data-nav="inicio">Inicio</a>
+      <div class="has-panel">
+        <a href="/servicios" data-nav="servicios">Servicios</a>
+        <div class="panel" role="menu" aria-label="Servicios">
+          <div class="wrap">
+            <a href="/servicios#foto" role="menuitem"><span class="thumb"><img src="img/villa_salon2.jpg" alt="" loading="lazy"></span><b>Fotografía HDR</b><small>Luz natural y ventanas a la vista</small></a>
+            <a href="/servicios#video" role="menuitem"><span class="thumb"><img src="v/cam_terraza.jpg" alt="" loading="lazy"></span><b>Vídeo 4K cinematic</b><small>Cámara y gimbal, recorrido con narrativa</small></a>
+            <a href="/servicios#dron" role="menuitem"><span class="thumb"><img src="img/dron_cata2.jpg" alt="" loading="lazy"></span><b>Dron exterior</b><small>Fachada, azotea y entorno</small></a>
+            <a href="/servicios#dron-fpv" role="menuitem"><span class="thumb"><img src="v/fpv_remate.jpg" alt="" loading="lazy"></span><b>Dron FPV</b><small>Planos imposibles, sin cortes</small></a>
+            <a href="/servicios#tour" role="menuitem"><span class="thumb tg"><img src="img/tour_maqueta.jpg" alt="" loading="lazy"></span><b>Tour virtual 3D</b><small>Matterport, abierto 24/7</small></a>
+            <a href="/servicios#plano" role="menuitem"><span class="thumb"><img src="img/thumb_plano.svg" alt="" loading="lazy"></span><b>Plano 2D</b><small>La distribución de un vistazo</small></a>
+            <a href="/servicios#certificado" role="menuitem"><span class="thumb"><img src="img/thumb_cee.svg" alt="" loading="lazy"></span><b>Certificado energético</b><small>Obligatorio para anunciar</small></a>
+            <a href="/servicios#extras" role="menuitem"><span class="thumb"><img src="img/cata_despues.jpg" alt="" loading="lazy"></span><b>Extras</b><small>Atardecer y amueblado virtual</small></a>
+          </div>
+        </div>
+      </div>
+      <a href="/trabajos" data-nav="trabajos">Nuestros trabajos</a>
+      <a href="/packs" data-nav="packs">Packs y precios</a>
+      <a href="/contacto" data-nav="contacto">Contacto</a>
     </nav>
+    <button class="burger" type="button" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<section class="page-hero">
-  <div class="container">
-    <p class="eyebrow">Servicios</p>
-    <h1>Imagen profesional, de la primera foto al tour 3D.</h1>
-    <p>Siete servicios pensados para que cada inmueble se presente con la calidad que merece. Combina los que necesites o elige uno de nuestros packs.</p>
-  </div>
-</section>
-
-<!-- 7 SERVICIOS -->
-<section class="section section--surface">
-  <div class="container">
-
-    <article class="service-row reveal" id="fotografia">
-      <div class="service-row-text">
-        <p class="service-row-num">01</p>
-        <h2>Fotografía HDR profesional</h2>
-        <p>Imágenes nítidas con luces equilibradas y colores fieles. Captamos cada estancia con técnica HDR para que ventanas, sombras y detalles convivan sin reventar la exposición.</p>
-        <ul class="features">
-          <li>20 fotografías editadas en alta resolución</li>
-          <li>Sony A6600 + ópticas Sigma Art gran angular</li>
-          <li>Trípode profesional Manfrotto y compensación de perspectiva</li>
-          <li>Edición HDR + retoque de color individualizado</li>
-          <li>Entrega en 48–72h por enlace privado</li>
-        </ul>
-      </div>
-      <div class="service-row-media"><img src="assets/services/fotografia.webp" alt="Fotografía HDR profesional de inmueble" title="Fotografía inmobiliaria profesional HDR — Madrid" /></div>
-    </article>
-
-    <article class="service-row is-reversed reveal" id="video">
-      <div class="service-row-text">
-        <p class="service-row-num">02</p>
-        <h2>Vídeo 4K cinematic</h2>
-        <p>Recorridos con narrativa, edición premium y banda sonora seleccionada. Pensados tanto para portales inmobiliarios como para Reels y RRSS.</p>
-        <ul class="features">
-          <li>Vídeo de 60 segundos en resolución 4K UHD</li>
-          <li>Movimientos fluidos con gimbal estabilizador</li>
-          <li>Color grading cinematográfico</li>
-          <li>Versión vertical para Reels / TikTok / Stories (extra)</li>
-          <li>Música licenciada incluida</li>
-        </ul>
-      </div>
-      <div class="service-row-media"><img src="assets/services/video.jpeg" alt="Vídeo 4K cinematic" title="Vídeo 4K cinematic de inmueble — Producción audiovisual inmobiliaria" /></div>
-    </article>
-
-    <article class="service-row reveal" id="drone-exterior">
-      <div class="service-row-text">
-        <p class="service-row-num">03</p>
-        <h2>Drone exterior — Mini 5 Pro + Avata 360°</h2>
-        <p>Fotografía y vídeo aéreo cinematográfico combinando dos drones: el DJI Mini 5 Pro para tomas nítidas de parcela, fachada y entorno, y el DJI Avata 360° para planos FPV exteriores que casi ninguna productora en España ofrece.</p>
-        <ul class="features">
-          <li>10 fotografías aéreas + 30 s de vídeo 4K con Mini 5 Pro</li>
-          <li>Planos FPV 360° exteriores con Avata — recurso exclusivo</li>
-          <li>Vuelo certificado AESA, permisos al día y seguro RC</li>
-          <li>Ideal para chalets, fincas y áticos con vistas privilegiadas</li>
-        </ul>
-      </div>
-      <div class="service-row-media"><img src="assets/services/drone-exterior.jpg" alt="Drone exterior DJI Mini 5 Pro y Avata 360°" title="Fotografía y vídeo aéreo con Mini 5 Pro y Avata 360°" /></div>
-    </article>
-
-    <article class="service-row is-reversed reveal" id="drone-fpv">
-      <div class="service-row-text">
-        <p class="service-row-num">04</p>
-        <h2>Drone interior FPV — DJI Neo 1</h2>
-        <p>Recorrido inmersivo por el interior de la vivienda sin cortes. El DJI Neo 1 es ligero y silencioso, atraviesa cada estancia con seguridad total y captura el flujo real del espacio como si el comprador ya estuviera dentro.</p>
-        <ul class="features">
-          <li>Plano secuencia interior continuo, una sola toma</li>
-          <li>Vuelo FPV con dron ligero — cero riesgo para el inmueble</li>
-          <li>Edición sincronizada con música</li>
-          <li>Ideal para viviendas de standing y áticos con estancias amplias</li>
-        </ul>
-      </div>
-      <div class="service-row-media"><img src="assets/services/drone-fpv.png" alt="Drone interior FPV DJI Neo 1" title="Recorrido interior inmersivo con DJI Neo 1" /></div>
-    </article>
-
-    <article class="service-row reveal" id="matterport">
-      <div class="service-row-text">
-        <p class="service-row-num">05</p>
-        <h2>Tour virtual Matterport</h2>
-        <p>Modelo 3D navegable 24/7 desde cualquier dispositivo. Permite a tus clientes explorar la propiedad como si estuvieran dentro, filtrando visitas presenciales.</p>
-        <ul class="features">
-          <li>Captura completa con Matterport Axis</li>
-          <li>Vista dollhouse y planta + recorrido inmersivo</li>
-          <li>Mediciones precisas dentro del propio tour</li>
-          <li>Integrable en cualquier portal o web</li>
-        </ul>
-      </div>
-      <div class="service-row-media"><img src="assets/services/matterport.jpg" alt="Tour virtual Matterport" title="Tour virtual Matterport 3D — Modelo navegable de inmueble" /></div>
-    </article>
-
-    <article class="service-row is-reversed reveal" id="plano">
-      <div class="service-row-text">
-        <p class="service-row-num">06</p>
-        <h2>Plano 2D acotado</h2>
-        <p>Plano técnico con cotas reales generado a partir del escaneo Matterport. Mejora la conversión en portales: el 73% de los compradores valora ver el plano.</p>
-        <ul class="features">
-          <li>Plano en planta con metros y cotas</li>
-          <li>Versión limpia y versión con muebles</li>
-          <li>Entrega en PNG, PDF y SVG editable</li>
-        </ul>
-      </div>
-      <div class="service-row-media"><img src="assets/services/plano-2d.png" alt="Plano 2D" title="Plano 2D acotado profesional de vivienda" /></div>
-    </article>
-
-    <article class="service-row reveal" id="certificado">
-      <div class="service-row-text">
-        <p class="service-row-num">07</p>
-        <h2>Certificado energético</h2>
-        <p>Trámite oficial obligatorio para vender o alquilar. Lo gestionamos íntegramente con técnico colegiado, te lo entregamos registrado en la Comunidad de Madrid.</p>
-        <ul class="features">
-          <li>Visita técnica + cálculo + emisión</li>
-          <li>Registro en la Comunidad correspondiente</li>
-          <li>Etiqueta energética lista para anuncios</li>
-        </ul>
-      </div>
-      <div class="service-row-media"><img src="assets/services/certificado.jpeg" alt="Certificado energético" title="Certificado energético oficial para inmuebles" /></div>
-    </article>
-
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-block">
-  <div class="container">
-    <h2>¿Combinamos servicios en un pack?</h2>
-    <p>Tenemos cuatro packs cerrados que cubren la mayoría de necesidades. Y si no encajan, montamos uno a medida.</p>
-    <div class="cta-actions">
-      <a href="packs.html" class="btn btn-primary">Ver packs y precios <span class="arrow"></span></a>
-      <a href="contacto.html" class="btn btn-ghost">Hablar contigo</a>
+<div class="menu" id="menu" aria-label="Menú">
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/servicios">Servicios</a>
+    <div class="sub">
+      <a href="/servicios#foto">Fotografía HDR</a><a href="/servicios#video">Vídeo 4K</a><a href="/servicios#dron">Dron exterior</a><a href="/servicios#dron-fpv">Dron FPV</a><a href="/servicios#tour">Tour virtual 3D</a><a href="/servicios#plano">Plano 2D</a><a href="/servicios#certificado">Certificado</a><a href="/servicios#extras">Extras</a>
     </div>
-  </div>
-</section>
+    <a href="/trabajos">Nuestros trabajos</a>
+    <a href="/packs">Packs y precios</a>
+    <a href="/contacto">Contacto</a>
+  </nav>
+  <div class="mini"><span>WhatsApp +34 634 32 31 62</span><span>grupo@iberseeker.net</span><span>Madrid</span></div>
+</div>
+<button class="btn line menu-close" type="button" id="menuClose" hidden>Cerrar</button>
 
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" aria-label="Volver al inicio" title="Volver al inicio de IberSeeker Visual"><img src="assets/logo/logo-white-tight.png" alt="IberSeeker Visual" title="IberSeeker Visual — Fotografía y vídeo inmobiliario en Madrid" /></a>
-        <p>Productora audiovisual inmobiliaria en Madrid.</p>
-        <ul class="footer-social" aria-label="Redes sociales">
-          <li><a href="https://instagram.com/iberseeker" aria-label="Instagram" title="Síguenos en Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a></li>
-          <li><a href="https://wa.me/34634323162" aria-label="WhatsApp" title="Escríbenos por WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg></a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Web</h4>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="trabajos.html">Nuestros trabajos</a></li>
-          <li><a href="packs.html">Packs y precios</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Servicios</h4>
-        <ul>
-          <li><a href="servicios.html#fotografia">Fotografía HDR</a></li>
-          <li><a href="servicios.html#video">Vídeo 4K cinematic</a></li>
-          <li><a href="servicios.html#drone-exterior">Drone exterior</a></li>
-          <li><a href="servicios.html#drone-fpv">Drone FPV interior</a></li>
-          <li><a href="servicios.html#matterport">Tour Matterport</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <ul>
-          <li><a href="mailto:grupo@iberseeker.net">grupo@iberseeker.net</a></li>
-          <li><a href="https://wa.me/34634323162" target="_blank" rel="noopener">+34 634 32 31 62</a></li>
-          <li>Madrid</li>
-        </ul>
-      </div>
+<main>
+<div class="view on" data-view="servicios">
+  <div class="wrap phead">
+    <span class="eyebrow">Servicios</span>
+    <h1>No solo mostramos espacios. Mostramos <em>cómo se vive</em> en ellos.</h1>
+    <p class="lead">Siete servicios que se combinan en una sola visita. Tú solo abres la puerta.</p>
+  </div>
+  <nav class="subnav" aria-label="Servicios">
+    <div class="wrap">
+      <a class="chip" href="/servicios#foto">Fotografía HDR</a><a class="chip" href="/servicios#video">Vídeo 4K</a><a class="chip" href="/servicios#dron">Dron exterior</a><a class="chip" href="/servicios#dron-fpv">Dron FPV</a><a class="chip" href="/servicios#tour">Tour virtual 3D</a><a class="chip" href="/servicios#plano">Plano 2D</a><a class="chip" href="/servicios#certificado">Certificado</a><a class="chip" href="/servicios#extras">Extras</a>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 IberSeeker Visual &middot; Todos los derechos reservados</span>
-      <span>Madrid, España</span>
+  </nav>
+  <div class="wrap">
+    <section class="svc" id="foto">
+      <div class="txt" data-r>
+        <span class="eyebrow"><i class="num">01</i>Fotografía HDR</span>
+        <h2>Interiores con luz <em>y ventanas a la vista.</em></h2>
+        <p>Cámara profesional, ópticas de gama alta y trípode. Cada foto combina varias exposiciones en HDR: las ventanas se ven, las sombras se abren y el color es el real, con las verticales rectas.</p>
+        <div class="inc"><span class="k">En los packs</span><span>Esencial · 25 fotos</span><span>Visual · 30 fotos</span><span>Firma · 40+ fotos</span></div>
+        <a class="link" href="/trabajos#trabajos-foto">Ver fotografías <i></i></a>
+      </div>
+      <div class="collage" data-r>
+        <img class="a" src="img/villa_salon2.jpg" alt="Salón con ventanales" loading="lazy">
+        <img class="b" src="img/cata_5261.jpg" alt="Taburetes verdes en la barra de una terraza" loading="lazy">
+      </div>
+    </section>
+
+    <section class="svc flip" id="video">
+      <div class="txt" data-r>
+        <span class="eyebrow"><i class="num">02</i>Vídeo 4K cinematic</span>
+        <h2>Un recorrido <em>de cine.</em></h2>
+        <p>Grabado con cámara y gimbal en 4K: narrativa, color cuidado y música con licencia. Funciona también sin sonido, que es como se ve en los portales.</p>
+        <div class="inc"><span class="k">Duración</span><span>Visual · 60 s</span><span>Aéreo y Élite · 90 s</span><span>Firma · 2:30</span></div>
+      </div>
+            <div class="media wide" data-r><video data-src="v/cam_terraza.mp4" poster="v/cam_terraza.jpg" muted playsinline loop preload="none" aria-label="Columpios de mimbre en una terraza con vistas a los tejados"></video></div>
+    </section>
+
+    <section class="svc" id="dron">
+      <div class="txt" data-r>
+        <span class="eyebrow"><i class="num">03</i>Dron exterior</span>
+        <h2>La fachada, el entorno <em>y las vistas.</em></h2>
+        <p>Drones con cámaras de altísima resolución para enseñar lo que desde la calle no se ve: la fachada entera, la azotea, las vistas y todo lo que rodea al inmueble. Incluye 10 fotos aéreas y 30 s de vídeo en 4K. Volamos con certificado AESA y los permisos de cada zona.</p>
+        <div class="inc"><span class="k">En los packs</span><span>Aéreo</span><span>Élite</span><span>Firma</span><span>Extra · 149 €</span></div>
+        <a class="link" href="/trabajos#trabajos-dron">Ver trabajos con dron <i></i></a>
+      </div>
+      <div class="media wide" data-r><video data-src="v/cata_dron.mp4" poster="v/cata_dron.jpg" muted playsinline loop preload="none" aria-label="Azotea con piscina vista desde el dron"></video></div>
+    </section>
+
+    <section class="svc flip" id="dron-fpv">
+      <div class="txt" data-r>
+        <span class="eyebrow"><i class="num">04</i>Dron FPV</span>
+        <h2>Planos que una cámara <em>no puede hacer.</em></h2>
+        <p>Un dron 360° exclusivo que graba en 8K en todas las direcciones a la vez, mientras recorre escaleras, patios y azoteas en un solo plano. El encuadre se elige después, en edición: de una misma toma salen estilos muy distintos.</p>
+        <div class="inc"><span class="k">Disponible</span><span>Desde el pack Aéreo</span><span>Extra · 219 €</span></div>
+        <a class="link" href="/trabajos#trabajos-fpv">Ver trabajos con dron FPV <i></i></a>
+      </div>
+      <div class="pair360" data-r>
+        <div class="media"><video data-src="v/escalera.mp4" poster="v/escalera.jpg" muted playsinline loop preload="none" aria-label="Bajada en espiral por una escalera grabada con dron FPV"></video></div>
+        <div class="note">
+          <div class="media"><video data-src="v/s_bola.mp4" poster="v/s_bola.jpg" muted playsinline loop preload="none" aria-label="La misma escalera, en formato bola de cristal"></video></div>
+          <span>La misma toma, otro estilo.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="svc" id="tour">
+      <div class="txt" data-r>
+        <span class="eyebrow"><i class="num">05</i>Tour virtual 3D</span>
+        <h2>La visita, <em>antes de la visita.</em></h2>
+        <p>Matterport: un recorrido en 3D que el comprador abre cuando quiere, desde cualquier dispositivo. Quien llega a ver la casa ya la ha recorrido, y las visitas que no encajan se quedan por el camino.</p>
+        <div class="inc"><span class="k">En los packs</span><span>Élite</span><span>Firma</span><span>Extra · 99 €</span></div>
+      </div>
+      <div class="media tour-img" data-r><img src="img/tour_maqueta.jpg" alt="Vista de maqueta de un tour virtual 3D" loading="lazy"><span class="spec">Vista de maqueta</span></div>
+    </section>
+
+    <section class="svc flip" id="plano">
+      <div class="txt" data-r>
+        <span class="eyebrow"><i class="num">06</i>Plano 2D</span>
+        <h2>La distribución, <em>de un vistazo.</em></h2>
+        <p>Plano de planta generado a partir del escaneo del tour virtual. El comprador entiende cómo se conectan las estancias antes de pedir la visita.</p>
+        <div class="inc"><span class="k">En los packs</span><span>Élite</span><span>Firma</span><span>Extra · 49 € con el tour</span></div>
+      </div>
+      <div class="plan-panel" data-r>
+        <svg viewBox="0 0 400 250" role="img" aria-label="Ejemplo de plano de planta">
+          <g fill="none" stroke="currentColor" stroke-linecap="square">
+            <path stroke-width="6" d="M20 20 H380 V230 H20 Z"/>
+            <path stroke-width="3.5" d="M200 20 V96 M200 130 V230 M20 130 H110 M146 130 H200 M200 150 H262 M298 150 H380 M290 20 V76 M290 108 V150"/>
+            <path stroke-width="1.2" d="M110 130 A36 36 0 0 1 146 166 M262 150 A36 36 0 0 0 298 186 M200 96 A34 34 0 0 1 234 130 M290 76 A32 32 0 0 0 322 108"/>
+            <path stroke-width="1" stroke-dasharray="3 4" d="M20 242 H380 M392 20 V230"/>
+          </g>
+          <g class="lbl"><text x="110" y="78">Salón</text><text x="245" y="66">Cocina</text><text x="336" y="90">Baño</text><text x="110" y="186">Dormitorio</text><text x="290" y="196">Dormitorio</text></g>
+          <g class="dim"><text x="200" y="248">12,40 m</text><text x="397" y="128" transform="rotate(90 397 128)">7,10 m</text></g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="svc svc-cee" id="certificado">
+      <div class="txt" data-r>
+        <span class="eyebrow"><i class="num">07</i>Certificado energético</span>
+        <h2>Que tu venta no se frene <em>por un papel.</em></h2>
+        <p>Desde agosto de 2025, el banco de tu comprador no puede tasar la vivienda para la hipoteca sin un certificado energético registrado. Y en Madrid, casi 3 de cada 10 anuncios todavía no enseñan su letra. El tuyo saldrá en regla desde el primer día.</p>
+        <ul class="checks"><li>Técnico colegiado con visita presencial</li><li>Registro oficial en la Comunidad de Madrid</li><li>Etiqueta lista para tu anuncio</li><li>Coordinado con tu sesión de foto y vídeo</li></ul>
+        <div class="inc"><span class="k">En los packs</span><span>Élite</span><span>Firma</span><span>Extra · desde 99 €</span></div>
+        <details class="more">
+          <summary><span>Más información</span><i aria-hidden="true"></i></summary>
+          <dl class="faq">
+            <div><dt>¿Qué es?</dt><dd><p>Un documento oficial que califica tu vivienda de la A (más eficiente) a la G (menos eficiente) según su consumo de energía y sus emisiones. Lo firma un técnico después de visitarla, se registra en la Comunidad de Madrid e incluye recomendaciones para mejorar la letra.</p></dd></div>
+            <div><dt>¿Es obligatorio?</dt><dd><p>Sí, para vender o alquilar. La letra tiene que aparecer en todo anuncio (portales, carteles, webs y agencias) y, en una venta, una copia del certificado registrado se adjunta al contrato.</p></dd></div>
+            <div><dt>¿Quién tiene que encargarlo?</dt><dd><p>El propietario. Es el responsable de obtenerlo, conservarlo y renovarlo.</p></dd></div>
+            <div><dt>¿Puedo anunciar con «en trámite»?</dt><dd><p>Se ve mucho, pero no es una excepción legal. Se tolera como algo pasajero; mantenerlo semana tras semana sin poner la letra es sancionable. Y esto es lo que puede costar:</p></dd></div>
+            <div><dt>¿Qué pasa si no lo tengo?</dt><dd><ul class="fines"><li><b>Leve · 300 a 600 €</b><span>Anunciar sin la letra o con el certificado caducado.</span></li><li><b>Grave · 601 a 1.000 €</b><span>Vender o alquilar sin entregar el certificado registrado y en vigor.</span></li><li><b>Muy grave · 1.001 a 6.000 €</b><span>Anunciar una letra sin certificado que la respalde, o falsearlo.</span></li></ul></dd></div>
+            <div><dt>¿Y si mi comprador necesita hipoteca?</dt><dd><p>Entonces es imprescindible. Desde el 12 de agosto de 2025, la tasación hipotecaria exige un certificado vigente y registrado. Sin él, la operación se retrasa justo cuando el comprador ya ha dicho que sí.</p></dd></div>
+            <div><dt>¿Puede el comprador eximirme?</dt><dd><p>Ante notario, en algunos casos sí. Pero no sirve si hay hipoteca, y tampoco te libra de mostrar la letra en el anuncio.</p></dd></div>
+            <div><dt>¿Cuánto dura?</dt><dd><p>Hasta 10 años. Si la letra es G, 5 años.</p></dd></div>
+            <div><dt>¿La letra influye en el precio?</dt><dd><p>Sí. Según el Banco de España, una vivienda A o B se vende de media un 9,7 % más cara que una F o G similar. En casas unifamiliares independientes, la diferencia llega al 19,5 %.</p></dd></div>
+            <div><dt>¿Hay excepciones?</dt><dd><p>Muy pocas: edificios protegidos, construcciones provisionales, naves industriales o agrícolas, edificios independientes de menos de 50 m² y compras para demoler o reformar. Un piso o chalet en venta en Madrid casi nunca entra en ellas.</p></dd></div>
+          </dl>
+          <p class="src">Fuentes: Real Decreto 390/2021 (modificado por el RD 659/2025) · Real Decreto Legislativo 7/2015 (régimen sancionador) · Orden ECM/599/2025 · Banco de España, Documento Ocasional 2508 · CECU, informe de etiquetado energético 2026 (anuncios de julio de 2025).</p>
+        </details>
+      </div>
+      <div class="cee" data-r role="img" aria-label="Ejemplo de etiqueta de calificación energética, de la A a la G, con un inmueble en la letra B">
+        <div class="cee-top"><span class="eyebrow">Calificación energética</span><span class="cee-tag">Ejemplo</span></div>
+        <span class="cee-end">Más eficiente</span>
+        <div class="cee-body">
+          <ol class="cee-bars"><li style="--i:0;--w:34%;--c:#1d8b4b"><span>A</span></li><li style="--i:1;--w:44%;--c:#4ea54a"><span>B</span></li><li style="--i:2;--w:54%;--c:#a3c43c"><span>C</span></li><li style="--i:3;--w:64%;--c:#efd23a"><span>D</span></li><li style="--i:4;--w:74%;--c:#efa535"><span>E</span></li><li style="--i:5;--w:84%;--c:#e4672c"><span>F</span></li><li style="--i:6;--w:94%;--c:#d13a2c"><span>G</span></li></ol>
+          <span class="cee-lead" style="--row:1" aria-hidden="true"></span><div class="cee-col"><div class="cee-mark" style="--row:1"><b>B</b></div></div>
+        </div>
+        <span class="cee-end">Menos eficiente</span>
+      </div>
+    </section>
+
+    <section class="svc" id="extras" style="display: block">
+      <div class="head" data-r>
+        <span class="eyebrow"><i class="num">+</i>Extras</span>
+        <h2>Lo que la foto <em>todavía no enseña.</em></h2>
+      </div>
+      <div class="extras2">
+        <div class="xcard wide" data-r>
+          <div class="compare" id="compare">
+            <img src="img/cata_antes.jpg" alt="Piscina de una azotea en Gran Vía de día" width="1800" height="1200" loading="lazy">
+            <img class="after" src="img/cata_despues.jpg" alt="La misma piscina con atardecer virtual" width="1800" height="1200" loading="lazy">
+            <span class="tag l">Foto real</span><span class="tag r">Atardecer virtual</span>
+            <div class="handle" aria-hidden="true"></div>
+            <input type="range" id="baRange" min="0" max="100" value="50" aria-label="Comparar foto real y atardecer virtual">
+          </div>
+          <div class="xtxt">
+            <h3>Atardecer virtual</h3>
+            <div class="price">19 € por foto</div>
+            <p>Convertimos una foto de día en una de atardecer. Se entrega junto a la foto real e identificada como imagen virtual, para que puedas publicarla en regla.</p>
+            <a class="link" href="/packs">Ver todos los extras <i></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pad" style="padding-bottom: 40px" aria-labelledby="h-steps">
+      <div class="head" data-r><span class="eyebrow">Cómo trabajamos</span><h2 id="h-steps">Tres pasos.</h2></div>
+      <ol class="steps">
+        <li data-r><div><h3>Conversación</h3><p>Hablamos del inmueble, su público y sus virtudes. De ahí sale un plan visual a medida.</p></div></li>
+        <li data-r><div><h3>Sesión</h3><p>Llegamos con el equipo completo y lo rodamos todo en una visita.</p></div></li>
+        <li data-r><div><h3>Entrega</h3><p>Editamos con detalle: color, luz y retoque. Lo recibes listo para portales y redes.</p></div></li>
+      </ol>
+    </section>
+  </div>
+  <section class="pad close-cta">
+    <div class="wrap" data-r>
+      <h2>¿Qué necesita <em>tu inmueble?</em></h2>
+      <p>Elige un pack o pídenos una propuesta a medida.</p>
+      <div class="acts"><a class="btn" href="/packs">Ver packs y precios</a><a class="btn line" href="/contacto">Pedir propuesta</a></div>
     </div>
+  </section>
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brandf"><img src="img/logo_cream.png" alt="IberSeeker Visual" width="640" height="468"><p>Productora audiovisual inmobiliaria en Madrid.</p></div>
+      <div><h4>Web</h4><ul><li><a href="/">Inicio</a></li><li><a href="/servicios">Servicios</a></li><li><a href="/trabajos">Nuestros trabajos</a></li><li><a href="/packs">Packs y precios</a></li><li><a href="/contacto">Contacto</a></li></ul></div>
+      <div><h4>Servicios</h4><ul><li><a href="/servicios#foto">Fotografía HDR</a></li><li><a href="/servicios#video">Vídeo 4K</a></li><li><a href="/servicios#dron">Dron exterior</a></li><li><a href="/servicios#dron-fpv">Dron FPV</a></li><li><a href="/servicios#tour">Tour virtual 3D</a></li><li><a href="/servicios#plano">Plano 2D</a></li><li><a href="/servicios#certificado">Certificado energético</a></li></ul></div>
+      <div><h4>Contacto</h4><ul><li>grupo@iberseeker.net</li><li>+34 634 32 31 62</li><li>Madrid</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 IberSeeker Visual</span><span>Fotografía, vídeo y dron inmobiliario en Madrid</span></div>
   </div>
 </footer>
 
-<a href="contacto.html" class="sticky-cta" id="sticky-cta" aria-label="Pedir presupuesto">
-  <span>Pedir presupuesto</span>
-  <span class="sticky-cta-arrow"></span>
-</a>
-
-<a href="https://wa.me/34634323162?text=Hola%20IberSeeker%20Visual%2C%20me%20gustar%C3%ADa%20pedir%20presupuesto%20para..." class="fab-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<script src="app.js?v=25" defer></script>
+<div class="mbar" id="mbar">
+  <a class="btn gold" href="/contacto">Pedir presupuesto</a>
+  <a class="btn alt" href="/packs">Packs</a>
+</div>
 </body>
 </html>

@@ -1,326 +1,191 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>IberSeeker Visual — Fotografía y vídeo inmobiliario en Madrid</title>
-<meta name="description" content="Productora audiovisual inmobiliaria en Madrid. Fotografía HDR, vídeo 4K cinematic, drones DJI, tour virtual Matterport y FPV interior 8K para que tu inmueble destaque." />
-<meta name="theme-color" content="#faf8f3" />
-<link rel="icon" type="image/png" href="assets/logo/logo-white-tight.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=25" />
-
-<!-- Open Graph -->
-<meta property="og:title" content="IberSeeker Visual — Fotografía y vídeo inmobiliario premium" />
-<meta property="og:description" content="Revelamos el potencial de cada inmueble. Madrid." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="assets/logo/logo-white-tight.png" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IberSeeker Visual — Fotografía, vídeo y dron inmobiliario en Madrid</title>
+<meta name="description" content="Fotografía HDR, vídeo 4K, dron, tour virtual 3D y certificado energético para vender o alquilar tu inmueble en Madrid. Revelamos el potencial de cada inmueble.">
+<link rel="canonical" href="https://iberseeker.com/">
+<meta name="theme-color" content="#faf8f3">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="IberSeeker Visual">
+<meta property="og:title" content="IberSeeker Visual — Fotografía, vídeo y dron inmobiliario en Madrid">
+<meta property="og:description" content="Fotografía HDR, vídeo 4K, dron, tour virtual 3D y certificado energético para vender o alquilar tu inmueble en Madrid. Revelamos el potencial de cada inmueble.">
+<meta property="og:url" content="https://iberseeker.com/">
+<meta property="og:image" content="https://iberseeker.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css?v=1">
+<script src="/js/site.js?v=1" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "IberSeeker Visual", "url": "https://iberseeker.com/", "image": "https://iberseeker.com/img/og.jpg", "logo": "https://iberseeker.com/img/logo_header.png", "telephone": "+34634323162", "email": "grupo@iberseeker.net", "areaServed": "Comunidad de Madrid", "address": {"@type": "PostalAddress", "addressLocality": "Madrid", "addressCountry": "ES"}, "sameAs": ["https://www.instagram.com/iberseeker/"], "description": "Fotografía HDR, vídeo 4K, dron, tour virtual 3D y certificado energético para vender o alquilar tu inmueble en Madrid. Revelamos el potencial de cada inmueble."}</script>
 </head>
-<body>
-
-<!-- HEADER -->
-<header class="site-header" id="site-header">
-  <div class="container">
-    <nav class="nav" aria-label="Navegación principal">
-      <a href="index.html" class="nav-logo" aria-label="IberSeeker Visual — Inicio">
-        <img src="assets/logo/logo-black-tight.png" alt="IberSeeker Visual" title="IberSeeker Visual — Fotografía y vídeo inmobiliario en Madrid" />
-      </a>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="index.html" class="nav-link">Inicio</a></li>
-        <li><a href="servicios.html" class="nav-link">Servicios</a></li>
-        <li><a href="trabajos.html" class="nav-link">Nuestros trabajos</a></li>
-        <li><a href="packs.html" class="nav-link">Packs y precios</a></li>
-        <li><a href="contacto.html" class="nav-link">Contacto</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Abrir menú" aria-controls="nav-links">
-        <span></span><span></span><span></span>
-      </button>
+<body data-page="inicio">
+<div class="intro" aria-hidden="true"><img src="img/logo_header.png" alt=""></div>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="IberSeeker Visual, inicio"><img class="lg-dark" src="img/logo_header.png" alt="IberSeeker Visual" width="440" height="322"><img class="lg-light" src="img/logo_cream.png" alt="" width="640" height="468"></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/" data-nav="inicio">Inicio</a>
+      <div class="has-panel">
+        <a href="/servicios" data-nav="servicios">Servicios</a>
+        <div class="panel" role="menu" aria-label="Servicios">
+          <div class="wrap">
+            <a href="/servicios#foto" role="menuitem"><span class="thumb"><img src="img/villa_salon2.jpg" alt="" loading="lazy"></span><b>Fotografía HDR</b><small>Luz natural y ventanas a la vista</small></a>
+            <a href="/servicios#video" role="menuitem"><span class="thumb"><img src="v/cam_terraza.jpg" alt="" loading="lazy"></span><b>Vídeo 4K cinematic</b><small>Cámara y gimbal, recorrido con narrativa</small></a>
+            <a href="/servicios#dron" role="menuitem"><span class="thumb"><img src="img/dron_cata2.jpg" alt="" loading="lazy"></span><b>Dron exterior</b><small>Fachada, azotea y entorno</small></a>
+            <a href="/servicios#dron-fpv" role="menuitem"><span class="thumb"><img src="v/fpv_remate.jpg" alt="" loading="lazy"></span><b>Dron FPV</b><small>Planos imposibles, sin cortes</small></a>
+            <a href="/servicios#tour" role="menuitem"><span class="thumb tg"><img src="img/tour_maqueta.jpg" alt="" loading="lazy"></span><b>Tour virtual 3D</b><small>Matterport, abierto 24/7</small></a>
+            <a href="/servicios#plano" role="menuitem"><span class="thumb"><img src="img/thumb_plano.svg" alt="" loading="lazy"></span><b>Plano 2D</b><small>La distribución de un vistazo</small></a>
+            <a href="/servicios#certificado" role="menuitem"><span class="thumb"><img src="img/thumb_cee.svg" alt="" loading="lazy"></span><b>Certificado energético</b><small>Obligatorio para anunciar</small></a>
+            <a href="/servicios#extras" role="menuitem"><span class="thumb"><img src="img/cata_despues.jpg" alt="" loading="lazy"></span><b>Extras</b><small>Atardecer y amueblado virtual</small></a>
+          </div>
+        </div>
+      </div>
+      <a href="/trabajos" data-nav="trabajos">Nuestros trabajos</a>
+      <a href="/packs" data-nav="packs">Packs y precios</a>
+      <a href="/contacto" data-nav="contacto">Contacto</a>
     </nav>
+    <button class="burger" type="button" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<!-- STATS HOOK — primera cosa tras el header, gancho directo -->
-<section class="stats stats-hook stats-hook--top" aria-label="Estadísticas del sector inmobiliario">
-  <div class="container">
-    <p class="stats-eyebrow">¿Por qué la imagen importa?</p>
-    <p class="stats-subline">Los inmuebles con buena producción visual se venden <em>antes</em> y por <em>más dinero</em>.</p>
-    <div class="stats-grid">
-      <div class="stat">
-        <span class="stat-number">97%</span>
-        <p class="stat-label">de compradores busca online antes de visitar</p>
-      </div>
-      <div class="stat">
-        <span class="stat-number">3 seg</span>
-        <p class="stat-label">para causar una primera impresión</p>
-      </div>
-      <div class="stat">
-        <span class="stat-number">+400%</span>
-        <p class="stat-label">más consultas con vídeo vs. sin vídeo</p>
-      </div>
-      <div class="stat">
-        <span class="stat-number">68%</span>
-        <p class="stat-label">más rápido con fotografía aérea</p>
-      </div>
-      <div class="stat">
-        <span class="stat-number">+11.200€</span>
-        <p class="stat-label">más de precio de venta con foto profesional</p>
-      </div>
+<div class="menu" id="menu" aria-label="Menú">
+  <nav>
+    <a href="/">Inicio</a>
+    <a href="/servicios">Servicios</a>
+    <div class="sub">
+      <a href="/servicios#foto">Fotografía HDR</a><a href="/servicios#video">Vídeo 4K</a><a href="/servicios#dron">Dron exterior</a><a href="/servicios#dron-fpv">Dron FPV</a><a href="/servicios#tour">Tour virtual 3D</a><a href="/servicios#plano">Plano 2D</a><a href="/servicios#certificado">Certificado</a><a href="/servicios#extras">Extras</a>
     </div>
-  </div>
-</section>
+    <a href="/trabajos">Nuestros trabajos</a>
+    <a href="/packs">Packs y precios</a>
+    <a href="/contacto">Contacto</a>
+  </nav>
+  <div class="mini"><span>WhatsApp +34 634 32 31 62</span><span>grupo@iberseeker.net</span><span>Madrid</span></div>
+</div>
+<button class="btn line menu-close" type="button" id="menuClose" hidden>Cerrar</button>
 
-<!-- HERO -->
-<section class="hero" id="hero">
-  <video
-    class="hero-image hero-video"
-    autoplay muted loop playsinline preload="auto"
-    poster="hero-poster.jpg"
-    aria-label="Recorrido cinematográfico por un jardín tropical con piscina"
-  >
-    <source src="hero-mobile.mp4" type="video/mp4" media="(max-width: 700px)" />
-    <source src="hero-desktop.mp4" type="video/mp4" />
-  </video>
-  <div class="hero-overlay"></div>
-  <div class="hero-content container hero-content--centered">
-    <h1 class="hero-title-seo">Fotografía y vídeo inmobiliario profesional en Madrid</h1>
-    <p class="hero-title">No solo mostramos espacios. <em>Revelamos su potencial.</em></p>
-    <p class="hero-subtitle">La diferencia entre publicar un anuncio y vender <em>una forma de vivir.</em></p>
-    <div class="hero-actions">
-      <a href="servicios.html" class="btn btn-primary">Ver nuestros servicios <span class="arrow"></span></a>
-      <a href="trabajos.html" class="btn btn-ghost">Ver portfolio</a>
-    </div>
-  </div>
-  <div class="hero-scroll" aria-hidden="true">Desliza</div>
-</section>
-
-<!-- GARANTÍAS BAND -->
-<section class="guarantees" aria-label="Nuestras garantías">
-  <div class="container">
-    <ul class="guarantees-list">
-      <li class="guarantee">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M3 17l4-8 4 6 5-10 5 12"/><path d="M3 17h18"/></svg>
-        <span><strong>Cielo azul garantizado</strong></span>
-      </li>
-      <li class="guarantee">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        <span><strong>Entrega 24-72h</strong>Según el pack contratado</span>
-      </li>
-      <li class="guarantee">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
-        <span><strong>4.9 ★ Google</strong>Avalado por 87 propietarios</span>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- CÓMO TRABAJAMOS -->
-<section class="process process--light" aria-label="Nuestro método de trabajo">
-  <div class="container">
-    <div class="process-header reveal">
-      <p class="eyebrow">Cómo trabajamos</p>
-      <h2 class="h-section">Tres pasos. Cero atajos.</h2>
-      <p class="lead">No producimos en serie. Cada inmueble se trabaja a fondo, desde la primera conversación hasta el último retoque.</p>
-    </div>
-    <ol class="process-steps">
-      <li class="process-step reveal">
-        <span class="process-num">01</span>
-        <div class="process-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-            <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
-          </svg>
-        </div>
-        <h3>Conversación</h3>
-        <p>Hablamos del inmueble, su público y sus virtudes. De ahí sale un plan visual a medida.</p>
-      </li>
-      <li class="process-step reveal">
-        <span class="process-num">02</span>
-        <div class="process-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-            <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
-            <circle cx="12" cy="13" r="4"/>
-          </svg>
-        </div>
-        <h3>Sesión</h3>
-        <p>Llegamos con el equipo completo. Cada estancia se trabaja con paciencia, luz y composición.</p>
-      </li>
-      <li class="process-step reveal">
-        <span class="process-num">03</span>
-        <div class="process-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-        </div>
-        <h3>Entrega</h3>
-        <p>Editamos con detalle: color, luz, retoque selectivo. Recibes todo listo para portales y redes, con revisión incluida.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- BRANDS -->
-<section class="brands" aria-label="Equipamiento profesional">
-  <div class="container">
-    <p class="brands-title">Equipamiento profesional</p>
-    <div class="brands-grid">
-      <div class="brand-logo"><img src="assets/brands/sony.webp" alt="Cámaras Sony" title="Sony — Cámaras profesionales utilizadas por IberSeeker Visual" /></div>
-      <div class="brand-logo"><img src="assets/brands/sigma.png" alt="Ópticas Sigma Art" title="Sigma — Ópticas Art profesionales para fotografía inmobiliaria" /></div>
-      <div class="brand-logo"><img src="assets/brands/manfrotto.png" alt="Trípodes Manfrotto" title="Manfrotto — Trípodes profesionales de estudio" /></div>
-      <div class="brand-logo"><img src="assets/brands/matterport.jpg" alt="Tecnología Matterport 3D" title="Matterport — Tecnología de tour virtual 3D" /></div>
-      <div class="brand-logo"><img src="assets/brands/samsung.png" alt="Equipos Samsung" title="Samsung — Tecnología de captura profesional" /></div>
-      <div class="brand-logo"><img src="assets/brands/dji.jpg" alt="Drones DJI" title="DJI — Drones profesionales certificados AESA" /></div>
-      <div class="brand-logo"><img src="assets/brands/asus.png" alt="Equipos ASUS" title="ASUS — Equipos profesionales de edición y post-producción" /></div>
-    </div>
-  </div>
-</section>
-
-<!-- EQUIPO -->
-<section class="section equipo">
-  <div class="container">
-    <div class="equipo-grid">
-      <div class="equipo-text reveal">
-        <p class="eyebrow">Detrás de cada plano</p>
-        <h2 class="h-section">El equipo correcto para cada plano.</h2>
-        <p class="lead">No improvisamos. Cada toma se trabaja con material profesional, ópticas de gama alta y procesos pensados específicamente para inmuebles de alto standing.</p>
-        <ul class="equipo-list">
-          <li><strong>Cámara mirrorless</strong>Sony A6600 + ópticas Sigma Art · Foco continuo y estabilización integrada</li>
-          <li><strong>Cinemática</strong>Gimbal profesional para vídeo con movimiento de cine</li>
-          <li><strong>Drone exterior</strong>Mini 5 Pro + Avata 360° · Fotografía aérea cinematográfica + planos FPV exteriores exclusivos</li>
-          <li><strong>Drone interior FPV</strong>DJI Neo 1 · Recorrido inmersivo por el interior sin cortes, ligero y silencioso</li>
-          <li><strong>Vuelo legal y asegurado</strong>Certificado AESA, permisos al día y seguro RC · Cero riesgo de sanción</li>
-          <li><strong>Tour virtual 3D</strong>Matterport navegable 24/7 desde cualquier dispositivo</li>
+<main>
+<div class="view on" data-view="inicio">
+  <section class="hero" aria-label="Portada">
+    <video id="heroVideo" muted playsinline loop autoplay preload="auto" poster="v/hero_d.jpg" aria-hidden="true"></video>
+    <div class="wrap">
+      <div class="hstats" role="group" aria-label="¿Por qué la imagen importa?">
+        <span class="eyebrow">¿Por qué la imagen importa?</span>
+        <div class="ticker">
+          <ul class="stats" id="stats">
+          <li><span class="n" data-to="97" data-suf="%">97%</span><span class="t">de compradores busca online antes de visitar</span></li>
+          <li><span class="n" data-to="3" data-suf=" seg">3 seg</span><span class="t">para causar una primera impresión</span></li>
+          <li><span class="n" data-to="400" data-pre="+" data-suf="%">+400%</span><span class="t">más consultas con vídeo que sin vídeo</span></li>
+          <li><span class="n" data-to="68" data-suf="%">68%</span><span class="t">más rápido con fotografía aérea</span></li>
+          <li><span class="n" data-to="11200" data-pre="+" data-suf=" €">+11.200 €</span><span class="t">más de precio de venta con foto profesional</span></li>
         </ul>
+        </div>
       </div>
-      <div class="equipo-visual reveal">
-        <img src="assets/services/fotografia.webp" alt="Fotografía HDR profesional de inmueble" title="Fotografía inmobiliaria profesional HDR — Madrid" />
+      <h1><span class="ln"><span>Revelamos el potencial</span></span><span class="ln"><span><em>de cada inmueble.</em></span></span></h1>
+      <div class="actions">
+        <a class="btn gold" href="/packs">Packs y precios</a>
+        <a class="btn line" href="/trabajos">Ver trabajos</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- TESTIMONIOS -->
-<section class="testimonials" aria-label="Lo que dicen nuestros clientes">
-  <div class="container">
-    <div class="testimonials-head reveal">
-      <p class="eyebrow">Confianza</p>
-      <h2 class="h-section">Lo que dicen las agencias y propietarios.</h2>
-      <p class="lead">Inmuebles producidos en Madrid. Estas son sus palabras.</p>
-    </div>
-
-    <div class="testimonials-grid">
-      <article class="testimonial reveal">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">"Trabajamos con IberSeeker desde 2023. La calidad es altísima y la entrega siempre puntual. Nuestros inmuebles destacan claramente en los portales."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">LR</div>
-          <div class="testimonial-author-text">
-            <strong>Lucía Ramos</strong>
-            <span>Directora · Inmobiliaria Premier Madrid</span>
+  <section class="pad" aria-labelledby="h-doors">
+    <div class="wrap">
+      <div class="head" data-r>
+        <span class="eyebrow">Para quién trabajamos</span>
+        <h2 id="h-doors">Elige tu camino.</h2>
+      </div>
+      <div class="doors">
+        <a class="door" href="/packs" data-r>
+          <img src="img/villa_salon.jpg" alt="Salón luminoso de un ático en Madrid" loading="lazy" width="1800" height="1200">
+          <div class="in">
+            <span class="eyebrow">Particulares y agencias</span>
+            <h3>Vendo mi vivienda</h3>
+            <p>Packs cerrados de foto, vídeo y dron para tu anuncio, desde 139 €.</p>
+            <span class="link">Ver packs y precios <i></i></span>
           </div>
-        </div>
-      </article>
-
-      <article class="testimonial reveal">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">"El vídeo FPV interior fue determinante. Vendimos un ático de 1,2M€ en 18 días. El equipo es profesional y la post-producción impecable."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">MV</div>
-          <div class="testimonial-author-text">
-            <strong>Marcos Villar</strong>
-            <span>Propietario · La Moraleja</span>
+        </a>
+        <a class="door" href="/trabajos" data-r>
+          <video data-src="v/cata_int.mp4" poster="v/cata_int.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
+          <div class="in">
+            <span class="eyebrow">Hoteles y alojamientos</span>
+            <h3>Hoteles y alojamientos</h3>
+            <p>Foto, vídeo y dron para tu web, tus redes y las plataformas de reserva. Propuesta a medida.</p>
+            <span class="link">Ver trabajos <i></i></span>
           </div>
-        </div>
-      </article>
-
-      <article class="testimonial reveal">
-        <div class="testimonial-stars">★★★★★</div>
-        <p class="testimonial-quote">"Su tour Matterport nos ahorra visitas innecesarias y filtra clientes serios. Inversión que se amortiza en la primera operación."</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">JC</div>
-          <div class="testimonial-author-text">
-            <strong>Javier Cano</strong>
-            <span>Broker · Zona centro Madrid</span>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-block">
-  <div class="container">
-    <h2 class="h-display h-display--lg">Tu próximo inmueble<br/><em>merece ser visto.</em></h2>
-    <p>Cuéntanos tu proyecto y te enviamos propuesta en menos de 24 h.</p>
-    <div class="cta-actions">
-      <a href="contacto.html" class="btn btn-primary">Pedir presupuesto <span class="arrow"></span></a>
-      <a href="packs.html" class="btn btn-ghost">Ver packs y precios</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" aria-label="Volver al inicio" title="Volver al inicio de IberSeeker Visual"><img src="assets/logo/logo-white-tight.png" alt="IberSeeker Visual" title="IberSeeker Visual — Fotografía y vídeo inmobiliario en Madrid" /></a>
-        <p>Productora audiovisual inmobiliaria en Madrid.</p>
-        <ul class="footer-social" aria-label="Redes sociales">
-          <li><a href="https://instagram.com/iberseeker" aria-label="Instagram" title="Síguenos en Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a></li>
-          <li><a href="https://wa.me/34634323162" aria-label="WhatsApp" title="Escríbenos por WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884M20.463 3.488A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413"/></svg></a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Web</h4>
-        <ul>
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="trabajos.html">Nuestros trabajos</a></li>
-          <li><a href="packs.html">Packs y precios</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Servicios</h4>
-        <ul>
-          <li><a href="servicios.html#fotografia">Fotografía HDR</a></li>
-          <li><a href="servicios.html#video">Vídeo 4K cinematic</a></li>
-          <li><a href="servicios.html#drone-exterior">Drone exterior</a></li>
-          <li><a href="servicios.html#drone-fpv">Drone FPV interior</a></li>
-          <li><a href="servicios.html#matterport">Tour Matterport</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <ul>
-          <li><a href="mailto:grupo@iberseeker.net">grupo@iberseeker.net</a></li>
-          <li><a href="https://wa.me/34634323162" target="_blank" rel="noopener">+34 634 32 31 62</a></li>
-          <li>Madrid</li>
-        </ul>
+        </a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 IberSeeker Visual &middot; Todos los derechos reservados</span>
-      <span>Madrid, España</span>
+  </section>
+
+  <section class="pad" style="padding-top: 0" aria-labelledby="h-feat">
+    <div class="wrap">
+      <div class="head" data-r>
+        <span class="eyebrow">Nuestros trabajos</span>
+        <h2 id="h-feat">Madrid, desde dentro <em>y desde arriba.</em></h2>
+      </div>
+      <div class="feat">
+        <a class="fcard" href="/trabajos#trabajos-foto" data-r><div class="m"><img src="img/villa_bano.jpg" alt="Baño con papel pintado de pavos reales" loading="lazy"></div><span>Interiores y terrazas</span><h3>Fotografía HDR</h3></a>
+        <a class="fcard" href="/trabajos#trabajos-dron" data-r><div class="m"><video data-src="v/smart.mp4" poster="v/smart.jpg" muted playsinline loop preload="none" aria-hidden="true"></video></div><span>Fachadas, azoteas y vistas</span><h3>Dron exterior</h3></a>
+        <a class="fcard" href="/trabajos#trabajos-fpv" data-r><div class="m"><video data-src="v/fpv_remate.mp4" poster="v/fpv_remate.jpg" muted playsinline loop preload="none" aria-hidden="true"></video></div><span>Planos imposibles</span><h3>Dron FPV</h3></a>
+      </div>
+      <div class="row-end"><a class="link" href="/trabajos">Ver todos los trabajos <i></i></a></div>
     </div>
+  </section>
+
+  <section class="clients" aria-labelledby="h-cli">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Nuestros clientes</span>
+        <h3 id="h-cli">Han confiado en nosotros</h3>
+      </div>
+      <div class="logos">
+        <img class="l-nomade" src="img/cli_nomade.png" alt="Nômade Temple" width="624" height="220">
+        <img class="l-catalonia" src="img/cli_catalonia.png" alt="Catalonia Hotels &amp; Resorts" width="1038" height="79">
+        <img class="l-smart" src="img/cli_smartrental.png" alt="SmartRental Group" width="389" height="220">
+      </div>
+    </div>
+  </section>
+
+  <section class="brands" aria-labelledby="h-brands">
+    <div class="wrap">
+      <p class="eyebrow" id="h-brands">Equipamiento profesional</p>
+      <ul class="brands-row"><li><img src="img/br_sony.png" alt="Sony" loading="lazy" style="--f:0.94"></li><li><img src="img/br_sigma.png" alt="Sigma" loading="lazy" style="--f:1.05"></li><li><img src="img/br_manfrotto.png" alt="Manfrotto" loading="lazy" style="--f:1.25"></li><li><img src="img/br_ifootage.png" alt="iFootage" loading="lazy" style="--f:1.15"></li><li><img src="img/br_dji.png" alt="DJI" loading="lazy" style="--f:1.72"></li><li><img src="img/br_insta360.png" alt="Insta360" loading="lazy" style="--f:1.02"></li><li><img src="img/br_matterport.png" alt="Matterport" loading="lazy" style="--f:1.5"></li><li><img src="img/br_samsung.png" alt="Samsung" loading="lazy" style="--f:0.88"></li><li><img src="img/br_asus.png" alt="ASUS" loading="lazy" style="--f:1.02"></li></ul>
+    </div>
+  </section>
+
+  <section class="pad close-cta" aria-labelledby="h-close">
+    <div class="wrap" data-r>
+      <h2 id="h-close">Tu próximo inmueble <em>merece ser visto.</em></h2>
+      <p>Cuéntanos tu proyecto. Te respondemos en menos de 24 h.</p>
+      <div class="acts"><a class="btn" href="/contacto">Pedir presupuesto</a><a class="btn line" href="/packs">Ver packs y precios</a></div>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div class="brandf"><img src="img/logo_cream.png" alt="IberSeeker Visual" width="640" height="468"><p>Productora audiovisual inmobiliaria en Madrid.</p></div>
+      <div><h4>Web</h4><ul><li><a href="/">Inicio</a></li><li><a href="/servicios">Servicios</a></li><li><a href="/trabajos">Nuestros trabajos</a></li><li><a href="/packs">Packs y precios</a></li><li><a href="/contacto">Contacto</a></li></ul></div>
+      <div><h4>Servicios</h4><ul><li><a href="/servicios#foto">Fotografía HDR</a></li><li><a href="/servicios#video">Vídeo 4K</a></li><li><a href="/servicios#dron">Dron exterior</a></li><li><a href="/servicios#dron-fpv">Dron FPV</a></li><li><a href="/servicios#tour">Tour virtual 3D</a></li><li><a href="/servicios#plano">Plano 2D</a></li><li><a href="/servicios#certificado">Certificado energético</a></li></ul></div>
+      <div><h4>Contacto</h4><ul><li>grupo@iberseeker.net</li><li>+34 634 32 31 62</li><li>Madrid</li></ul></div>
+    </div>
+    <div class="legal"><span>© 2026 IberSeeker Visual</span><span>Fotografía, vídeo y dron inmobiliario en Madrid</span></div>
   </div>
 </footer>
 
-<!-- STICKY CTA -->
-<a href="contacto.html" class="sticky-cta" id="sticky-cta">
-  Pedir presupuesto <span class="sticky-cta-arrow">→</span>
-</a>
-
-<!-- FAB WhatsApp -->
-<a href="https://wa.me/34634323162?text=Hola%2C%20me%20interesa%20vuestra%20producci%C3%B3n%20visual" class="fab-whatsapp" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener">
-  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<script src="app.js?v=25" defer></script>
+<div class="mbar" id="mbar">
+  <a class="btn gold" href="/contacto">Pedir presupuesto</a>
+  <a class="btn alt" href="/packs">Packs</a>
+</div>
 </body>
 </html>
