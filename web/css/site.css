@@ -567,3 +567,15 @@ main { padding-top: 0; }
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
 }
+
+/* Seis cifras en ordenador: seis columnas, número encima del texto */
+@media (min-width: 960px) {
+  .hero .stats { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); width: 100%; }
+  .hero .stats li { display: grid; align-content: start; justify-items: start; gap: 6px; padding: 2px 10px 2px 16px; min-width: 0; }
+  .hero .stats .n { font-size: clamp(28px, 2.3vw, 38px); }
+  .hero .stats .t { min-width: 0; max-width: 21ch; font-size: 13.5px; }
+  .hero .stats li.dup { display: none; }
+}
+@media (min-width: 1200px) { .hstats { align-items: flex-start; } .hstats .eyebrow { padding-top: 6px; } }
+/* Pantallas bajas de ordenador (portátiles): el titular se ajusta a la altura para no pisar las cifras */
+@media (min-width: 960px) { .hero h1 { font-size: max(44px, min(clamp(52px, 12.5vw, 148px), calc((100svh - 400px) / 2.95))); } }

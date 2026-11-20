@@ -63,7 +63,7 @@
   if (document.getElementById('stats')) {
     var stl = $('#stats');
     $$('li', stl).forEach(function (li) { var c = li.cloneNode(true); c.classList.add('dup'); c.setAttribute('aria-hidden', 'true'); $$('a', c).forEach(function (x) { x.tabIndex = -1; }); stl.appendChild(c); });
-    var why = $('.hstats'), nums = $$('#stats .n'), running = false, firstRun = true;
+    var why = $('.hstats'), nums = $$('#stats .n'), running = false, firstRun = true, nOrig = $$('#stats li:not(.dup)').length;
     function fmtN(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
     document.documentElement.classList.add('cnt');
     nums.forEach(function (el, i) {
@@ -75,10 +75,10 @@
     function runStats() {
       var base = firstRun ? Math.max(0, (document.documentElement.classList.contains('nointro') ? 450 : 1800) - performance.now()) : 0; firstRun = false;
       running = true;
-      nums.forEach(function (el, i) { el.parentNode.style.transitionDelay = ((base + (i % 5) * 140) / 1000) + 's'; });
+      nums.forEach(function (el, i) { el.parentNode.style.transitionDelay = ((base + (i % nOrig) * 140) / 1000) + 's'; });
       why.classList.add('go');
       nums.forEach(function (el, i) {
-        var to = +el.dataset.to, pre = el.dataset.pre || '', suf = el.dataset.suf || '', d = 2000, wait = base + (i % 5) * 140 + 150, t0 = null;
+        var to = +el.dataset.to, pre = el.dataset.pre || '', suf = el.dataset.suf || '', d = 2000, wait = base + (i % nOrig) * 140 + 150, t0 = null;
         cancelAnimationFrame(el._r);
         function step(t) { if (t0 === null) t0 = t + wait; var k = Math.max(0, Math.min(1, (t - t0) / d)); k = 1 - Math.pow(1 - k, 3); el._v.textContent = pre + fmtN(Math.round(to * k)) + suf; if (k < 1) el._r = requestAnimationFrame(step); }
         el._r = requestAnimationFrame(step);
