@@ -159,30 +159,30 @@
 
   /* ---------- Packs y carrito ---------- */
   if (document.getElementById('extras-list')) {
-    /* Precios sin IVA por tramo de superficie construida: hasta 150 · 150–300 · 300–500 m². Más de 500 m², a medida. */
-    var SIZES = ['Hasta 150 m²', '150–300 m²', '300–500 m²', 'Más de 500 m²'];
+    /* Precios sin IVA por tramo de superficie construida (catastro): hasta 90 · 90–150 · 150–300 · 300–500 · más de 500 m². Máximo 40 fotos por pack. */
+    var SIZES = ['Hasta 90 m²', '90–150 m²', '150–300 m²', '300–500 m²', 'Más de 500 m²'];
     var PACKS = {
-      esencial: { n: 'Esencial', p: [139, 179, 219], f: [25, 35, 45], inc: [] },
-      visual: { n: 'Visual', p: [299, 369, 439], f: [30, 40, 50], inc: [] },
-      aereo: { n: 'Aéreo', p: [429, 499, 569], f: [30, 40, 50], inc: ['dron'] },
-      elite: { n: 'Élite', p: [629, 749, 879], f: [30, 40, 50], inc: ['dron', 'tour', 'plano', 'cert'] },
-      firma: { n: 'Firma', p: [949, 1069, 1199], f: [40, 50, 60], inc: ['dron', 'd360', 'tour', 'plano', 'cert'] }
+      esencial: { n: 'Esencial', p: [139, 159, 179, 199, 219], f: [25, 30, 35, 40, 40], inc: [] },
+      visual: { n: 'Visual', p: [299, 339, 379, 419, 459], f: [30, 35, 40, 40, 40], inc: [] },
+      aereo: { n: 'Aéreo', p: [429, 489, 549, 609, 669], f: [30, 35, 40, 40, 40], inc: ['dron'] },
+      elite: { n: 'Élite', p: [629, 719, 809, 899, 989], f: [30, 35, 40, 40, 40], inc: ['dron', 'tour', 'plano', 'cert'] },
+      firma: { n: 'Firma', p: [949, 1059, 1169, 1279, 1389], f: [40, 40, 40, 40, 40], inc: ['dron', 'd360', 'tour', 'plano', 'cert'] }
     };
     var EXTRAS = [
       { id: 'amueblado', n: 'Amueblado virtual', p: 19, u: '/ img', d: 'Sobre la foto real de una estancia vacía, entregado como imagen virtual.' },
       { id: 'atardecer', n: 'Atardecer virtual', p: 19, u: '/ foto', d: 'Cielo de atardecer aplicado en edición.' },
       { id: 'fotos', n: '+10 fotos', p: 39, u: '', d: 'Diez fotos HDR más en alta resolución.' },
       { id: 'reel', n: 'Reel vertical', p: 59, u: '', d: 'Versión 9:16 para Reels, TikTok y Stories.' },
-      { id: 'dron', n: 'Dron exterior', p: 149, u: '', d: 'Fotos y vídeo aéreos del exterior y el entorno.', one: true },
-      { id: 'd360', n: 'Dron 360', p: 219, u: '', d: 'Un plano secuencia por escalera, patio o azotea.', one: true },
+      { id: 'dron', n: 'Dron exterior', p: [149, 169, 189, 209, 229], u: '', d: 'Fotos y vídeo aéreos del exterior y el entorno.', one: true },
+      { id: 'd360', n: 'Dron 360', p: [219, 239, 259, 279, 299], u: '', d: 'Un plano secuencia por escalera, patio o azotea.', one: true },
       { id: 'fpvint', n: 'Vuelo FPV interior', soon: true, d: 'Un recorrido completo por dentro de la vivienda, sin cortes.' },
-      { id: 'tour', n: 'Tour virtual 3D', p: [99, 129, 159], u: '', d: 'Recorrido 3D con 6 meses de alojamiento.', one: true },
+      { id: 'tour', n: 'Tour virtual 3D', p: [99, 114, 129, 144, 159], u: '', d: 'Recorrido 3D con 6 meses de alojamiento.', one: true },
       { id: 'plano', n: 'Plano 2D', p: 49, u: '', d: 'Se saca del tour; solo junto al tour.', one: true, needs: 'tour' },
-      { id: 'cert', n: 'Certificado energético', p: [79, 99, 129], u: '', d: 'Técnico colegiado y registro oficial.', one: true }
+      { id: 'cert', n: 'Certificado energético', p: [79, 94, 109, 124, 139], u: '', d: 'Técnico colegiado y registro oficial.', one: true }
     ];
     var st = { pack: null, size: 0, q: {} };
-    var custom = function () { return st.size === 3; };
-    var tier = function () { return Math.min(st.size, 2); };
+    var custom = function () { return false; };
+    var tier = function () { return st.size; };
     var xPrice = function (x) { return x.soon ? 0 : typeof x.p === 'number' ? x.p : x.p[tier()]; };
     function eur(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €'; }
     EXTRAS.forEach(function (x) { st.q[x.id] = 0; });
