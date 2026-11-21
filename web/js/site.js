@@ -178,7 +178,7 @@
       { id: 'fpvint', n: 'Vuelo FPV interior', soon: true, d: 'Un recorrido completo por dentro de la vivienda, sin cortes.' },
       { id: 'tour', n: 'Tour virtual 3D', p: [99, 114, 129, 144, 159], u: '', d: 'Recorrido 3D con 6 meses de alojamiento.', one: true },
       { id: 'plano', n: 'Plano 2D', p: 49, u: '', d: 'Se saca del tour; solo junto al tour.', one: true, needs: 'tour' },
-      { id: 'cert', n: 'Certificado energético', p: [79, 94, 109, 124, 139], u: '', d: 'Técnico colegiado y registro oficial.', one: true }
+      { id: 'cert', n: 'Certificado energético', p: [99, 119, 139, 159, 179], u: '', d: 'Técnico colegiado y registro oficial.', one: true }
     ];
     var st = { pack: null, size: 0, q: {} };
     var custom = function () { return false; };
