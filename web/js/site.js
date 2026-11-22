@@ -166,7 +166,6 @@
       visual: { n: 'Visual', p: [299, 339, 379, 419, 459], f: [30, 35, 40, 40, 40], inc: [] },
       aereo: { n: 'Aéreo', p: [429, 489, 549, 609, 669], f: [30, 35, 40, 40, 40], inc: ['dron'] },
       elite: { n: 'Élite', p: [629, 719, 809, 899, 989], f: [30, 35, 40, 40, 40], inc: ['dron', 'tour', 'plano', 'cert'] },
-      firma: { n: 'Firma', p: [949, 1059, 1169, 1279, 1389], f: [40, 40, 40, 40, 40], inc: ['dron', 'd360', 'tour', 'plano', 'cert'] }
     };
     var EXTRAS = [
       { id: 'amueblado', n: 'Amueblado virtual', p: 19, u: '/ img', d: 'Sobre la foto real de una estancia vacía, entregado como imagen virtual.' },

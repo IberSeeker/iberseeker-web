@@ -400,11 +400,11 @@ main { padding-top: 0; }
 .pk .when { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
 .pk .sel { position: absolute; top: 18px; right: 18px; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line); }
 .pk[aria-pressed="true"] .sel { border-color: var(--green); background: var(--green); box-shadow: inset 0 0 0 4px var(--card); }
-.pk.firma { background: var(--green-deep); color: var(--ivory); border-color: var(--green-deep); }
-.pk.firma .pr { color: var(--gold-soft); }
-.pk.firma .for, .pk.firma .pr small { color: rgba(250,248,243,.7); }
-.pk.firma[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--gold); }
-.pk.firma[aria-pressed="true"] .sel { background: var(--gold); border-color: var(--gold); box-shadow: inset 0 0 0 4px var(--green-deep); }
+.pk.top { background: var(--green-deep); color: var(--ivory); border-color: var(--green-deep); }
+.pk.top .pr { color: var(--gold-soft); }
+.pk.top .for, .pk.top .pr small { color: rgba(250,248,243,.7); }
+.pk.top[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--gold); }
+.pk.top[aria-pressed="true"] .sel { background: var(--gold); border-color: var(--gold); box-shadow: inset 0 0 0 4px var(--green-deep); }
 .extras-h { margin: 40px 0 6px; }
 .extras { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .extras li { display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: center; }
@@ -530,7 +530,6 @@ main { padding-top: 0; }
   .lb .lb-n { right: 24px; top: 50%; bottom: auto; transform: translateY(-50%); }
   .pk-layout { grid-template-columns: 1.7fr 1fr; gap: 40px; align-items: start; }
   .packs { grid-template-columns: 1fr 1fr; }
-  .pk.firma { grid-column: 1 / -1; }
   .order { position: sticky; top: calc(var(--hh) + 24px); }
   .hotels-box { grid-template-columns: 1.4fr auto; align-items: center; padding: 40px; }
   .ct { display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: start; }
