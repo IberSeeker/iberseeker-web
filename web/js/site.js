@@ -164,7 +164,7 @@
     var PACKS = {
       esencial: { n: 'Esencial', p: [139, 159, 179, 199, 219], f: [25, 30, 35, 40, 40], inc: [] },
       visual: { n: 'Visual', p: [299, 339, 379, 419, 459], f: [30, 35, 40, 40, 40], inc: [] },
-      aereo: { n: 'Aéreo', p: [429, 489, 549, 609, 669], f: [30, 35, 40, 40, 40], inc: ['dron'] },
+      integral: { n: 'Integral', p: [499, 569, 639, 709, 779], f: [30, 35, 40, 40, 40], inc: ['tour', 'plano', 'cert'] },
       elite: { n: 'Élite', p: [629, 719, 809, 899, 989], f: [30, 35, 40, 40, 40], inc: ['dron', 'tour', 'plano', 'cert'] },
     };
     var EXTRAS = [
