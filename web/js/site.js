@@ -179,10 +179,19 @@
       { id: 'plano', n: 'Plano 2D', p: 49, u: '', d: 'Se saca del tour; solo junto al tour.', one: true, needs: 'tour' },
       { id: 'cert', n: 'Certificado energético', p: [99, 119, 139, 159, 179], u: '', d: 'Técnico colegiado y registro oficial.', one: true }
     ];
-    var st = { pack: null, size: 0, q: {} };
+    var st = { pack: null, size: 0, q: {}, tipo: 'piso', loc: null };
     var custom = function () { return false; };
     var tier = function () { return st.size; };
-    var xPrice = function (x) { return x.soon ? 0 : typeof x.p === 'number' ? x.p : x.p[tier()]; };
+    /* Boceto 23/11: importes provisionales. Zona 0 = dentro de la M-40 (aprox. 9 km); luego anillos en línea recta desde Sol. */
+    var ZN = [{ max: 9, n: 'Dentro de la M-40' }, { max: 20, n: 'Hasta 20 km' }, { max: 30, n: 'Hasta 30 km' }, { max: 40, n: 'Hasta 40 km' }, { max: 50, n: 'Hasta 50 km' }, { max: 60, n: 'Hasta 60 km' }];
+    var FEE_ME = [0, 10, 20, 30, 40, 50], FEE_CERT = [0, 10, 20, 30, 40, 50], CASA_CERT = 40;
+    var casaCert = function () { return st.tipo === 'casa' ? CASA_CERT : 0; };
+    var pkPrice = function (P) { return P.p[tier()] + (P.inc.indexOf('cert') >= 0 ? casaCert() : 0); };
+    var xPrice = function (x) { return x.soon ? 0 : (typeof x.p === 'number' ? x.p : x.p[tier()]) + (x.id === 'cert' ? casaCert() : 0); };
+    var hasCert = function () { var pk = st.pack ? PACKS[st.pack] : null; return !!(pk && pk.inc.indexOf('cert') >= 0) || st.q.cert > 0; };
+    var zoneOf = function (d) { for (var i = 0; i < ZN.length; i++) if (d <= ZN[i].max) return i; return ZN.length; };
+    var fee = function (z) { return z >= ZN.length ? null : FEE_ME[z] + (hasCert() ? FEE_CERT[z] : 0); };
+    function km(n) { return n.toFixed(1).replace('.', ',') + ' km'; }
     function eur(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €'; }
     EXTRAS.forEach(function (x) { st.q[x.id] = 0; });
     var list = $('#extras-list');
@@ -196,17 +205,19 @@
     });
     $$('.pk').forEach(function (b) { b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.click(); } }); b.addEventListener('click', function () { st.pack = st.pack === b.dataset.pack ? null : b.dataset.pack; render(); }); });
     $$('[data-size]').forEach(function (c) { c.addEventListener('click', function () { st.size = +c.dataset.size; render(); }); });
+    $$('[data-tipo]').forEach(function (c) { c.addEventListener('click', function () { st.tipo = c.dataset.tipo; render(); }); });
     function render() {
       var pk = st.pack ? PACKS[st.pack] : null, t = tier(), med = custom();
       $$('[data-size]').forEach(function (c) { c.setAttribute('aria-pressed', String(+c.dataset.size === st.size)); });
+      $$('[data-tipo]').forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.tipo === st.tipo)); });
       $$('.pk').forEach(function (b) {
         var P = PACKS[b.dataset.pack];
         b.setAttribute('aria-pressed', String(b.dataset.pack === st.pack));
-        $('.pr', b).innerHTML = med ? '<small>desde</small>' + eur(P.p[2]) : eur(P.p[t]);
+        $('.pr', b).innerHTML = eur(pkPrice(P));
         $$('[data-f]', b).forEach(function (f) { f.textContent = P.f[t]; });
       });
       var lines = [], total = 0;
-      if (pk) { total += pk.p[t]; lines.push(['Pack ' + pk.n + ' · ' + SIZES[st.size], med ? 'a medida' : eur(pk.p[t])]); }
+      if (pk) { total += pkPrice(pk); lines.push(['Pack ' + pk.n + ' · ' + (st.tipo === 'casa' ? 'Casa o chalé' : 'Piso') + ' · ' + SIZES[st.size], eur(pkPrice(pk))]); }
       EXTRAS.forEach(function (x) {
         var li = list.querySelector('[data-x="' + x.id + '"]'), off = !pk, why = '', xp = xPrice(x);
         li.querySelector('.xp').textContent = x.soon ? 'Próximamente' : '+' + (med && typeof x.p !== 'number' ? 'desde ' : '') + xp + ' € ' + x.u;
@@ -221,16 +232,141 @@
         li.querySelector('output').textContent = st.q[x.id];
         if (st.q[x.id] > 0) { var s = xp * st.q[x.id]; total += s; lines.push([x.n + (st.q[x.id] > 1 ? ' × ' + st.q[x.id] : ''), med && typeof x.p !== 'number' ? 'a medida' : eur(s)]); }
       });
+      var feeTxt = '';
+      if (pk) {
+        if (st.loc) {
+          var fz = fee(st.loc.z); feeTxt = fz === null ? 'a consultar' : fz ? eur(fz) : 'Sin coste'; total += fz || 0;
+          lines.push(['Desplazamiento · ' + (st.loc.muni || 'punto del mapa') + ' (' + (st.loc.z < ZN.length ? ZN[st.loc.z].n.toLowerCase() : 'más de 60 km') + ')', feeTxt]);
+        } else lines.push(['Desplazamiento', 'indica la ubicación']);
+      }
+      renderZones();
       $('#o-title').textContent = pk ? 'Pack ' + pk.n : 'Elige un pack';
       $('#o-lines').innerHTML = lines.map(function (l) { return '<li><span>' + l[0] + '</span><span>' + l[1] + '</span></li>'; }).join('');
       $('#o-empty').hidden = !!pk;
       $('#o-total').textContent = pk && med ? 'A medida' : eur(total);
       var send = $('#o-send');
       send.textContent = med ? 'Pedir presupuesto por WhatsApp' : 'Pedir por WhatsApp';
-      if (pk) {
-        var txt = (med ? 'Hola, quiero un presupuesto a medida para una propiedad de más de 500 m²:\n' : 'Hola, quiero pedir:\n') + lines.map(function (l) { return '· ' + l[0] + ': ' + l[1]; }).join('\n') + (med ? '' : '\nTotal: ' + $('#o-total').textContent + ' (sin IVA)');
+      if (pk && st.loc) {
+        var txt = 'Hola, quiero pedir:\n' + lines.map(function (l) { return '· ' + l[0] + ': ' + l[1]; }).join('\n') + '\nTotal: ' + $('#o-total').textContent + ' (sin IVA)' + '\nUbicación: ' + st.loc.label + ' (' + km(st.loc.d) + ' del centro)';
         send.href = 'https://wa.me/34634323162?text=' + encodeURIComponent(txt); send.removeAttribute('aria-disabled');
-      } else { send.href = 'https://wa.me/34634323162'; send.setAttribute('aria-disabled', 'true'); }
+      } else { send.href = 'https://wa.me/34634323162'; send.setAttribute('aria-disabled', 'true'); if (pk) send.textContent = 'Indica la ubicación'; }
+    }
+    /* ---------- Ubicación: mapa con anillos y buscador ---------- */
+    var svg = $('#loc-svg'), MAP = null, NS = 'http://www.w3.org/2000/svg';
+    var LON0 = -3.7038, LAT0 = 40.4168, KX = 111.32 * Math.cos(LAT0 * Math.PI / 180), KY = 110.57;
+    var toKm = function (lon, lat) { return [(lon - LON0) * KX, -(lat - LAT0) * KY]; };
+    var ringD = function (r) { return r.map(function (p, i) { return (i ? 'L' : 'M') + p[0] + ',' + p[1]; }).join('') + 'Z'; };
+    var circ = function (r) { return 'M' + r + ',0A' + r + ',' + r + ' 0 1 0 ' + (-r) + ',0A' + r + ',' + r + ' 0 1 0 ' + r + ',0Z'; };
+    var norm = function (t) { return t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim(); };
+    function el(tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); return e; }
+    function inRing(x, y, r) { var c = false; for (var i = 0, j = r.length - 1; i < r.length; j = i++) { var a = r[i], b = r[j]; if ((a[1] > y) !== (b[1] > y) && x < (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]) + a[0]) c = !c; } return c; }
+    function muniAt(x, y) { if (!MAP) return null; for (var i = 0; i < MAP.m.length; i++) { var m = MAP.m[i]; if (x < m.bb[0] || x > m.bb[2] || y < m.bb[1] || y > m.bb[3]) continue; for (var k = 0; k < m.r.length; k++) if (inRing(x, y, m.r[k])) return m; } return null; }
+    function renderZones() {
+      var ol = $('#loc-zones'); if (!ol) return;
+      var rows = ZN.map(function (zn, i) { var f = fee(i); return [zn.n, f ? eur(f) : 'Sin coste', i]; }).concat([['Más de 60 km', 'Consúltanos', ZN.length]]);
+      ol.innerHTML = rows.map(function (r) { return '<li class="' + (st.loc && st.loc.z === r[2] ? 'on' : '') + '"><span><i style="background:rgba(18,63,53,' + Math.max(0.02, 0.36 - r[2] * 0.06).toFixed(2) + ')"></i>' + r[0] + '</span><b>' + r[1] + '</b></li>'; }).join('');
+    }
+    function drawMap() {
+      svg.innerHTML = '';
+      var defs = el('defs', {}), cp = el('clipPath', { id: 'cm' }); cp.appendChild(el('path', { d: MAP.o.map(ringD).join('') })); defs.appendChild(cp); svg.appendChild(defs);
+      var g = el('g', { 'clip-path': 'url(#cm)' });
+      g.appendChild(el('rect', { x: -80, y: -90, width: 145, height: 160, fill: 'rgba(18,63,53,.03)' }));
+      [60, 50, 40, 30, 20, 9].forEach(function (r) { g.appendChild(el('path', { d: circ(r), fill: 'rgba(18,63,53,.06)' })); });
+      g.appendChild(el('path', { id: 'zone-hl', d: '', fill: 'rgba(168,137,95,.38)', 'fill-rule': 'evenodd' }));
+      g.appendChild(el('path', { class: 'm40', d: circ(9) }));
+      svg.appendChild(g);
+      MAP.m.forEach(function (m) { m.el = el('path', { class: 'mun' + (m.n === 'Madrid' ? ' mad' : ''), d: m.r.map(ringD).join('') }); svg.appendChild(m.el); });
+      svg.appendChild(el('path', { d: MAP.o.map(ringD).join(''), fill: 'none', stroke: '#123f35', 'stroke-width': 1.3, 'vector-effect': 'non-scaling-stroke' }));
+      [20, 30, 40, 50, 60].forEach(function (r) { var t = el('text', { class: 'ring-l', x: 0, y: -r + 3.6 }); t.textContent = r + ' km'; svg.appendChild(t); });
+      var t0 = el('text', { class: 'ring-l', x: 0, y: -9 + 3.6 }); t0.textContent = 'M-40'; svg.appendChild(t0);
+      svg.appendChild(el('circle', { cx: 0, cy: 0, r: 0.9, fill: '#123f35' }));
+      svg.appendChild(el('line', { id: 'ray', class: 'ray', x1: 0, y1: 0, x2: 0, y2: 0, visibility: 'hidden' }));
+      var pin = el('g', { id: 'pin', class: 'pin', visibility: 'hidden' });
+      pin.appendChild(el('path', { d: 'M0,0 C-1.2,-2.6 -3.4,-4 -3.4,-6.6 A3.4,3.4 0 1 1 3.4,-6.6 C3.4,-4 1.2,-2.6 0,0Z', fill: '#a8895f', stroke: '#fffdf9', 'stroke-width': 1.2, 'vector-effect': 'non-scaling-stroke' }));
+      pin.appendChild(el('circle', { cx: 0, cy: -6.6, r: 1.3, fill: '#fffdf9' }));
+      svg.appendChild(pin);
+      var lab = el('text', { id: 'pin-km', class: 'pin-km', x: 0, y: 0 }); svg.appendChild(lab);
+    }
+    function setLoc(x, y, label) {
+      var d = Math.hypot(x, y), z = zoneOf(d), m = muniAt(x, y);
+      st.loc = { x: x, y: y, d: d, z: z, muni: m ? m.n : '', label: label || (m ? m.n : 'Punto del mapa') };
+      if (MAP) {
+        MAP.m.forEach(function (o) { o.el.classList.toggle('hit', o === m); });
+        var r1 = z === 0 ? 0 : ZN[z - 1].max, r2 = z < ZN.length ? ZN[z].max : 200;
+        $('#zone-hl').setAttribute('d', circ(r2) + (r1 ? circ(r1) : ''));
+        var ray = $('#ray'); ray.setAttribute('x2', x); ray.setAttribute('y2', y); ray.setAttribute('visibility', 'visible');
+        var pin = $('#pin'); pin.setAttribute('transform', 'translate(' + x + ',' + y + ')'); pin.setAttribute('visibility', 'visible');
+        var lab = $('#pin-km'); lab.setAttribute('x', x / 2); lab.setAttribute('y', y / 2 - 1.2); lab.textContent = km(d);
+      }
+      $('#loc-res').innerHTML = '<b>' + st.loc.label + '</b>' + (st.loc.muni && st.loc.muni !== st.loc.label ? ' · ' + st.loc.muni : '') + ' · ' + km(d) + ' del centro · ' + (z < ZN.length ? ZN[z].n : 'más de 60 km');
+      render();
+    }
+    function svgPt(e) { var p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; var q = p.matrixTransform(svg.getScreenCTM().inverse()); return [q.x, q.y]; }
+    if (svg) {
+      fetch('data/madrid.json?v=1').then(function (r) { return r.json(); }).then(function (d) {
+        d.m.forEach(function (m) { var xs = [], ys = []; m.r.forEach(function (r) { r.forEach(function (p) { xs.push(p[0]); ys.push(p[1]); }); }); m.bb = [Math.min.apply(0, xs), Math.min.apply(0, ys), Math.max.apply(0, xs), Math.max.apply(0, ys)]; m.k = norm(m.n); });
+        MAP = d; drawMap(); if (st.loc) setLoc(st.loc.x, st.loc.y, st.loc.label);
+      }).catch(function () { $('#loc-res').textContent = 'No se pudo cargar el mapa. Escribe tu municipio.'; });
+      var tip = $('#loc-tip'), down = null, raf = 0;
+      svg.addEventListener('pointerdown', function (e) { down = [e.clientX, e.clientY]; });
+      svg.addEventListener('pointerup', function (e) { if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 8) return; seq++; var q = svgPt(e); setLoc(q[0], q[1]); if (inp) inp.value = st.loc.muni || ''; tip.hidden = true; });
+      svg.addEventListener('pointermove', function (e) {
+        if (e.pointerType !== 'mouse' || raf) return;
+        raf = requestAnimationFrame(function () { raf = 0; var q = svgPt(e), m = muniAt(q[0], q[1]), r = svg.parentNode.getBoundingClientRect();
+          if (!m) { tip.hidden = true; return; } tip.hidden = false; tip.textContent = m.n + ' · ' + km(Math.hypot(q[0], q[1])); tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (e.clientY - r.top) + 'px'; });
+      });
+      svg.addEventListener('pointerleave', function () { tip.hidden = true; });
+    }
+    /* Buscador: municipios (sin conexión) + direcciones de CartoCiudad (IGN) cuando está disponible */
+    var inp = $('#loc-q'), sug = $('#loc-sug'), items = [], act = -1, seq = 0, tmr = 0, jn = 0;
+    function jsonp(url, cb) {
+      var name = '__cc' + (++jn), s = document.createElement('script'), done = false, prev = window.callback;
+      function end(d) { if (done) return; done = true; try { delete window[name]; } catch (x) { window[name] = undefined; } window.callback = prev; s.remove(); cb(d); }
+      window[name] = end; window.callback = end;
+      s.onerror = function () { end(null); }; setTimeout(function () { end(null); }, 4000);
+      s.src = url + (url.indexOf('?') < 0 ? '?' : '&') + 'callback=' + name; document.head.appendChild(s);
+    }
+    function showSug() {
+      sug.innerHTML = items.map(function (it, i) { return '<li role="option" id="sg' + i + '" aria-selected="' + (i === act) + '">' + it.t + '<small>' + it.s + '</small></li>'; }).join('');
+      sug.hidden = !items.length; inp.setAttribute('aria-expanded', String(!!items.length));
+      $$('li', sug).forEach(function (li, i) { li.addEventListener('mousedown', function (e) { e.preventDefault(); pick(i); }); });
+    }
+    function pick(i) {
+      var it = items[i], my = ++seq; if (!it) return; items = []; showSug(); inp.value = it.t;
+      if (it.kind === 'mun') { setLoc(it.m.c[0], it.m.c[1], it.m.n); return; }
+      if (typeof it.lat === 'number' && (it.lat || it.lng)) { var p = toKm(it.lng, it.lat); setLoc(p[0], p[1], it.t); return; }
+      $('#loc-res').textContent = 'Buscando ' + it.t + '…';
+      jsonp('https://www.cartociudad.es/geocoder/api/geocoder/findJsonp?id=' + encodeURIComponent(it.id) + '&type=' + encodeURIComponent(it.type), function (d) {
+        if (my !== seq) return;
+        if (d && typeof d.lat === 'number' && (d.lat || d.lng)) { var q = toKm(d.lng, d.lat); setLoc(q[0], q[1], it.t); }
+        else { var m = MAP && MAP.m.filter(function (o) { return o.k === norm(it.s); })[0]; if (m) setLoc(m.c[0], m.c[1], it.t); }
+      });
+    }
+    function localSug(q) {
+      if (!MAP) return []; var k = norm(q);
+      return MAP.m.filter(function (m) { return m.k.indexOf(k) >= 0; }).sort(function (a, b) { return (b.k.indexOf(k) === 0) - (a.k.indexOf(k) === 0) || a.k.length - b.k.length; }).slice(0, 5)
+        .map(function (m) { return { kind: 'mun', t: m.n, s: 'Municipio · ' + km(Math.hypot(m.c[0], m.c[1])) + ' del centro', m: m }; });
+    }
+    if (inp) {
+      inp.addEventListener('input', function () {
+        var q = inp.value.trim(), my = ++seq; act = -1;
+        items = q.length >= 2 ? localSug(q) : []; showSug();
+        clearTimeout(tmr); if (q.length < 4) return;
+        tmr = setTimeout(function () {
+          jsonp('https://www.cartociudad.es/geocoder/api/geocoder/candidatesJsonp?q=' + encodeURIComponent(q) + '&limit=6&provincia_filter=Madrid&no_process=municipio,provincia,comunidad%20autonoma,poblacion,toponimo,expendeduria,punto_recarga_electrica,ngbe,carretera', function (d) {
+            if (my !== seq || !d || !d.length) return;
+            var dir = d.slice(0, 5).map(function (c) { return { kind: 'dir', t: c.address, s: (c.postalCode ? c.postalCode + ' · ' : '') + (c.type === 'portal' ? 'Dirección' : 'Calle'), id: c.id, type: c.type, lat: c.lat, lng: c.lng }; });
+            items = dir.concat(localSug(q)).slice(0, 7); showSug();
+          });
+        }, 280);
+      });
+      inp.addEventListener('keydown', function (e) {
+        if (!items.length) return;
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); act = (act + (e.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length; showSug(); }
+        else if (e.key === 'Enter') { e.preventDefault(); pick(act < 0 ? 0 : act); }
+        else if (e.key === 'Escape') { items = []; showSug(); }
+      });
+      inp.addEventListener('blur', function () { setTimeout(function () { items = []; showSug(); }, 150); });
     }
     render();
     var bases = $('#bases');

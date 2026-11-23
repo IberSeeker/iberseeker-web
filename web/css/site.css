@@ -384,6 +384,44 @@ main { padding-top: 0; }
 .size { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 26px; }
 .size > span { font-size: 13px; color: var(--muted); margin-right: 6px; }
 @media (max-width: 699px) { .size > span { flex-basis: 100%; margin: 0 0 2px; } }
+/* Tu vivienda: tipo, superficie y ubicación (boceto 23/11) */
+.home-q { display: grid; gap: 0; margin-bottom: 30px; }
+.home-q .size { margin-bottom: 18px; }
+.q-help { font-size: 12.5px; color: var(--muted); margin-left: 4px; }
+@media (min-width: 700px) { .home-q .size > span, .loc-k { min-width: 92px; } }
+.loc { display: grid; gap: 18px; border-top: 1px solid var(--line); padding-top: 20px; }
+@media (min-width: 900px) { .loc { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); grid-template-areas: "side map" "leg map"; grid-template-rows: auto 1fr; column-gap: 36px; row-gap: 14px; align-items: start; } .loc-side { grid-area: side; } .loc-map { grid-area: map; } .loc-legend { grid-area: leg; } }
+.loc-legend { display: grid; gap: 10px; align-content: start; }
+.loc-side { display: grid; gap: 12px; align-content: start; }
+.loc-k { font-size: 13px; color: var(--muted); }
+.loc-search { position: relative; }
+.loc-search input { width: 100%; font: inherit; font-size: 16px; padding: 13px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--ink); }
+.loc-search input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(18, 63, 53, .12); }
+.loc-sug { position: absolute; z-index: 5; left: 0; right: 0; top: calc(100% + 6px); list-style: none; margin: 0; padding: 6px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px -18px rgba(15, 30, 25, .35); max-height: 300px; overflow-y: auto; }
+.loc-sug li { display: grid; gap: 1px; padding: 10px 12px; border-radius: 10px; cursor: pointer; font-size: 14.5px; }
+.loc-sug li small { font-size: 12px; color: var(--muted); }
+.loc-sug li[aria-selected="true"], .loc-sug li:hover { background: rgba(18, 63, 53, .07); }
+.loc-res { margin: 0; font-size: 14.5px; color: var(--muted); min-height: 1.55em; }
+.loc-res b { color: var(--green); font-weight: 600; }
+.loc-zones { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 13.5px; }
+.loc-zones li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 10px; border-radius: 8px; color: var(--muted); }
+.loc-zones li i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 9px; vertical-align: -1px; border: 1px solid rgba(18, 63, 53, .35); }
+.loc-zones li b { font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.loc-zones li.on { background: var(--green); color: var(--ivory); }
+.loc-zones li.on b { color: var(--gold-soft); }
+.loc-note { margin: 0; font-size: 12px; color: var(--muted); }
+.loc-map { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 4px; aspect-ratio: 134 / 148; max-height: 560px; overflow: hidden; touch-action: manipulation; }
+@media (min-width: 900px) { .loc-map { justify-self: end; width: 100%; max-width: 507px; } }
+.loc-map svg { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
+.loc-map .mun { fill: rgba(250, 248, 243, .0); stroke: rgba(19, 36, 30, .16); stroke-width: .18; vector-effect: non-scaling-stroke; }
+.loc-map .mun.mad { stroke: rgba(18, 63, 53, .55); stroke-width: 1.1; }
+.loc-map .mun.hit { fill: rgba(168, 137, 95, .28); stroke: var(--gold); stroke-width: 1.4; }
+.loc-map .ring-l { font: 600 3px var(--sans); fill: var(--green); paint-order: stroke; stroke: var(--card); stroke-width: .9px; text-anchor: middle; letter-spacing: .02em; }
+.loc-map .m40 { fill: none; stroke: var(--green); stroke-width: 1; stroke-dasharray: 3 2; vector-effect: non-scaling-stroke; }
+.loc-map .ray { stroke: var(--gold); stroke-width: 1.4; stroke-dasharray: 4 3; vector-effect: non-scaling-stroke; }
+.loc-map .pin-km { font: 600 3.4px var(--sans); fill: var(--green-deep); paint-order: stroke; stroke: var(--card); stroke-width: 1.1px; text-anchor: middle; }
+.loc-tip { position: absolute; pointer-events: none; transform: translate(-50%, calc(-100% - 10px)); background: var(--green-deep); color: var(--ivory); font-size: 12.5px; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+@media (prefers-reduced-motion: no-preference) { .loc-map .pin { transition: transform .35s cubic-bezier(.2, .8, .2, 1); } }
 .pk-layout { display: grid; gap: 28px; }
 .packs { display: grid; gap: 10px; }
 .pk { position: relative; display: grid; gap: 12px; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 22px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
