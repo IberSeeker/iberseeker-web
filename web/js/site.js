@@ -308,7 +308,8 @@
       svg.addEventListener('pointerleave', function () { tip.hidden = true; });
     }
     /* Buscador: municipios (sin conexión) + direcciones de CartoCiudad (IGN) cuando está disponible */
-    var inp = $('#loc-q'), sug = $('#loc-sug'), items = [], act = -1, seq = 0, tmr = 0, jn = 0;
+    var inp = $('#loc-q'), sug = $('#loc-sug'), items = [], msg = '', act = -1, seq = 0, tmr = 0, jn = 0;
+    var tc = function (t) { return t.toLowerCase().replace(/(^|[\s,(\/-])(\S)/g, function (m, a, b) { return a + b.toUpperCase(); }).replace(/ (De|Del|La|Las|Los|Y|E)(?= )/g, function (w) { return w.toLowerCase(); }); };
     function jsonp(url, cb) {
       var name = '__cc' + (++jn), s = document.createElement('script'), done = false, prev = window.callback;
       function end(d) { if (done) return; done = true; try { delete window[name]; } catch (x) { window[name] = undefined; } window.callback = prev; s.remove(); cb(d); }
@@ -317,12 +318,12 @@
       s.src = url + (url.indexOf('?') < 0 ? '?' : '&') + 'callback=' + name; document.head.appendChild(s);
     }
     function showSug() {
-      sug.innerHTML = items.map(function (it, i) { return '<li role="option" id="sg' + i + '" aria-selected="' + (i === act) + '">' + it.t + '<small>' + it.s + '</small></li>'; }).join('');
-      sug.hidden = !items.length; inp.setAttribute('aria-expanded', String(!!items.length));
-      $$('li', sug).forEach(function (li, i) { li.addEventListener('mousedown', function (e) { e.preventDefault(); pick(i); }); });
+      sug.innerHTML = items.map(function (it, i) { return '<li role="option" id="sg' + i + '" aria-selected="' + (i === act) + '">' + it.t + '<small>' + it.s + '</small></li>'; }).join('') + (msg ? '<li class="msg" aria-disabled="true">' + msg + '</li>' : '');
+      sug.hidden = !items.length && !msg; inp.setAttribute('aria-expanded', String(!sug.hidden));
+      $$('li[role="option"]', sug).forEach(function (li, i) { li.addEventListener('mousedown', function (e) { e.preventDefault(); pick(i); }); });
     }
     function pick(i) {
-      var it = items[i], my = ++seq; if (!it) return; items = []; showSug(); inp.value = it.t;
+      var it = items[i], my = ++seq; if (!it) return; items = []; msg = ''; showSug(); inp.value = it.t;
       if (it.kind === 'mun') { setLoc(it.m.c[0], it.m.c[1], it.m.n); return; }
       if (typeof it.lat === 'number' && (it.lat || it.lng)) { var p = toKm(it.lng, it.lat); setLoc(p[0], p[1], it.t); return; }
       $('#loc-res').textContent = 'Buscando ' + it.t + '…';
@@ -340,13 +341,16 @@
     if (inp) {
       inp.addEventListener('input', function () {
         var q = inp.value.trim(), my = ++seq; act = -1;
-        items = q.length >= 2 ? localSug(q) : []; showSug();
+        items = q.length >= 2 ? localSug(q) : []; msg = q.length >= 4 ? 'Buscando direcciones…' : ''; showSug();
         clearTimeout(tmr); if (q.length < 4) return;
         tmr = setTimeout(function () {
           jsonp('https://www.cartociudad.es/geocoder/api/geocoder/candidatesJsonp?q=' + encodeURIComponent(q) + '&limit=6&provincia_filter=Madrid&no_process=municipio,provincia,comunidad%20autonoma,poblacion,toponimo,expendeduria,punto_recarga_electrica,ngbe,carretera', function (d) {
-            if (my !== seq || !d || !d.length) return;
-            var dir = d.slice(0, 5).map(function (c) { return { kind: 'dir', t: c.address, s: (c.postalCode ? c.postalCode + ' · ' : '') + (c.type === 'portal' ? 'Dirección' : 'Calle'), id: c.id, type: c.type, lat: c.lat, lng: c.lng }; });
-            items = dir.concat(localSug(q)).slice(0, 7); showSug();
+            if (my !== seq) return;
+            if (!d || !d.length) { items = localSug(q); msg = items.length ? '' : d ? 'No encontramos esa dirección. Prueba con el municipio o toca el mapa.' : 'El buscador de calles no responde ahora. Escribe el municipio o toca el mapa.'; showSug(); return; }
+            var dist = function (c) { return c.lat || c.lng ? Math.hypot.apply(0, toKm(c.lng, c.lat)) : 999; };
+            var dir = d.slice().sort(function (a, b) { return (b.muni === 'Madrid') - (a.muni === 'Madrid') || dist(a) - dist(b); }).slice(0, 5)
+              .map(function (c) { return { kind: 'dir', t: tc(c.address), s: (c.postalCode ? c.postalCode + ' · ' : '') + (c.type === 'portal' ? 'Dirección' : 'Calle'), id: c.id, type: c.type, lat: c.lat, lng: c.lng }; });
+            msg = ''; items = dir.concat(localSug(q)).slice(0, 7); showSug();
           });
         }, 280);
       });
@@ -356,7 +360,7 @@
         else if (e.key === 'Enter') { e.preventDefault(); pick(act < 0 ? 0 : act); }
         else if (e.key === 'Escape') { items = []; showSug(); }
       });
-      inp.addEventListener('blur', function () { setTimeout(function () { items = []; showSug(); }, 150); });
+      inp.addEventListener('blur', function () { setTimeout(function () { items = []; msg = ''; showSug(); }, 150); });
     }
     render();
     var bases = $('#bases');
