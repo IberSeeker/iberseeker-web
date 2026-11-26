@@ -390,7 +390,7 @@ main { padding-top: 0; }
 .q-help { font-size: 12.5px; color: var(--muted); margin-left: 4px; }
 @media (min-width: 700px) { .home-q .size > span, .loc-k { min-width: 92px; } }
 .loc { display: grid; gap: 18px; border-top: 1px solid var(--line); padding-top: 20px; }
-@media (min-width: 900px) { .loc { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); grid-template-areas: "side map" "leg map"; grid-template-rows: auto 1fr; column-gap: 36px; row-gap: 14px; align-items: start; } .loc-side { grid-area: side; } .loc-map { grid-area: map; } .loc-legend { grid-area: leg; } }
+@media (min-width: 900px) { .loc { grid-template-columns: minmax(0, 1fr) auto; column-gap: 36px; align-items: center; } }
 .loc-legend { display: grid; gap: 10px; align-content: start; }
 .loc-side { display: grid; gap: 12px; align-content: start; }
 .loc-k { font-size: 13px; color: var(--muted); }
@@ -411,7 +411,8 @@ main { padding-top: 0; }
 .loc-zones li.on b { color: var(--gold-soft); }
 .loc-note { margin: 0; font-size: 12px; color: var(--muted); }
 .loc-map { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 4px; aspect-ratio: 134 / 148; max-height: 560px; overflow: hidden; touch-action: manipulation; }
-@media (min-width: 900px) { .loc-map { justify-self: end; width: 100%; max-width: 507px; } }
+@media (min-width: 900px) { .loc-map { justify-self: end; width: 230px; } .loc-search { max-width: 560px; } }
+@media (max-width: 899px) { .loc-map { max-width: 300px; width: 100%; justify-self: center; } }
 .loc-map svg { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
 .loc-map .mun { fill: rgba(250, 248, 243, .0); stroke: rgba(19, 36, 30, .16); stroke-width: .18; vector-effect: non-scaling-stroke; }
 .loc-map .mun.mad { stroke: rgba(18, 63, 53, .55); stroke-width: 1.1; }
@@ -422,6 +423,16 @@ main { padding-top: 0; }
 .loc-map .pin-km { font: 600 3.4px var(--sans); fill: var(--green-deep); paint-order: stroke; stroke: var(--card); stroke-width: 1.1px; text-anchor: middle; }
 .loc-tip { position: absolute; pointer-events: none; transform: translate(-50%, calc(-100% - 10px)); background: var(--green-deep); color: var(--ivory); font-size: 12.5px; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
 @media (prefers-reduced-motion: no-preference) { .loc-map .pin { transition: transform .35s cubic-bezier(.2, .8, .2, 1); } }
+.calc-box { margin: 0 0 26px; padding: 16px 18px; border: 1px dashed var(--gold); border-radius: 4px; background: rgba(168, 137, 95, .06); }
+.calc-box summary { cursor: pointer; font-size: 14px; font-weight: 600; color: var(--green); }
+.calc-box p { font-size: 13px; color: var(--muted); margin: 10px 0; }
+.calc-box table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.calc-box td { padding: 6px 0; border-bottom: 1px solid var(--line); }
+.calc-box td:last-child { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.calc-box tr.sum td { font-weight: 600; }
+.calc-box tr.tot td { font-weight: 600; color: var(--green); border-bottom: 0; font-size: 15px; }
+.pk-ctx { margin: 0 0 18px; font-size: 14.5px; color: var(--muted); }
+.pk-ctx b { color: var(--green); font-weight: 600; }
 .pk-layout { display: grid; gap: 28px; }
 .packs { display: grid; gap: 10px; }
 .pk { position: relative; display: grid; gap: 12px; text-align: left; background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 22px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }

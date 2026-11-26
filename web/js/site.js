@@ -182,15 +182,17 @@
     var st = { pack: null, size: 0, q: {}, tipo: 'piso', loc: null };
     var custom = function () { return false; };
     var tier = function () { return st.size; };
-    /* Boceto 23/11: importes provisionales. Zona 0 = dentro de la M-40 (aprox. 9 km); luego anillos en línea recta desde Sol. */
-    var ZN = [{ max: 9, n: 'Dentro de la M-40' }, { max: 20, n: 'Hasta 20 km' }, { max: 30, n: 'Hasta 30 km' }, { max: 40, n: 'Hasta 40 km' }, { max: 50, n: 'Hasta 50 km' }, { max: 60, n: 'Hasta 60 km' }];
-    var FEE_ME = [0, 10, 20, 30, 40, 50], FEE_CERT = [0, 10, 20, 30, 40, 50], CASA_CERT = 40;
+    /* Boceto 27/11 (importes de ejemplo): el desplazamiento va incluido en el precio, sin línea aparte.
+       Distancia en línea recta desde Sol. Gratis en Madrid capital y hasta 10 km; luego 10 € por cada 10 km. Más de 60 km: a consultar.
+       Si el pedido lleva certificado, se suma también el desplazamiento del técnico (0 dentro de la M-40 ≈ 9 km; +10 € hasta 20 km y +10 € cada 10 km). */
+    var FEE_STEP = 10, CASA_CERT = 50, MAX_KM = 60;
+    var r9 = function (n) { return Math.ceil((n + 1) / 10) * 10 - 1; };
     var casaCert = function () { return st.tipo === 'casa' ? CASA_CERT : 0; };
-    var pkPrice = function (P) { return P.p[tier()] + (P.inc.indexOf('cert') >= 0 ? casaCert() : 0); };
-    var xPrice = function (x) { return x.soon ? 0 : (typeof x.p === 'number' ? x.p : x.p[tier()]) + (x.id === 'cert' ? casaCert() : 0); };
-    var hasCert = function () { var pk = st.pack ? PACKS[st.pack] : null; return !!(pk && pk.inc.indexOf('cert') >= 0) || st.q.cert > 0; };
-    var zoneOf = function (d) { for (var i = 0; i < ZN.length; i++) if (d <= ZN[i].max) return i; return ZN.length; };
-    var fee = function (z) { return z >= ZN.length ? null : FEE_ME[z] + (hasCert() ? FEE_CERT[z] : 0); };
+    var tooFar = function () { return !!st.loc && st.loc.d > MAX_KM; };
+    var ownFee = function () { if (!st.loc || st.loc.cap || st.loc.d <= 10) return 0; return FEE_STEP * Math.floor(Math.min(st.loc.d, MAX_KM) / 10); };
+    var techFee = function () { if (!st.loc) return 0; var d = st.loc.d; return d <= 9 ? 0 : d <= 20 ? 10 : 10 * (Math.ceil(Math.min(d, MAX_KM) / 10) - 1); };
+    var pkPrice = function (P) { return r9(P.p[tier()] + (P.inc.indexOf('cert') >= 0 ? casaCert() + techFee() : 0) + ownFee()); };
+    var xPrice = function (x) { if (x.soon) return 0; var v = typeof x.p === 'number' ? x.p : x.p[tier()]; return x.id === 'cert' ? r9(v + casaCert() + techFee()) : v; };
     function km(n) { return n.toFixed(1).replace('.', ',') + ' km'; }
     function eur(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' €'; }
     EXTRAS.forEach(function (x) { st.q[x.id] = 0; });
@@ -213,7 +215,7 @@
       $$('.pk').forEach(function (b) {
         var P = PACKS[b.dataset.pack];
         b.setAttribute('aria-pressed', String(b.dataset.pack === st.pack));
-        $('.pr', b).innerHTML = eur(pkPrice(P));
+        $('.pr', b).innerHTML = tooFar() ? 'A consultar' : (st.loc ? '' : '<small>desde</small> ') + eur(pkPrice(P)) + ' <small>+ IVA</small>';
         $$('[data-f]', b).forEach(function (f) { f.textContent = P.f[t]; });
       });
       var lines = [], total = 0;
@@ -232,24 +234,29 @@
         li.querySelector('output').textContent = st.q[x.id];
         if (st.q[x.id] > 0) { var s = xp * st.q[x.id]; total += s; lines.push([x.n + (st.q[x.id] > 1 ? ' × ' + st.q[x.id] : ''), med && typeof x.p !== 'number' ? 'a medida' : eur(s)]); }
       });
-      var feeTxt = '';
-      if (pk) {
-        if (st.loc) {
-          var fz = fee(st.loc.z); feeTxt = fz === null ? 'a consultar' : fz ? eur(fz) : 'Sin coste'; total += fz || 0;
-          lines.push(['Desplazamiento · ' + (st.loc.muni || 'punto del mapa') + ' (' + (st.loc.z < ZN.length ? ZN[st.loc.z].n.toLowerCase() : 'más de 60 km') + ')', feeTxt]);
-        } else lines.push(['Desplazamiento', 'indica la ubicación']);
+      var calc = $('#calc');
+      if (calc) {
+        var CP = pk || PACKS.visual, hasC = CP.inc.indexOf('cert') >= 0, cr = [['Pack ' + CP.n + (pk ? '' : ' (ejemplo: elige un pack)') + ' · ' + (st.tipo === 'casa' ? 'casa o chalé' : 'piso') + ' · ' + SIZES[st.size], CP.p[t]]];
+        if (hasC) cr.push(['Certificado incluido: recargo por casa o chalé', casaCert()]);
+        cr.push(['Tu desplazamiento' + (st.loc ? ' · ' + km(st.loc.d) + ' desde Sol' + (st.loc.cap ? ' (Madrid capital)' : '') : ' · falta la dirección'), ownFee()]);
+        if (hasC) cr.push(['Desplazamiento del técnico del certificado', techFee()]);
+        var sum = cr.reduce(function (a, r) { return a + r[1]; }, 0), shown = pkPrice(CP);
+        calc.innerHTML = '<table>' + cr.map(function (r) { return '<tr><td>' + r[0] + '</td><td>' + (r[1] ? '+ ' + eur(r[1]) : '0 €') + '</td></tr>'; }).join('').replace('+ ' + eur(CP.p[t]), eur(CP.p[t]))
+          + '<tr class="sum"><td>Suma</td><td>' + eur(sum) + '</td></tr><tr><td>Redondeo hacia arriba a un precio terminado en 9</td><td>+ ' + eur(shown - sum) + '</td></tr>'
+          + '<tr class="tot"><td>Precio que ve el cliente</td><td>' + (tooFar() ? 'A consultar' : eur(shown) + ' + IVA') + '</td></tr></table>';
       }
-      renderZones();
+      var ctx = $('#pk-ctx');
+      if (ctx) ctx.innerHTML = !st.loc ? 'Precios en Madrid capital. Escribe la dirección para ver tu precio cerrado.' : tooFar() ? 'A más de 60 km de Madrid preparamos un presupuesto a medida.' : 'Tu precio cerrado para <b>' + st.loc.label + '</b> · desplazamiento incluido';
       $('#o-title').textContent = pk ? 'Pack ' + pk.n : 'Elige un pack';
       $('#o-lines').innerHTML = lines.map(function (l) { return '<li><span>' + l[0] + '</span><span>' + l[1] + '</span></li>'; }).join('');
       $('#o-empty').hidden = !!pk;
-      $('#o-total').textContent = pk && med ? 'A medida' : eur(total);
+      $('#o-total').textContent = pk && tooFar() ? 'A consultar' : eur(total) + ' + IVA';
       var send = $('#o-send');
-      send.textContent = med ? 'Pedir presupuesto por WhatsApp' : 'Pedir por WhatsApp';
+      send.textContent = tooFar() ? 'Pedir presupuesto por WhatsApp' : 'Pedir por WhatsApp';
       if (pk && st.loc) {
-        var txt = 'Hola, quiero pedir:\n' + lines.map(function (l) { return '· ' + l[0] + ': ' + l[1]; }).join('\n') + '\nTotal: ' + $('#o-total').textContent + ' (sin IVA)' + '\nUbicación: ' + st.loc.label + ' (' + km(st.loc.d) + ' del centro)';
+        var txt = (tooFar() ? 'Hola, quiero un presupuesto:\n' : 'Hola, quiero pedir:\n') + lines.map(function (l) { return '· ' + l[0] + ': ' + (tooFar() ? '' : l[1]); }).join('\n') + (tooFar() ? '' : '\nTotal: ' + $('#o-total').textContent + ' (desplazamiento incluido)') + '\nDirección: ' + st.loc.label + (st.loc.muni && st.loc.label.indexOf(st.loc.muni) < 0 ? ', ' + st.loc.muni : '');
         send.href = 'https://wa.me/34634323162?text=' + encodeURIComponent(txt); send.removeAttribute('aria-disabled');
-      } else { send.href = 'https://wa.me/34634323162'; send.setAttribute('aria-disabled', 'true'); if (pk) send.textContent = 'Indica la ubicación'; }
+      } else { send.href = 'https://wa.me/34634323162'; send.setAttribute('aria-disabled', 'true'); if (pk) send.textContent = 'Indica la dirección'; }
     }
     /* ---------- Ubicación: mapa con anillos y buscador ---------- */
     var svg = $('#loc-svg'), MAP = null, NS = 'http://www.w3.org/2000/svg';
@@ -261,44 +268,27 @@
     function el(tag, at) { var e = document.createElementNS(NS, tag); for (var k in at) e.setAttribute(k, at[k]); return e; }
     function inRing(x, y, r) { var c = false; for (var i = 0, j = r.length - 1; i < r.length; j = i++) { var a = r[i], b = r[j]; if ((a[1] > y) !== (b[1] > y) && x < (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]) + a[0]) c = !c; } return c; }
     function muniAt(x, y) { if (!MAP) return null; for (var i = 0; i < MAP.m.length; i++) { var m = MAP.m[i]; if (x < m.bb[0] || x > m.bb[2] || y < m.bb[1] || y > m.bb[3]) continue; for (var k = 0; k < m.r.length; k++) if (inRing(x, y, m.r[k])) return m; } return null; }
-    function renderZones() {
-      var ol = $('#loc-zones'); if (!ol) return;
-      var rows = ZN.map(function (zn, i) { var f = fee(i); return [zn.n, f ? eur(f) : 'Sin coste', i]; }).concat([['Más de 60 km', 'Consúltanos', ZN.length]]);
-      ol.innerHTML = rows.map(function (r) { return '<li class="' + (st.loc && st.loc.z === r[2] ? 'on' : '') + '"><span><i style="background:rgba(18,63,53,' + Math.max(0.02, 0.36 - r[2] * 0.06).toFixed(2) + ')"></i>' + r[0] + '</span><b>' + r[1] + '</b></li>'; }).join('');
-    }
     function drawMap() {
       svg.innerHTML = '';
       var defs = el('defs', {}), cp = el('clipPath', { id: 'cm' }); cp.appendChild(el('path', { d: MAP.o.map(ringD).join('') })); defs.appendChild(cp); svg.appendChild(defs);
       var g = el('g', { 'clip-path': 'url(#cm)' });
-      g.appendChild(el('rect', { x: -80, y: -90, width: 145, height: 160, fill: 'rgba(18,63,53,.03)' }));
-      [60, 50, 40, 30, 20, 9].forEach(function (r) { g.appendChild(el('path', { d: circ(r), fill: 'rgba(18,63,53,.06)' })); });
-      g.appendChild(el('path', { id: 'zone-hl', d: '', fill: 'rgba(168,137,95,.38)', 'fill-rule': 'evenodd' }));
-      g.appendChild(el('path', { class: 'm40', d: circ(9) }));
+      g.appendChild(el('rect', { x: -80, y: -90, width: 145, height: 160, fill: 'rgba(18,63,53,.05)' }));
       svg.appendChild(g);
       MAP.m.forEach(function (m) { m.el = el('path', { class: 'mun' + (m.n === 'Madrid' ? ' mad' : ''), d: m.r.map(ringD).join('') }); svg.appendChild(m.el); });
       svg.appendChild(el('path', { d: MAP.o.map(ringD).join(''), fill: 'none', stroke: '#123f35', 'stroke-width': 1.3, 'vector-effect': 'non-scaling-stroke' }));
-      [20, 30, 40, 50, 60].forEach(function (r) { var t = el('text', { class: 'ring-l', x: 0, y: -r + 3.6 }); t.textContent = r + ' km'; svg.appendChild(t); });
-      var t0 = el('text', { class: 'ring-l', x: 0, y: -9 + 3.6 }); t0.textContent = 'M-40'; svg.appendChild(t0);
-      svg.appendChild(el('circle', { cx: 0, cy: 0, r: 0.9, fill: '#123f35' }));
-      svg.appendChild(el('line', { id: 'ray', class: 'ray', x1: 0, y1: 0, x2: 0, y2: 0, visibility: 'hidden' }));
       var pin = el('g', { id: 'pin', class: 'pin', visibility: 'hidden' });
       pin.appendChild(el('path', { d: 'M0,0 C-1.2,-2.6 -3.4,-4 -3.4,-6.6 A3.4,3.4 0 1 1 3.4,-6.6 C3.4,-4 1.2,-2.6 0,0Z', fill: '#a8895f', stroke: '#fffdf9', 'stroke-width': 1.2, 'vector-effect': 'non-scaling-stroke' }));
       pin.appendChild(el('circle', { cx: 0, cy: -6.6, r: 1.3, fill: '#fffdf9' }));
       svg.appendChild(pin);
-      var lab = el('text', { id: 'pin-km', class: 'pin-km', x: 0, y: 0 }); svg.appendChild(lab);
     }
     function setLoc(x, y, label) {
-      var d = Math.hypot(x, y), z = zoneOf(d), m = muniAt(x, y);
-      st.loc = { x: x, y: y, d: d, z: z, muni: m ? m.n : '', label: label || (m ? m.n : 'Punto del mapa') };
+      var d = Math.hypot(x, y), m = muniAt(x, y);
+      st.loc = { x: x, y: y, d: d, cap: !!m && m.n === 'Madrid', muni: m ? m.n : '', label: label || (m ? m.n : 'Punto del mapa') };
       if (MAP) {
         MAP.m.forEach(function (o) { o.el.classList.toggle('hit', o === m); });
-        var r1 = z === 0 ? 0 : ZN[z - 1].max, r2 = z < ZN.length ? ZN[z].max : 200;
-        $('#zone-hl').setAttribute('d', circ(r2) + (r1 ? circ(r1) : ''));
-        var ray = $('#ray'); ray.setAttribute('x2', x); ray.setAttribute('y2', y); ray.setAttribute('visibility', 'visible');
         var pin = $('#pin'); pin.setAttribute('transform', 'translate(' + x + ',' + y + ')'); pin.setAttribute('visibility', 'visible');
-        var lab = $('#pin-km'); lab.setAttribute('x', x / 2); lab.setAttribute('y', y / 2 - 1.2); lab.textContent = km(d);
       }
-      $('#loc-res').innerHTML = '<b>' + st.loc.label + '</b>' + (st.loc.muni && st.loc.muni !== st.loc.label ? ' · ' + st.loc.muni : '') + ' · ' + km(d) + ' del centro · ' + (z < ZN.length ? ZN[z].n : 'más de 60 km');
+      $('#loc-res').innerHTML = '<b>' + st.loc.label + '</b>' + (st.loc.muni && st.loc.label.indexOf(st.loc.muni) < 0 ? ' · ' + st.loc.muni : '');
       render();
     }
     function svgPt(e) { var p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; var q = p.matrixTransform(svg.getScreenCTM().inverse()); return [q.x, q.y]; }
@@ -313,7 +303,7 @@
       svg.addEventListener('pointermove', function (e) {
         if (e.pointerType !== 'mouse' || raf) return;
         raf = requestAnimationFrame(function () { raf = 0; var q = svgPt(e), m = muniAt(q[0], q[1]), r = svg.parentNode.getBoundingClientRect();
-          if (!m) { tip.hidden = true; return; } tip.hidden = false; tip.textContent = m.n + ' · ' + km(Math.hypot(q[0], q[1])); tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (e.clientY - r.top) + 'px'; });
+          if (!m) { tip.hidden = true; return; } tip.hidden = false; tip.textContent = m.n; tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (e.clientY - r.top) + 'px'; });
       });
       svg.addEventListener('pointerleave', function () { tip.hidden = true; });
     }
@@ -345,7 +335,7 @@
     function localSug(q) {
       if (!MAP) return []; var k = norm(q);
       return MAP.m.filter(function (m) { return m.k.indexOf(k) >= 0; }).sort(function (a, b) { return (b.k.indexOf(k) === 0) - (a.k.indexOf(k) === 0) || a.k.length - b.k.length; }).slice(0, 5)
-        .map(function (m) { return { kind: 'mun', t: m.n, s: 'Municipio · ' + km(Math.hypot(m.c[0], m.c[1])) + ' del centro', m: m }; });
+        .map(function (m) { return { kind: 'mun', t: m.n, s: 'Municipio', m: m }; });
     }
     if (inp) {
       inp.addEventListener('input', function () {
