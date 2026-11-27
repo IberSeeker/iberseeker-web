@@ -450,6 +450,7 @@ main { padding-top: 0; }
 .pk li { padding-left: 16px; position: relative; }
 .pk li::before { content: ""; position: absolute; left: 0; top: .7em; width: 8px; height: 1px; background: var(--gold); }
 .pk .when { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+.pk .badge { position: absolute; top: -11px; left: 22px; font-size: 11.5px; font-weight: 600; letter-spacing: .02em; padding: 4px 10px; border-radius: 999px; background: var(--gold); color: var(--green-deep); }
 .pk .sel { position: absolute; top: 18px; right: 18px; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--line); }
 .pk[aria-pressed="true"] .sel { border-color: var(--green); background: var(--green); box-shadow: inset 0 0 0 4px var(--card); }
 .pk.top { background: var(--green-deep); color: var(--ivory); border-color: var(--green-deep); }

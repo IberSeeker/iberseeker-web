@@ -186,7 +186,7 @@
        Distancia en línea recta desde Sol. Gratis en Madrid capital y hasta 10 km; luego 10 € por cada 10 km. Más de 60 km: a consultar.
        Si el pedido lleva certificado, se suma también el desplazamiento del técnico (0 dentro de la M-40 ≈ 9 km; +10 € hasta 20 km y +10 € cada 10 km). */
     var FEE_STEP = 10, CASA_CERT = 50, MAX_KM = 60;
-    var DRON_F = [6, 8, 10, 12, 15], DRON_S = [30, 30, 30, 45, 60];   /* fotos aéreas y segundos de vídeo aéreo por tramo (propuesta) */
+    var DRON_F = [6, 8, 10, 12, 15];   /* fotos aéreas por tramo; el dron suma 30 s de tomas aéreas al vídeo (60 → 90 s) */
     var r9 = function (n) { return Math.ceil((n + 1) / 10) * 10 - 1; };
     var casaCert = function () { return st.tipo === 'casa' ? CASA_CERT : 0; };
     var tooFar = function () { return !!st.loc && st.loc.d > MAX_KM; };
@@ -220,13 +220,13 @@
         $('.pr', b).innerHTML = tooFar() ? 'Consultar' : (st.loc ? '' : '<small>desde</small> ') + eur(pkPrice(P)) + ' <small>+ IVA</small>';
         $$('[data-f]', b).forEach(function (f) { f.textContent = P.f[t]; });
         $$('[data-a]', b).forEach(function (f) { f.textContent = DRON_F[t]; });
-        $$('[data-as]', b).forEach(function (f) { f.textContent = DRON_S[t]; });
+        $$('[data-v]', b).forEach(function (f) { f.textContent = st.pack === b.dataset.pack && st.q.dron > 0 ? 90 : 60; });
       });
       var lines = [], total = 0;
       if (pk) { total += pkPrice(pk); lines.push(['Pack ' + pk.n + ' · ' + (st.tipo === 'casa' ? 'Casa o chalé' : 'Piso') + ' · ' + SIZES[st.size], eur(pkPrice(pk))]); }
       EXTRAS.forEach(function (x) {
         var li = list.querySelector('[data-x="' + x.id + '"]'), off = !pk, why = '', xp = xPrice(x);
-        if (x.id === 'dron') li.querySelector('p').textContent = DRON_F[t] + ' fotos aéreas y vídeo aéreo de ' + DRON_S[t] + ' s del exterior y el entorno.';
+        if (x.id === 'dron') li.querySelector('p').textContent = DRON_F[t] + ' fotos aéreas' + (pk && pk.n === 'Esencial' ? ' y un vídeo aéreo de 30 s.' : ' y 30 s de tomas aéreas dentro del vídeo, que pasa a 90 s.');
         li.querySelector('.xp').textContent = x.soon ? 'Próximamente' : '+' + (med && typeof x.p !== 'number' ? 'desde ' : '') + xp + ' € ' + x.u;
         if (x.soon) { li.classList.add('off', 'soon-x'); st.q[x.id] = 0; li.querySelectorAll('button').forEach(function (bt) { bt.disabled = true; }); li.querySelector('.why-off').hidden = true; return; }
         if (pk && pk.inc.indexOf(x.id) >= 0) { off = true; why = 'Ya incluido en el pack ' + pk.n + '.'; }
@@ -250,6 +250,7 @@
           + '<tr class="sum"><td>Suma</td><td>' + eur(sum) + '</td></tr><tr><td>Redondeo hacia arriba a un precio terminado en 9</td><td>+ ' + eur(shown - sum) + '</td></tr>'
           + '<tr class="tot"><td>Precio que ve el cliente</td><td>' + (tooFar() ? 'A consultar' : eur(shown) + ' + IVA') + '</td></tr></table>';
       }
+      var on = $('#o-note'); if (on) on.textContent = !st.loc ? 'Indica la dirección para cerrar el precio.' : tooFar() ? 'Te respondemos con un presupuesto a medida.' : 'Precio cerrado, desplazamiento incluido.';
       var ctx = $('#pk-ctx');
       if (ctx) ctx.innerHTML = !st.loc ? 'Precios en Madrid capital. Escribe la dirección para ver tu precio cerrado.' : tooFar() ? 'Esta dirección está fuera de nuestra zona habitual. Cuéntanos tu proyecto y te respondemos.' : 'Tu precio cerrado para <b>' + st.loc.label + '</b> · desplazamiento incluido';
       $('#o-title').textContent = pk ? 'Pack ' + pk.n : 'Elige un pack';
