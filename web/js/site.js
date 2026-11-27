@@ -162,10 +162,10 @@
     /* Precios sin IVA por tramo de superficie construida (catastro): hasta 90 · 90–150 · 150–300 · 300–500 · más de 500 m². Máximo 40 fotos por pack. */
     var SIZES = ['Hasta 90 m²', '90–150 m²', '150–300 m²', '300–500 m²', 'Más de 500 m²'];
     var PACKS = {
-      esencial: { n: 'Esencial', p: [139, 159, 179, 199, 219], f: [25, 30, 35, 40, 40], inc: [] },
-      visual: { n: 'Visual', p: [299, 339, 379, 419, 459], f: [30, 35, 40, 40, 40], inc: [] },
-      integral: { n: 'Integral', p: [499, 569, 639, 709, 779], f: [30, 35, 40, 40, 40], inc: ['tour', 'plano', 'cert'] },
-      elite: { n: 'Élite', p: [629, 719, 809, 899, 989], f: [30, 35, 40, 40, 40], inc: ['dron', 'tour', 'plano', 'cert'] },
+      esencial: { n: 'Esencial', p: [139, 159, 179, 199, 219], f: [25, 30, 35, 40, 50], inc: [] },
+      visual: { n: 'Visual', p: [299, 339, 379, 419, 459], f: [30, 35, 40, 50, 60], inc: [] },
+      integral: { n: 'Integral', p: [499, 569, 639, 709, 779], f: [30, 35, 40, 50, 60], inc: ['tour', 'plano', 'cert'] },
+      elite: { n: 'Élite', p: [629, 719, 809, 899, 989], f: [30, 35, 40, 50, 60], inc: ['dron', 'tour', 'plano', 'cert'] },
     };
     var EXTRAS = [
       { id: 'amueblado', n: 'Amueblado virtual', p: 19, u: '/ img', d: 'Sobre la foto real de una estancia vacía, entregado como imagen virtual.' },
