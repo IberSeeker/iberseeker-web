@@ -215,7 +215,7 @@
       $$('.pk').forEach(function (b) {
         var P = PACKS[b.dataset.pack];
         b.setAttribute('aria-pressed', String(b.dataset.pack === st.pack));
-        $('.pr', b).innerHTML = tooFar() ? 'A consultar' : (st.loc ? '' : '<small>desde</small> ') + eur(pkPrice(P)) + ' <small>+ IVA</small>';
+        $('.pr', b).innerHTML = tooFar() ? 'Consultar' : (st.loc ? '' : '<small>desde</small> ') + eur(pkPrice(P)) + ' <small>+ IVA</small>';
         $$('[data-f]', b).forEach(function (f) { f.textContent = P.f[t]; });
       });
       var lines = [], total = 0;
@@ -246,15 +246,15 @@
           + '<tr class="tot"><td>Precio que ve el cliente</td><td>' + (tooFar() ? 'A consultar' : eur(shown) + ' + IVA') + '</td></tr></table>';
       }
       var ctx = $('#pk-ctx');
-      if (ctx) ctx.innerHTML = !st.loc ? 'Precios en Madrid capital. Escribe la dirección para ver tu precio cerrado.' : tooFar() ? 'A más de 60 km de Madrid preparamos un presupuesto a medida.' : 'Tu precio cerrado para <b>' + st.loc.label + '</b> · desplazamiento incluido';
+      if (ctx) ctx.innerHTML = !st.loc ? 'Precios en Madrid capital. Escribe la dirección para ver tu precio cerrado.' : tooFar() ? 'Esta dirección está fuera de nuestra zona habitual. Cuéntanos tu proyecto y te respondemos.' : 'Tu precio cerrado para <b>' + st.loc.label + '</b> · desplazamiento incluido';
       $('#o-title').textContent = pk ? 'Pack ' + pk.n : 'Elige un pack';
       $('#o-lines').innerHTML = lines.map(function (l) { return '<li><span>' + l[0] + '</span><span>' + l[1] + '</span></li>'; }).join('');
       $('#o-empty').hidden = !!pk;
       $('#o-total').textContent = pk && tooFar() ? 'A consultar' : eur(total) + ' + IVA';
       var send = $('#o-send');
-      send.textContent = tooFar() ? 'Pedir presupuesto por WhatsApp' : 'Pedir por WhatsApp';
+      send.textContent = tooFar() ? 'Consultar por WhatsApp' : 'Pedir por WhatsApp';
       if (pk && st.loc) {
-        var txt = (tooFar() ? 'Hola, quiero un presupuesto:\n' : 'Hola, quiero pedir:\n') + lines.map(function (l) { return '· ' + l[0] + ': ' + (tooFar() ? '' : l[1]); }).join('\n') + (tooFar() ? '' : '\nTotal: ' + $('#o-total').textContent + ' (desplazamiento incluido)') + '\nDirección: ' + st.loc.label + (st.loc.muni && st.loc.label.indexOf(st.loc.muni) < 0 ? ', ' + st.loc.muni : '');
+        var txt = (tooFar() ? 'Hola, quiero consultar este trabajo:\n' : 'Hola, quiero pedir:\n') + lines.map(function (l) { return '· ' + l[0] + ': ' + (tooFar() ? '' : l[1]); }).join('\n') + (tooFar() ? '' : '\nTotal: ' + $('#o-total').textContent + ' (desplazamiento incluido)') + '\nDirección: ' + st.loc.label + (st.loc.muni && st.loc.label.indexOf(st.loc.muni) < 0 ? ', ' + st.loc.muni : '');
         send.href = 'https://wa.me/34634323162?text=' + encodeURIComponent(txt); send.removeAttribute('aria-disabled');
       } else { send.href = 'https://wa.me/34634323162'; send.setAttribute('aria-disabled', 'true'); if (pk) send.textContent = 'Indica la dirección'; }
     }
@@ -309,12 +309,12 @@
     }
     /* Buscador: municipios (sin conexión) + direcciones de CartoCiudad (IGN) cuando está disponible */
     var inp = $('#loc-q'), sug = $('#loc-sug'), items = [], msg = '', act = -1, seq = 0, tmr = 0, jn = 0;
-    var tc = function (t) { return t.toLowerCase().replace(/(^|[\s,(\/-])(\S)/g, function (m, a, b) { return a + b.toUpperCase(); }).replace(/ (De|Del|La|Las|Los|Y|E)(?= )/g, function (w) { return w.toLowerCase(); }); };
+    var tc = function (t) { return t.toLowerCase().replace(/(^|[\s,(\/-])([a-záéíóúüñ])/g, function (m, a, b) { return a + b.toUpperCase(); }).replace(/ (De|Del|La|Las|Los|Y|E)(?= )/g, function (w) { return w.toLowerCase(); }); };
     function jsonp(url, cb) {
       var name = '__cc' + (++jn), s = document.createElement('script'), done = false, prev = window.callback;
-      function end(d) { if (done) return; done = true; try { delete window[name]; } catch (x) { window[name] = undefined; } window.callback = prev; s.remove(); cb(d); }
+      function end(d) { if (done) return; done = true; window[name] = function () {}; window.callback = prev; s.remove(); cb(d); }
       window[name] = end; window.callback = end;
-      s.onerror = function () { end(null); }; setTimeout(function () { end(null); }, 4000);
+      s.onerror = function () { end(null); }; setTimeout(function () { end(null); }, 7000);
       s.src = url + (url.indexOf('?') < 0 ? '?' : '&') + 'callback=' + name; document.head.appendChild(s);
     }
     function showSug() {
@@ -344,14 +344,24 @@
         items = q.length >= 2 ? localSug(q) : []; msg = q.length >= 4 ? 'Buscando direcciones…' : ''; showSug();
         clearTimeout(tmr); if (q.length < 4) return;
         tmr = setTimeout(function () {
-          jsonp('https://www.cartociudad.es/geocoder/api/geocoder/candidatesJsonp?q=' + encodeURIComponent(q) + '&limit=6&provincia_filter=Madrid&no_process=municipio,provincia,comunidad%20autonoma,poblacion,toponimo,expendeduria,punto_recarga_electrica,ngbe,carretera', function (d) {
+          var base = 'https://www.cartociudad.es/geocoder/api/geocoder/candidatesJsonp?q=' + encodeURIComponent(q) + '&no_process=municipio,provincia,comunidad%20autonoma,poblacion,toponimo,expendeduria,punto_recarga_electrica,ngbe,carretera';
+          var got = [], left = 3, fail = 0, nq = norm(q), loc = localSug(q);
+          var townFirst = !/\d/.test(q) && loc.length && loc[0].m.k.indexOf(nq) === 0;
+          var named = function (c) { return c.muni && nq.indexOf(norm(c.muni)) >= 0 ? 1 : 0; };
+          var draw = function () {
             if (my !== seq) return;
-            if (!d || !d.length) { items = localSug(q); msg = items.length ? '' : d ? 'No encontramos esa dirección. Prueba con el municipio o toca el mapa.' : 'El buscador de calles no responde ahora. Escribe el municipio o toca el mapa.'; showSug(); return; }
-            var dist = function (c) { return c.lat || c.lng ? Math.hypot.apply(0, toKm(c.lng, c.lat)) : 999; };
-            var dir = d.slice().sort(function (a, b) { return (b.muni === 'Madrid') - (a.muni === 'Madrid') || dist(a) - dist(b); }).slice(0, 5)
-              .map(function (c) { return { kind: 'dir', t: tc(c.address), s: (c.postalCode ? c.postalCode + ' · ' : '') + (c.type === 'portal' ? 'Dirección' : 'Calle'), id: c.id, type: c.type, lat: c.lat, lng: c.lng }; });
-            msg = ''; items = dir.concat(localSug(q)).slice(0, 7); showSug();
-          });
+            if (!got.length) {
+              if (left) { items = loc; msg = 'Buscando direcciones…'; showSug(); return; }
+              items = loc; msg = items.length ? '' : fail < 3 ? 'No encontramos esa dirección. Prueba con el municipio o toca el mapa.' : 'El buscador de calles no responde ahora. Escribe el municipio o toca el mapa.'; showSug(); return;
+            }
+            var dir = got.slice().sort(function (a, b) { return named(b) - named(a) || (b.muni === 'Madrid') - (a.muni === 'Madrid') || (b.province === 'Madrid') - (a.province === 'Madrid') || a._r - b._r; }).slice(0, 5)
+              .map(function (c) { return { kind: 'dir', t: tc(c.address), s: (c.postalCode ? c.postalCode + ' · ' : '') + (c.province && c.province !== 'Madrid' ? c.province + ' · ' : '') + (c.type === 'portal' ? 'Dirección' : 'Calle'), id: c.id, type: c.type, lat: c.lat, lng: c.lng }; });
+            msg = ''; items = (townFirst ? loc.slice(0, 2).concat(dir) : dir.concat(loc)).slice(0, 7); showSug();
+          };
+          var add = function (k) { return function (d) { left--; if (d === null) fail++; else (d || []).forEach(function (c, i) { if (!got.some(function (g) { return g.id === c.id; })) { c._r = k * 100 + i; got.push(c); } }); draw(); }; };
+          jsonp(base + '&limit=6&provincia_filter=Madrid', add(0));
+          jsonp(base + '&limit=6&provincia_filter=Toledo', add(1));
+          jsonp(base + '&limit=6&provincia_filter=Guadalajara,Segovia,Avila,Cuenca', add(2));
         }, 280);
       });
       inp.addEventListener('keydown', function (e) {
