@@ -172,8 +172,8 @@
       { id: 'atardecer', n: 'Atardecer virtual', p: 19, u: '/ foto', d: 'Cielo de atardecer aplicado en edición.' },
       { id: 'fotos', n: '+10 fotos', p: 39, u: '', d: 'Diez fotos HDR más en alta resolución.' },
       { id: 'reel', n: 'Reel vertical', p: 59, u: '', d: 'Versión 9:16 para Reels, TikTok y Stories.' },
-      { id: 'dron', n: 'Dron exterior', p: [149, 169, 189, 209, 229], u: '', d: 'Fotos y vídeo aéreos del exterior y el entorno.', one: true },
-      { id: 'd360', n: 'Dron 360', p: [219, 239, 259, 279, 299], u: '', d: 'Un plano secuencia por escalera, patio o azotea.', one: true },
+      { id: 'dron', n: 'Dron exterior', p: [149, 169, 189, 209, 229], u: '', d: 'Fotos aéreas y vídeo aéreo del exterior y el entorno.', one: true },
+      { id: 'd360', n: 'Dron 360', p: 249, u: '', d: 'Un plano secuencia por escalera, patio o azotea.', one: true },
       { id: 'fpvint', n: 'Vuelo FPV interior', soon: true, d: 'Un recorrido completo por dentro de la vivienda, sin cortes.' },
       { id: 'tour', n: 'Tour virtual 3D', p: [99, 114, 129, 144, 159], u: '', d: 'Recorrido 3D con 6 meses de alojamiento.', one: true },
       { id: 'plano', n: 'Plano 2D', p: 49, u: '', d: 'Se saca del tour; solo junto al tour.', one: true, needs: 'tour' },
@@ -186,6 +186,7 @@
        Distancia en línea recta desde Sol. Gratis en Madrid capital y hasta 10 km; luego 10 € por cada 10 km. Más de 60 km: a consultar.
        Si el pedido lleva certificado, se suma también el desplazamiento del técnico (0 dentro de la M-40 ≈ 9 km; +10 € hasta 20 km y +10 € cada 10 km). */
     var FEE_STEP = 10, CASA_CERT = 50, MAX_KM = 60;
+    var DRON_F = [6, 8, 10, 12, 15], DRON_S = [30, 30, 30, 45, 60];   /* fotos aéreas y segundos de vídeo aéreo por tramo (propuesta) */
     var r9 = function (n) { return Math.ceil((n + 1) / 10) * 10 - 1; };
     var casaCert = function () { return st.tipo === 'casa' ? CASA_CERT : 0; };
     var tooFar = function () { return !!st.loc && st.loc.d > MAX_KM; };
@@ -212,16 +213,20 @@
       var pk = st.pack ? PACKS[st.pack] : null, t = tier(), med = custom();
       $$('[data-size]').forEach(function (c) { c.setAttribute('aria-pressed', String(+c.dataset.size === st.size)); });
       $$('[data-tipo]').forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.tipo === st.tipo)); });
+      var th = $('#tipo-help'); if (th) th.hidden = st.tipo !== 'casa';
       $$('.pk').forEach(function (b) {
         var P = PACKS[b.dataset.pack];
         b.setAttribute('aria-pressed', String(b.dataset.pack === st.pack));
         $('.pr', b).innerHTML = tooFar() ? 'Consultar' : (st.loc ? '' : '<small>desde</small> ') + eur(pkPrice(P)) + ' <small>+ IVA</small>';
         $$('[data-f]', b).forEach(function (f) { f.textContent = P.f[t]; });
+        $$('[data-a]', b).forEach(function (f) { f.textContent = DRON_F[t]; });
+        $$('[data-as]', b).forEach(function (f) { f.textContent = DRON_S[t]; });
       });
       var lines = [], total = 0;
       if (pk) { total += pkPrice(pk); lines.push(['Pack ' + pk.n + ' · ' + (st.tipo === 'casa' ? 'Casa o chalé' : 'Piso') + ' · ' + SIZES[st.size], eur(pkPrice(pk))]); }
       EXTRAS.forEach(function (x) {
         var li = list.querySelector('[data-x="' + x.id + '"]'), off = !pk, why = '', xp = xPrice(x);
+        if (x.id === 'dron') li.querySelector('p').textContent = DRON_F[t] + ' fotos aéreas y vídeo aéreo de ' + DRON_S[t] + ' s del exterior y el entorno.';
         li.querySelector('.xp').textContent = x.soon ? 'Próximamente' : '+' + (med && typeof x.p !== 'number' ? 'desde ' : '') + xp + ' € ' + x.u;
         if (x.soon) { li.classList.add('off', 'soon-x'); st.q[x.id] = 0; li.querySelectorAll('button').forEach(function (bt) { bt.disabled = true; }); li.querySelector('.why-off').hidden = true; return; }
         if (pk && pk.inc.indexOf(x.id) >= 0) { off = true; why = 'Ya incluido en el pack ' + pk.n + '.'; }

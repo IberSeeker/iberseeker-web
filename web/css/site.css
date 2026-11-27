@@ -388,6 +388,8 @@ main { padding-top: 0; }
 .home-q { display: grid; gap: 0; margin-bottom: 30px; }
 .home-q .size { margin-bottom: 18px; }
 .q-help { font-size: 12.5px; color: var(--muted); margin-left: 4px; }
+.size-note { flex-basis: 100%; margin: 4px 0 0; }
+@media (min-width: 700px) { .size-note { padding-left: 100px; } }
 @media (min-width: 700px) { .home-q .size > span, .loc-k { min-width: 92px; } }
 .loc { display: grid; gap: 18px; border-top: 1px solid var(--line); padding-top: 20px; }
 @media (min-width: 900px) { .loc { grid-template-columns: minmax(0, 1fr) auto; column-gap: 36px; align-items: center; } }
