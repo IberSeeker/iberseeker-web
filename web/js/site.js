@@ -182,7 +182,7 @@
     var st = { pack: null, size: 0, q: {}, tipo: 'piso', loc: null };
     var custom = function () { return false; };
     var tier = function () { return st.size; };
-    /* Boceto 27/11 (importes de ejemplo): el desplazamiento va incluido en el precio, sin línea aparte.
+    /* Importes provisionales (27/11): el desplazamiento va incluido en el precio, sin línea aparte.
        Distancia en línea recta desde Sol. Gratis en Madrid capital y hasta 10 km; luego 10 € por cada 10 km. Más de 60 km: a consultar.
        Si el pedido lleva certificado, se suma también el desplazamiento del técnico (0 dentro de la M-40 ≈ 9 km; +10 € hasta 20 km y +10 € cada 10 km). */
     var FEE_STEP = 10, CASA_CERT = 50, MAX_KM = 60;
